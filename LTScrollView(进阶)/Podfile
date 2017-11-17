@@ -1,0 +1,8 @@
+platform :ios, '9.0'
+
+target 'LTScrollView' do
+
+  use_frameworks!
+  pod 'MJRefresh', '~> 3.1.14.1'
+
+end
