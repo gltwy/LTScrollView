@@ -5,6 +5,8 @@
 [![License](https://img.shields.io/cocoapods/l/LTScrollView.svg?style=flat)](http://cocoapods.org/pods/LTScrollView)
 [![Platform](https://img.shields.io/cocoapods/p/LTScrollView.svg?style=flat)](http://cocoapods.org/pods/LTScrollView)
 
+![image](https://github.com/gltwy/LTScrollView/blob/master/ScrollView%E8%81%94%E5%8A%A8.gif)
+
 ## Example
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
@@ -28,4 +30,4 @@ pod 'LTScrollView'
 
 LTScrollView is available under the MIT license. See the LICENSE file for more info.
 
-![image](https://github.com/gltwy/LTScrollView/blob/master/ScrollView%E8%81%94%E5%8A%A8.gif)
+
