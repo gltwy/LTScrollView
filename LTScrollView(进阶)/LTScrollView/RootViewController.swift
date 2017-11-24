@@ -15,7 +15,7 @@ class RootViewController: UIViewController {
     
     var contentTableView: UITableView?
     var currentIndex: Int = 0
-    var lastDiffTitleToNav:CGFloat = 0.0
+    var lastDiffTitleToNav:CGFloat = 180.0
     
     fileprivate lazy var headerView: LTHeaderView = {
         let headerView = LTHeaderView(frame: CGRect(x: 0, y: 64, width: self.view.bounds.width, height: kHeaderHeight))
@@ -40,13 +40,12 @@ class RootViewController: UIViewController {
         super.viewDidLoad()
         self.title = "ScrollView联动"
         if #available(iOS 11.0, *) {
-//            self.contentInsetAdjustmentBehavior = .never
         } else {
             self.automaticallyAdjustsScrollViewInsets = false
         }
         
         pageView.pageTitleView.frame.origin.y = 180
-        view.backgroundColor = UIColor.black
+        view.backgroundColor = UIColor.white
         view.addSubview(pageView)
         registerNotification()
         pageViewDidSelect()
@@ -75,11 +74,9 @@ extension RootViewController {
     func pageViewDidSelect()  {
         pageView.didSelectIndexBlock = { (_ , index) in
             print("点击切换位置--当前位置-> \(index)")
-            let baseVc = self.viewControllers[index]
-            self.headerView.scrollView = baseVc.scrollView
             self.currentIndex = index
-            
-            
+//            let vc = self.viewControllers[index]
+//             vc.scrollView?.contentOffset.y = -(self.pageView.pageTitleView.frame.origin.y + 44)
         }
     }
 }
@@ -92,6 +89,38 @@ extension RootViewController {
     
     fileprivate func removeNotification()  {
         NotificationCenter.default.removeObserver(self, name: kContentScrollViewNotification, object: nil)
+    }
+    
+    private func calculatePageTitleViewY(_ absOffset: CGFloat, _ offsetY: CGFloat) -> CGFloat {
+        
+        //从导航栏底部开始 到 初始位置y的值
+        var pageTitleViewY = pageView.pageTitleView.frame.origin.y
+        //page titleView底部上移的距离
+        let titleViewBottomDistance = offsetY + 180 + 44
+        //headerView的整体偏移量
+        let headerViewOffset = titleViewBottomDistance + pageTitleViewY
+        
+        if absOffset > 0 && titleViewBottomDistance > 0
+        {
+            if headerViewOffset >= 180 {
+                pageTitleViewY += -absOffset
+                if pageTitleViewY <= 0 {
+                    pageTitleViewY = 0
+                }
+            }
+            print("up up . -----", titleViewBottomDistance)
+        }
+        else
+        {
+            if headerViewOffset <= 180 {
+                pageTitleViewY = -titleViewBottomDistance + 180
+                if pageTitleViewY >= 180 {
+                    pageTitleViewY = 180
+                }
+                print("down down",titleViewBottomDistance, pageTitleViewY)
+            }
+        }
+        return pageTitleViewY
     }
     
    
@@ -116,40 +145,41 @@ extension RootViewController {
          * 向下滑动：从初始位置开始上移的距离(负数) + 从导航栏底部开始headerView.y的值 肯定小于 headerView的高度，此时headerView的y应该为 从初始位置开始上移的距离 加上 headerView的高度
          */
 
-        //从导航栏底部开始y的值
+        //从导航栏底部开始 到 初始位置y的值
         var pageTitleViewY = pageView.pageTitleView.frame.origin.y
-        //从初始位置开始上移的距离
-        let initOffset = offsetY + 180 + 44
-        
-        print("offsetY= ", offsetY, "pageTitleViewY = ", pageTitleViewY, "absOffset = ", absOffset)
+        //page titleView底部上移的距离
+        let titleViewBottomDistance = offsetY + 180 + 44
+        //headerView的整体偏移量
+        let headerViewOffset = titleViewBottomDistance + pageTitleViewY
 
-        if absOffset > 0
+
+        if absOffset > 0 && titleViewBottomDistance > 0
         {
-            if initOffset + pageTitleViewY >= 180 {
+            if headerViewOffset >= 180 {
                 pageTitleViewY += -absOffset
                 if pageTitleViewY <= 0 {
                     pageTitleViewY = 0
                 }
             }
-            print("up up -----", initOffset)
+            print("up up . -----", titleViewBottomDistance)
         }
         else
         {
-            if initOffset + pageTitleViewY < 180 {
-                pageTitleViewY = -(initOffset)+180
+            if headerViewOffset <= 180 {
+                pageTitleViewY = -titleViewBottomDistance + 180
                 if pageTitleViewY >= 180 {
                     pageTitleViewY = 180
                 }
-                print("down down",initOffset, pageTitleViewY)
+                print("down down",titleViewBottomDistance, pageTitleViewY)
             }
         }
         
+        
         pageView.pageTitleView.frame.origin.y = pageTitleViewY
         headerView.frame.origin.y = pageTitleViewY - 180 + 64
-        
         // 如果其他页面已经加载 则改变其他页面的偏移量 改变的原理依旧是通过上次和本次的差值进行计算
-        let lastDiffTitleToNavOffset = pageView.pageTitleView.frame.origin.y - lastDiffTitleToNav
-        lastDiffTitleToNav = pageView.pageTitleView.frame.origin.y
+        let lastDiffTitleToNavOffset = pageTitleViewY - lastDiffTitleToNav
+        lastDiffTitleToNav = pageTitleViewY
         for VC in viewControllers {
             if VC != baseVc && VC.scrollView != nil {
                 VC.scrollView!.contentOffset.y += (-lastDiffTitleToNavOffset)

@@ -10,15 +10,17 @@ import UIKit
 
 class LTHeaderView: UIView {
 
-    var scrollView: UIScrollView!
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    private lazy var button: UIButton = {
         let button = UIButton(type: .custom)
         button.addTarget(self, action: #selector(buttonClick), for: .touchUpInside)
         button.frame = CGRect(x: 100, y: 50, width: 100, height: 50)
-        addSubview(button)
         button.backgroundColor = UIColor.blue
+        return button
+    }()
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        addSubview(button)
     }
     
     @objc func buttonClick()  {
@@ -29,34 +31,16 @@ class LTHeaderView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    
-    override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
-        let r = super.hitTest(point, with: event)
-        guard let returnView = r  else {
-            return r
-        }
-        guard let returnViewSuperView = returnView.superview else {
-            return r
-        }
-        
-        
-        for tempView in returnViewSuperView.subviews {
-            if tempView.isKind(of: LTPageView.self) {
-                for scrollView in tempView.subviews {
-                    if scrollView.isKind(of: UIScrollView.self) {
-                        return self.scrollView
-                    }else{
-                        return r
-                    }
+    override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
+        for tempView in self.subviews {
+            if tempView.isKind(of: UIButton.self) {
+                let button = tempView as! UIButton
+                let newPoint = self.convert(point, to: button)
+                if button.bounds.contains(newPoint) {
+                    return true
                 }
-                return r
-            }else{
-                return r
             }
         }
-        return r
+        return false
     }
- 
-    
-  
 }
