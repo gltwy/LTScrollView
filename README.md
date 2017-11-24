@@ -14,7 +14,7 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 ## Installation
 
 LTScrollView is available through [CocoaPods](http://cocoapods.org). To install
-it, simply add the following line to your Podfile:
+it, simply add the following line to your Podfile（暂不可用，后期会加入）：
 
 ```ruby
 pod 'LTScrollView'
@@ -27,3 +27,5 @@ pod 'LTScrollView'
 ## License
 
 LTScrollView is available under the MIT license. See the LICENSE file for more info.
+
+![image](https://github.com/gltwy/LTScrollView/blob/master/ScrollView%E8%81%94%E5%8A%A8.gif)
