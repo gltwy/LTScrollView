@@ -15,7 +15,7 @@ class LTSimpleViewController: UIViewController {
     
     var contentTableView: UITableView?
     
-    fileprivate lazy var tableView: LTTableView = {
+    private lazy var tableView: LTTableView = {
         let tableView = LTTableView(frame: CGRect(x: 0, y: 64, width: self.view.bounds.width, height: self.view.bounds.height - 64), style:.plain)
         tableView.delegate = self
         tableView.dataSource = self
@@ -24,14 +24,14 @@ class LTSimpleViewController: UIViewController {
         return tableView
     }()
     
-    fileprivate lazy var headerView: UIView = {
+    private lazy var headerView: UIView = {
         let headerView = UIView(frame: CGRect(x: 0, y: 64, width: self.view.bounds.width, height: kHeaderHeight))
         headerView.backgroundColor = UIColor.yellow
         return headerView
     }()
     
-    fileprivate lazy var pageView: LTPageView = {
-        let viewControllers = [FirstViewController(),SecondViewController(),ThirdViewController(),ForthViewController()]
+    private lazy var pageView: LTPageView = {
+        let viewControllers = [LTSimpleTestOneVC(),LTSimpleTestTwoVC(),LTSimpleTestThreeVC(),LTSimpleTestFourVC()]
         let titles = ["嘿嘿", "呵呵", "哈哈", "嘻嘻"]
         let layout = LTLayout()
         layout.titleColor = UIColor.white
@@ -84,12 +84,12 @@ extension LTSimpleViewController {
 extension LTSimpleViewController {
     
     fileprivate func registerNotification()  {
-        NotificationCenter.default.addObserver(self, selector: #selector(contentScrollViewDidScroll(_:)), name: kContentScrollViewNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(contentScrollViewDidScroll(_:)), name: kSimpleContentScrollViewNotification, object: nil)
     }
     
     
     fileprivate func removeNotification()  {
-        NotificationCenter.default.removeObserver(self, name: kContentScrollViewNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: kSimpleContentScrollViewNotification, object: nil)
     }
     
     
@@ -148,7 +148,7 @@ extension LTSimpleViewController: UITableViewDelegate, UITableViewDataSource {
         }
         
         if scrollView.contentOffset.y < kHeaderHeight {
-            NotificationCenter.default.post(name: kScrollViewToTopNotification, object: nil)
+            NotificationCenter.default.post(name: kSimpleScrollViewToTopNotification, object: nil)
         }
     }
     

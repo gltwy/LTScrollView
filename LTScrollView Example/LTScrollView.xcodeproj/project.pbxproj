@@ -12,13 +12,17 @@
 		5C0C246E1FC8023A009F53E8 /* LTAdvancedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C0C246D1FC8023A009F53E8 /* LTAdvancedViewController.swift */; };
 		5C0C24701FC80405009F53E8 /* LTHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C0C246F1FC80405009F53E8 /* LTHeaderView.swift */; };
 		5C0C247E1FC8099D009F53E8 /* LTSimpleBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C0C247D1FC8099D009F53E8 /* LTSimpleBaseViewController.swift */; };
-		5CCDEF241FBA8E7600391B1C /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CCDEF231FBA8E7600391B1C /* FirstViewController.swift */; };
+		5CB7F12F1FCBC7EC009FA295 /* LTAdvancedBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB7F12E1FCBC7EC009FA295 /* LTAdvancedBaseViewController.swift */; };
+		5CB7F1311FCBD3E9009FA295 /* LTAdvancedTestOneVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB7F1301FCBD3E9009FA295 /* LTAdvancedTestOneVC.swift */; };
+		5CB7F1331FCBD3F5009FA295 /* LTAdvancedTestTwoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB7F1321FCBD3F5009FA295 /* LTAdvancedTestTwoVC.swift */; };
+		5CB7F1351FCBD3FD009FA295 /* LTAdvancedTestThreeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB7F1341FCBD3FD009FA295 /* LTAdvancedTestThreeVC.swift */; };
+		5CB7F1371FCBD407009FA295 /* LTAdvancedTestFourVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB7F1361FCBD407009FA295 /* LTAdvancedTestFourVC.swift */; };
 		5CCDEF261FBA911D00391B1C /* LTPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CCDEF251FBA911D00391B1C /* LTPageView.swift */; };
-		5CCDEF281FBA9C4F00391B1C /* LTBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CCDEF271FBA9C4F00391B1C /* LTBaseViewController.swift */; };
-		5CCDEF2A1FBA9E1700391B1C /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CCDEF291FBA9E1700391B1C /* SecondViewController.swift */; };
-		5CCDEF2C1FBA9E1E00391B1C /* ThirdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CCDEF2B1FBA9E1E00391B1C /* ThirdViewController.swift */; };
-		5CCDEF2E1FBA9E2400391B1C /* ForthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CCDEF2D1FBA9E2400391B1C /* ForthViewController.swift */; };
 		5CCDEF301FBA9E6A00391B1C /* LTTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CCDEF2F1FBA9E6A00391B1C /* LTTableView.swift */; };
+		5CD1902A1FCBC0F4008357BE /* LTSimpleTestOneVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CD190291FCBC0F4008357BE /* LTSimpleTestOneVC.swift */; };
+		5CD1902C1FCBC101008357BE /* LTSimpleTestTwoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CD1902B1FCBC101008357BE /* LTSimpleTestTwoVC.swift */; };
+		5CD1902E1FCBC10C008357BE /* LTSimpleTestThreeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CD1902D1FCBC10C008357BE /* LTSimpleTestThreeVC.swift */; };
+		5CD190301FCBC117008357BE /* LTSimpleTestFourVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CD1902F1FCBC117008357BE /* LTSimpleTestFourVC.swift */; };
 		5CD947771FB997AE001F9ECD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CD947761FB997AE001F9ECD /* AppDelegate.swift */; };
 		5CD9477C1FB997AE001F9ECD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5CD9477A1FB997AE001F9ECD /* Main.storyboard */; };
 		5CD9477E1FB997AE001F9ECD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5CD9477D1FB997AE001F9ECD /* Assets.xcassets */; };
@@ -52,13 +56,17 @@
 		5C0C246D1FC8023A009F53E8 /* LTAdvancedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LTAdvancedViewController.swift; sourceTree = "<group>"; };
 		5C0C246F1FC80405009F53E8 /* LTHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LTHeaderView.swift; sourceTree = "<group>"; };
 		5C0C247D1FC8099D009F53E8 /* LTSimpleBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LTSimpleBaseViewController.swift; sourceTree = "<group>"; };
-		5CCDEF231FBA8E7600391B1C /* FirstViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
+		5CB7F12E1FCBC7EC009FA295 /* LTAdvancedBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LTAdvancedBaseViewController.swift; sourceTree = "<group>"; };
+		5CB7F1301FCBD3E9009FA295 /* LTAdvancedTestOneVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LTAdvancedTestOneVC.swift; sourceTree = "<group>"; };
+		5CB7F1321FCBD3F5009FA295 /* LTAdvancedTestTwoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LTAdvancedTestTwoVC.swift; sourceTree = "<group>"; };
+		5CB7F1341FCBD3FD009FA295 /* LTAdvancedTestThreeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LTAdvancedTestThreeVC.swift; sourceTree = "<group>"; };
+		5CB7F1361FCBD407009FA295 /* LTAdvancedTestFourVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LTAdvancedTestFourVC.swift; sourceTree = "<group>"; };
 		5CCDEF251FBA911D00391B1C /* LTPageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTPageView.swift; sourceTree = "<group>"; };
-		5CCDEF271FBA9C4F00391B1C /* LTBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTBaseViewController.swift; sourceTree = "<group>"; };
-		5CCDEF291FBA9E1700391B1C /* SecondViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
-		5CCDEF2B1FBA9E1E00391B1C /* ThirdViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThirdViewController.swift; sourceTree = "<group>"; };
-		5CCDEF2D1FBA9E2400391B1C /* ForthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForthViewController.swift; sourceTree = "<group>"; };
 		5CCDEF2F1FBA9E6A00391B1C /* LTTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTTableView.swift; sourceTree = "<group>"; };
+		5CD190291FCBC0F4008357BE /* LTSimpleTestOneVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LTSimpleTestOneVC.swift; sourceTree = "<group>"; };
+		5CD1902B1FCBC101008357BE /* LTSimpleTestTwoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LTSimpleTestTwoVC.swift; sourceTree = "<group>"; };
+		5CD1902D1FCBC10C008357BE /* LTSimpleTestThreeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LTSimpleTestThreeVC.swift; sourceTree = "<group>"; };
+		5CD1902F1FCBC117008357BE /* LTSimpleTestFourVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LTSimpleTestFourVC.swift; sourceTree = "<group>"; };
 		5CD947731FB997AE001F9ECD /* LTScrollView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LTScrollView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5CD947761FB997AE001F9ECD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5CD9477B1FB997AE001F9ECD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -114,7 +122,6 @@
 			isa = PBXGroup;
 			children = (
 				5C0C24761FC80610009F53E8 /* Controller */,
-				5C0C24751FC80610009F53E8 /* View */,
 			);
 			path = "LTSimple(基础)";
 			sourceTree = "<group>";
@@ -140,15 +147,13 @@
 			isa = PBXGroup;
 			children = (
 				5C0C246D1FC8023A009F53E8 /* LTAdvancedViewController.swift */,
+				5CB7F12E1FCBC7EC009FA295 /* LTAdvancedBaseViewController.swift */,
+				5CB7F1301FCBD3E9009FA295 /* LTAdvancedTestOneVC.swift */,
+				5CB7F1321FCBD3F5009FA295 /* LTAdvancedTestTwoVC.swift */,
+				5CB7F1341FCBD3FD009FA295 /* LTAdvancedTestThreeVC.swift */,
+				5CB7F1361FCBD407009FA295 /* LTAdvancedTestFourVC.swift */,
 			);
 			path = Controller;
-			sourceTree = "<group>";
-		};
-		5C0C24751FC80610009F53E8 /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		5C0C24761FC80610009F53E8 /* Controller */ = {
@@ -156,6 +161,10 @@
 			children = (
 				5C0C246B1FC80201009F53E8 /* LTSimpleViewController.swift */,
 				5C0C247D1FC8099D009F53E8 /* LTSimpleBaseViewController.swift */,
+				5CD190291FCBC0F4008357BE /* LTSimpleTestOneVC.swift */,
+				5CD1902B1FCBC101008357BE /* LTSimpleTestTwoVC.swift */,
+				5CD1902D1FCBC10C008357BE /* LTSimpleTestThreeVC.swift */,
+				5CD1902F1FCBC117008357BE /* LTSimpleTestFourVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -192,6 +201,15 @@
 			path = LTPageViewLib;
 			sourceTree = "<group>";
 		};
+		5CD190281FCBAB20008357BE /* Lib */ = {
+			isa = PBXGroup;
+			children = (
+				5C0C247C1FC806DB009F53E8 /* LTPageViewLib */,
+				5C0C24791FC806DA009F53E8 /* LTScrollViewLib */,
+			);
+			path = Lib;
+			sourceTree = "<group>";
+		};
 		5CD9476A1FB997AE001F9ECD = {
 			isa = PBXGroup;
 			children = (
@@ -217,21 +235,15 @@
 		5CD947751FB997AE001F9ECD /* LTScrollView */ = {
 			isa = PBXGroup;
 			children = (
-				5C0C24791FC806DA009F53E8 /* LTScrollViewLib */,
+				5CD190281FCBAB20008357BE /* Lib */,
 				5C0C24771FC80688009F53E8 /* LTRoot(首页) */,
 				5C0C24711FC80538009F53E8 /* LTSimple(基础) */,
 				5C0C24721FC80554009F53E8 /* LTAdvanced(进阶) */,
-				5C0C247C1FC806DB009F53E8 /* LTPageViewLib */,
 				5CD947761FB997AE001F9ECD /* AppDelegate.swift */,
-				5CCDEF271FBA9C4F00391B1C /* LTBaseViewController.swift */,
 				5CD9477A1FB997AE001F9ECD /* Main.storyboard */,
 				5CD9477D1FB997AE001F9ECD /* Assets.xcassets */,
 				5CD9477F1FB997AE001F9ECD /* LaunchScreen.storyboard */,
 				5CD947821FB997AE001F9ECD /* Info.plist */,
-				5CCDEF231FBA8E7600391B1C /* FirstViewController.swift */,
-				5CCDEF291FBA9E1700391B1C /* SecondViewController.swift */,
-				5CCDEF2B1FBA9E1E00391B1C /* ThirdViewController.swift */,
-				5CCDEF2D1FBA9E2400391B1C /* ForthViewController.swift */,
 				5CFCB6801FBD55490053429A /* LTScrollView-Bridging-Header.h */,
 			);
 			path = LTScrollView;
@@ -453,19 +465,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5CCDEF2A1FBA9E1700391B1C /* SecondViewController.swift in Sources */,
-				5CCDEF241FBA8E7600391B1C /* FirstViewController.swift in Sources */,
+				5CB7F12F1FCBC7EC009FA295 /* LTAdvancedBaseViewController.swift in Sources */,
+				5CD1902E1FCBC10C008357BE /* LTSimpleTestThreeVC.swift in Sources */,
+				5CD190301FCBC117008357BE /* LTSimpleTestFourVC.swift in Sources */,
 				5C0C246E1FC8023A009F53E8 /* LTAdvancedViewController.swift in Sources */,
 				5C0C246C1FC80201009F53E8 /* LTSimpleViewController.swift in Sources */,
-				5CCDEF2C1FBA9E1E00391B1C /* ThirdViewController.swift in Sources */,
+				5CD1902A1FCBC0F4008357BE /* LTSimpleTestOneVC.swift in Sources */,
 				5C0C247E1FC8099D009F53E8 /* LTSimpleBaseViewController.swift in Sources */,
 				5C0C246A1FC7FC65009F53E8 /* LTHomePageViewController.swift in Sources */,
 				5CCDEF301FBA9E6A00391B1C /* LTTableView.swift in Sources */,
 				5C0C24701FC80405009F53E8 /* LTHeaderView.swift in Sources */,
+				5CB7F1371FCBD407009FA295 /* LTAdvancedTestFourVC.swift in Sources */,
 				5CD947771FB997AE001F9ECD /* AppDelegate.swift in Sources */,
 				5CCDEF261FBA911D00391B1C /* LTPageView.swift in Sources */,
-				5CCDEF2E1FBA9E2400391B1C /* ForthViewController.swift in Sources */,
-				5CCDEF281FBA9C4F00391B1C /* LTBaseViewController.swift in Sources */,
+				5CD1902C1FCBC101008357BE /* LTSimpleTestTwoVC.swift in Sources */,
+				5CB7F1351FCBD3FD009FA295 /* LTAdvancedTestThreeVC.swift in Sources */,
+				5CB7F1331FCBD3F5009FA295 /* LTAdvancedTestTwoVC.swift in Sources */,
+				5CB7F1311FCBD3E9009FA295 /* LTAdvancedTestOneVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -629,7 +645,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "LTScrollView/LTScrollView-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -646,7 +662,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.LT.LTScrollView;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "LTScrollView/LTScrollView-Bridging-Header.h";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};

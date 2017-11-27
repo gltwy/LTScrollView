@@ -1,19 +1,18 @@
 //
-//  FirstViewController.swift
+//  LTAdvancedTestTwoVC.swift
 //  LTScrollView
 //
-//  Created by 高刘通 on 2017/11/14.
+//  Created by 高刘通 on 2017/11/27.
 //  Copyright © 2017年 LT. All rights reserved.
 //
 
 import UIKit
 
-class FirstViewController: LTBaseViewController {
+class LTAdvancedTestTwoVC: LTAdvancedBaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        print("FirstViewController")
         // Do any additional setup after loading the view.
     }
 

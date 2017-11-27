@@ -52,6 +52,7 @@ class LTPageView: UIView {
         return scrollView
     }()
     
+
     init(frame: CGRect, currentViewController: UIViewController, viewControllers:[UIViewController], titles: [String], layout: LTLayout) {
         self.currentViewController = currentViewController
         self.viewControllers = viewControllers
@@ -61,12 +62,12 @@ class LTPageView: UIView {
             fatalError("控制器数量和标题数量不一致")
         }
         super.init(frame: frame)
-        
+
         addSubview(scrollView)
         addSubview(pageTitleView)
         buttonsLayout()
         pageTitleView.addSubview(lineView)
-        
+
         if #available(iOS 11.0, *) {
             scrollView.contentInsetAdjustmentBehavior = .never
         } else {
