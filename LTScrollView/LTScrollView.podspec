@@ -8,8 +8,8 @@
 
 Pod::Spec.new do |s|
   s.name             = 'LTScrollView'
-  s.version          = '0.1.0'
-  s.summary          = 'LTScrollView'
+  s.version          = '0.2.0'
+  s.summary          = 'LTScrollView xxx'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
@@ -18,7 +18,7 @@ Pod::Spec.new do |s|
 #   * Finally, don't worry about the indent, CocoaPods strips it!
 
   s.description      = <<-DESC
-Swift, ScrollView multi-level linkage, perfect implementation.
+Swift, ScrollView multi-level linkage, perfect implementation.xxx
                        DESC
 
   s.homepage         = 'https://github.com/gltwy/LTScrollView'
@@ -30,7 +30,7 @@ Swift, ScrollView multi-level linkage, perfect implementation.
 
   s.ios.deployment_target = '8.0'
 
-  s.source_files = 'LTScrollView/Classes/**/*.{swift}'
+  s.source_files = 'LTScrollView/Classes/*.{h,m,swift}'
   
   # s.resource_bundles = {
   #   'LTScrollView' => ['LTScrollView/Assets/*.png']
