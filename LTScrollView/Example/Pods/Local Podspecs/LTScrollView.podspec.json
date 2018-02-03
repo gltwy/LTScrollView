@@ -1,6 +1,6 @@
 {
   "name": "LTScrollView",
-  "version": "0.4.0",
+  "version": "1.0.0",
   "summary": "LTScrollView xxx",
   "description": "Swift, ScrollView multi-level linkage, perfect implementation.xxx",
   "homepage": "https://github.com/gltwy/LTScrollView",
@@ -13,10 +13,13 @@
   },
   "source": {
     "git": "https://github.com/gltwy/LTScrollView.git",
-    "tag": "0.4.0"
+    "tag": "1.0.0"
   },
   "platforms": {
     "ios": "8.0"
   },
-  "source_files": "LTScrollView/Classes/**/*"
+  "source_files": [
+    "LTScrollView",
+    "LTScrollView/**/*.{h,m,swift}"
+  ]
 }

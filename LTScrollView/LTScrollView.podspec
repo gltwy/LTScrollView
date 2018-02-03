@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'LTScrollView'
-  s.version          = '1.0.0'
+  s.version          = '1.0.1'
   s.summary          = 'LTScrollView xxx'
 
 # This description is used to generate tags and improve search results.
@@ -18,7 +18,7 @@ Pod::Spec.new do |s|
 #   * Finally, don't worry about the indent, CocoaPods strips it!
 
   s.description      = <<-DESC
-Swift, ScrollView multi-level linkage, perfect implementation.xxx
+Swift, ScrollView multi-level linkage, perfect implementation.xxxsr
                        DESC
 
   s.homepage         = 'https://github.com/gltwy/LTScrollView'
