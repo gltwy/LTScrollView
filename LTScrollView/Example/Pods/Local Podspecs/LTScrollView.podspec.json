@@ -1,19 +1,19 @@
 {
   "name": "LTScrollView",
-  "version": "0.0.1",
-  "summary": "LTScrollView",
-  "description": "Swift, ScrollView multi-level linkage, perfect implementation.",
+  "version": "0.4.0",
+  "summary": "LTScrollView xxx",
+  "description": "Swift, ScrollView multi-level linkage, perfect implementation.xxx",
   "homepage": "https://github.com/gltwy/LTScrollView",
   "license": {
     "type": "MIT",
     "file": "LICENSE"
   },
   "authors": {
-    "1282990794@qq.com": "1282990794@qq.com"
+    "gaoliutong": "1282990794@qq.com"
   },
   "source": {
     "git": "https://github.com/gltwy/LTScrollView.git",
-    "tag": "0.0.1"
+    "tag": "0.4.0"
   },
   "platforms": {
     "ios": "8.0"
