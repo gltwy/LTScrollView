@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'LTScrollView'
-  s.version          = '0.0.2'
+  s.version          = '0.0.1'
   s.summary          = 'LTScrollView'
 
 # This description is used to generate tags and improve search results.
@@ -30,7 +30,7 @@ Swift, ScrollView multi-level linkage, perfect implementation.
 
   s.ios.deployment_target = '8.0'
 
-  s.source_files = 'LTScrollView/Classes/**/*'
+  s.source_files = 'LTScrollView/Classes/**/*.{swift}'
   
   # s.resource_bundles = {
   #   'LTScrollView' => ['LTScrollView/Assets/*.png']
