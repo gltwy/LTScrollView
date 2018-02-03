@@ -8,8 +8,8 @@
 
 Pod::Spec.new do |s|
   s.name             = 'LTScrollView'
-  s.version          = '0.1.0'
-  s.summary          = 'A short description of LTScrollView.'
+  s.version          = '0.0.2'
+  s.summary          = 'LTScrollView'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
@@ -18,14 +18,14 @@ Pod::Spec.new do |s|
 #   * Finally, don't worry about the indent, CocoaPods strips it!
 
   s.description      = <<-DESC
-TODO: Add long description of the pod here.
+Swift, ScrollView multi-level linkage, perfect implementation.
                        DESC
 
-  s.homepage         = 'https://github.com/1282990794@qq.com/LTScrollView'
+  s.homepage         = 'https://github.com/gltwy/LTScrollView'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
-  s.author           = { '1282990794@qq.com' => '1282990794@qq.com' }
-  s.source           = { :git => 'https://github.com/1282990794@qq.com/LTScrollView.git', :tag => s.version.to_s }
+  s.author           = { 'gaoliutong' => '1282990794@qq.com' }
+  s.source           = { :git => 'https://github.com/gltwy/LTScrollView.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.ios.deployment_target = '8.0'
