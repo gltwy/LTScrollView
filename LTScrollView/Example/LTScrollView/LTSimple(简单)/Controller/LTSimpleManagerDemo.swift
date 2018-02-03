@@ -6,6 +6,14 @@
 //  Copyright © 2018年 LT. All rights reserved.
 //
 
+/*
+ * github地址
+ * https://github.com/gltwy/LTScrollView
+ *
+ * git 下载地址
+ * https://github.com/gltwy/LTScrollView.git
+ */
+
 import UIKit
 import MJRefresh
 import LTScrollView

@@ -5,6 +5,13 @@
 //  Created by 高刘通 on 2017/11/27.
 //  Copyright © 2017年 LT. All rights reserved.
 //
+/*
+ * github地址
+ * https://github.com/gltwy/LTScrollView
+ *
+ * git 下载地址
+ * https://github.com/gltwy/LTScrollView.git
+ */
 
 import UIKit
 import MJRefresh
