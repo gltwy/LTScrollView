@@ -1,0 +1,6 @@
+framework module Pods_LTScrollView_Example {
+  umbrella header "Pods-LTScrollView_Example-umbrella.h"
+
+  export *
+  module * { export * }
+}

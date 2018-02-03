@@ -1,0 +1,6 @@
+use_frameworks!
+
+target 'LTScrollView_Example' do
+  pod 'LTScrollView', :path => '../'
+  pod 'MJRefresh', '~> 3.1.14.1'
+end

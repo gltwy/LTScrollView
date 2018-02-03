@@ -1,0 +1,22 @@
+{
+  "name": "LTScrollView",
+  "version": "0.1.0",
+  "summary": "A short description of LTScrollView.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/1282990794@qq.com/LTScrollView",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "1282990794@qq.com": "1282990794@qq.com"
+  },
+  "source": {
+    "git": "https://github.com/1282990794@qq.com/LTScrollView.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source_files": "LTScrollView/Classes/**/*"
+}
