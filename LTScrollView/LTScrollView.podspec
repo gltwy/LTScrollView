@@ -26,12 +26,15 @@ Swift, ScrollView multi-level linkage, perfect implementation.xxxsr
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'gaoliutong' => '1282990794@qq.com' }
   s.source           = { :git => 'https://github.com/gltwy/LTScrollView.git', :tag => s.version.to_s }
+  s.pod_target_xcconfig = { "SWIFT_VERSION" => "4.0" }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.ios.deployment_target = '8.0'
 
 #s.source_files = 'LTScrollView/Classes/**/*.swift'
     s.source_files  = 'LTScrollView', 'LTScrollView/**/*.{h,m,swift}'
+
+
 
   # s.resource_bundles = {
   #   'LTScrollView' => ['LTScrollView/Assets/*.png']
