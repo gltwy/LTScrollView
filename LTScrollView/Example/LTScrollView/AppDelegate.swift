@@ -5,7 +5,13 @@
 //  Created by 1282990794@qq.com on 02/03/2018.
 //  Copyright (c) 2018 1282990794@qq.com. All rights reserved.
 //
-
+/*
+ * github地址
+ * https://github.com/gltwy/LTScrollView
+ *
+ * git 下载地址
+ * https://github.com/gltwy/LTScrollView.git
+ */
 import UIKit
 
 @UIApplicationMain

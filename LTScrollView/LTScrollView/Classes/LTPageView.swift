@@ -21,7 +21,7 @@ public class LTLayout: NSObject {
 }
 
 public typealias pageViewDidSelectIndexBlock = (LTPageView, Int) -> Void
-public typealias addChildViewControllerBlock = (LTPageView, UIViewController) -> Void
+public typealias addChildViewControllerBlock = (Int, UIViewController) -> Void
 
 public class LTPageView: UIView {
     
@@ -31,6 +31,13 @@ public class LTPageView: UIView {
     private var layout: LTLayout = LTLayout()
     public var didSelectIndexBlock: pageViewDidSelectIndexBlock?
     public var addChildVcBlock: addChildViewControllerBlock?
+    
+    public var titleViewY: CGFloat? {
+        didSet {
+            guard let updateY = titleViewY else { return }
+            pageTitleView.frame.origin.y = updateY
+        }
+    }
     
     public lazy var pageTitleView: UIView = {
         let pageTitleView = UIView(frame: CGRect(x: 0, y: 0, width: self.bounds.width, height: self.layout.sliderHeight ?? 44.0))
@@ -54,7 +61,7 @@ public class LTPageView: UIView {
         return scrollView
     }()
     
-
+    
     public init(frame: CGRect, currentViewController: UIViewController, viewControllers:[UIViewController], titles: [String], layout: LTLayout) {
         self.currentViewController = currentViewController
         self.viewControllers = viewControllers
@@ -131,7 +138,7 @@ extension LTPageView {
         guard let addChildVcBlock = addChildVcBlock else {
             return
         }
-        addChildVcBlock(self, VC)
+        addChildVcBlock(index, VC)
     }
     
     private func scrollViewDidScrollOffsetX(_ offsetX: CGFloat)  {

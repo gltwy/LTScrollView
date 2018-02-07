@@ -9,7 +9,11 @@
 Pod::Spec.new do |s|
   s.name             = 'LTScrollView'
   s.version          = '1.0.0'
-  s.summary          = 'LTScrollView xxx'
+  s.summary          = 'summary'
+    s.pod_target_xcconfig = {
+        'SWIFT_VERSION' => '4.0'
+    }
+
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
@@ -30,13 +34,12 @@ ScrollView multi-level linkage, perfect implementation.xxxsr
 
   s.ios.deployment_target = '8.0'
 
-  s.pod_target_xcconfig = {
-    'SWIFT_VERSION' => '4.0',
-  }
+
 
 #s.source_files = 'LTScrollView/Classes/**/*.swift'
     s.source_files  = 'LTScrollView/Classes/**/*.swift'
 
+    s.requires_arc = true
 
 
   # s.resource_bundles = {
@@ -44,6 +47,6 @@ ScrollView multi-level linkage, perfect implementation.xxxsr
   # }
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
-  # s.frameworks = 'UIKit', 'MapKit'
+  s.frameworks = 'UIKit', 'Foundation'
   # s.dependency 'AFNetworking', '~> 2.3'
 end

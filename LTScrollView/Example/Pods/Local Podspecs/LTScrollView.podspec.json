@@ -1,8 +1,11 @@
 {
   "name": "LTScrollView",
   "version": "1.0.0",
-  "summary": "LTScrollView xxx",
-  "description": "Swift, ScrollView multi-level linkage, perfect implementation.xxx",
+  "summary": "summary",
+  "pod_target_xcconfig": {
+    "SWIFT_VERSION": "4.0"
+  },
+  "description": "ScrollView multi-level linkage, perfect implementation.xxxsr",
   "homepage": "https://github.com/gltwy/LTScrollView",
   "license": {
     "type": "MIT",
@@ -18,8 +21,10 @@
   "platforms": {
     "ios": "8.0"
   },
-  "source_files": [
-    "LTScrollView",
-    "LTScrollView/**/*.{h,m,swift}"
+  "source_files": "LTScrollView/Classes/**/*.swift",
+  "requires_arc": true,
+  "frameworks": [
+    "UIKit",
+    "Foundation"
   ]
 }

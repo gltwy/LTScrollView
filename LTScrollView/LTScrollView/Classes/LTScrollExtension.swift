@@ -17,12 +17,8 @@ extension UIScrollView {
     }
     
     public var scrollHandle: LTScrollHandle? {
-        get {
-            return objc_getAssociatedObject(self, &LTHandleKey.key) as? LTScrollHandle
-        }
-        set {
-            objc_setAssociatedObject(self, &LTHandleKey.key, newValue, .OBJC_ASSOCIATION_COPY_NONATOMIC)
-        }
+        get { return objc_getAssociatedObject(self, &LTHandleKey.key) as? LTScrollHandle }
+        set { objc_setAssociatedObject(self, &LTHandleKey.key, newValue, .OBJC_ASSOCIATION_COPY_NONATOMIC) }
     }
 }
 

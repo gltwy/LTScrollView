@@ -7,17 +7,23 @@
 //
 
 import Foundation
+import UIKit
 
 extension UIViewController {
-    private struct LTScrollViewKey {
-        static var key = "glt_scrollViewKey"
+    
+    private struct LTVCKey {
+        static var sKey = "glt_scrollViewKey"
+        static var oKey = "glt_upOffsetKey"
     }
+    
     public var glt_scrollView: UIScrollView? {
-        get {
-            return objc_getAssociatedObject(self, &LTScrollViewKey.key) as? UIScrollView
-        }
-        set {
-            objc_setAssociatedObject(self, &LTScrollViewKey.key, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-        }
+        get { return objc_getAssociatedObject(self, &LTVCKey.sKey) as? UIScrollView }
+        set { objc_setAssociatedObject(self, &LTVCKey.sKey, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC) }
+    }
+    
+    public var glt_upOffset: String? {
+        get { return objc_getAssociatedObject(self, &LTVCKey.oKey) as? String }
+        set { objc_setAssociatedObject(self, &LTVCKey.oKey, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC) }
     }
 }
+

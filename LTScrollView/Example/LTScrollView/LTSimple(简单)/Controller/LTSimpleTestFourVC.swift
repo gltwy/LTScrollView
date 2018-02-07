@@ -38,10 +38,10 @@ class LTSimpleTestFourVC: UIViewController, LTTableViewProtocal {
 
 extension LTSimpleTestFourVC {
     fileprivate func reftreshData()  {
-        tableView.mj_footer = MJRefreshBackNormalFooter {
+        tableView.mj_footer = MJRefreshBackNormalFooter {[weak self] in
             DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: {
                 print("上拉加载更多数据")
-                self.tableView.mj_footer.endRefreshing()
+                self?.tableView.mj_footer.endRefreshing()
             })
         }
     }
