@@ -53,7 +53,7 @@ class LTSimpleManagerDemo: UIViewController {
         view.backgroundColor = UIColor.white
         self.automaticallyAdjustsScrollViewInsets = false
         view.addSubview(simpleManager)
-        simpleManagerConfig()
+        simpleManagerConfig()        
     }
     
     override func didReceiveMemoryWarning() {

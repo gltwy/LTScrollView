@@ -24,7 +24,7 @@ pod 'LTScrollView'
 
 ## Author
 
-1282990794@qq.com, 1282990794@qq.com
+1282990794@qq.com
 
 ## License
 

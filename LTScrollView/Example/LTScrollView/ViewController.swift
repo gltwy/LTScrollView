@@ -17,7 +17,7 @@ import LTScrollView
 
 class ViewController: UIViewController, LTTableViewProtocal {
     
-    private let datas = ["基础版", "进阶版", "高级版"]
+    private let datas = ["基础版", "进阶版"]
     
     private lazy var tableView: UITableView = {
         let tableView: UITableView = tableViewConfig(self, self, nil)
@@ -54,7 +54,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let viewControllers = [LTSimpleManagerDemo(), LTAdvancedManagerDemo(), LTSeniorManagerDemo()]
+        let viewControllers = [LTSimpleManagerDemo(), LTAdvancedManagerDemo()]
         pushVc(viewControllers[indexPath.row], index: indexPath.row)
     }
     

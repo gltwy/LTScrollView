@@ -13,7 +13,6 @@
 		5C5ABD022025915F0082677B /* LTSimpleTestThreeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C5ABCFC202591480082677B /* LTSimpleTestThreeVC.swift */; };
 		5C5ABD032025915F0082677B /* LTSimpleTestTwoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C5ABCFD202591480082677B /* LTSimpleTestTwoVC.swift */; };
 		5C5ABD0A202597BC0082677B /* LTAdvancedManagerDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C5ABD09202597BC0082677B /* LTAdvancedManagerDemo.swift */; };
-		5C5ABD0E202598030082677B /* LTSeniorManagerDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C5ABD0D202598030082677B /* LTSeniorManagerDemo.swift */; };
 		5C804A9E2029916300CD8710 /* LTAdvancedTestOneVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C804A9C2029916200CD8710 /* LTAdvancedTestOneVC.swift */; };
 		5C804A9F2029916300CD8710 /* LTHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C804A9D2029916300CD8710 /* LTHeaderView.swift */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
@@ -44,7 +43,6 @@
 		5C5ABCFC202591480082677B /* LTSimpleTestThreeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LTSimpleTestThreeVC.swift; sourceTree = "<group>"; };
 		5C5ABCFD202591480082677B /* LTSimpleTestTwoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LTSimpleTestTwoVC.swift; sourceTree = "<group>"; };
 		5C5ABD09202597BC0082677B /* LTAdvancedManagerDemo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LTAdvancedManagerDemo.swift; sourceTree = "<group>"; };
-		5C5ABD0D202598030082677B /* LTSeniorManagerDemo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LTSeniorManagerDemo.swift; sourceTree = "<group>"; };
 		5C804A9C2029916200CD8710 /* LTAdvancedTestOneVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LTAdvancedTestOneVC.swift; sourceTree = "<group>"; };
 		5C804A9D2029916300CD8710 /* LTHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LTHeaderView.swift; sourceTree = "<group>"; };
 		607FACD01AFB9204008FA782 /* LTScrollView_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LTScrollView_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -121,22 +119,6 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
-		5C5ABD07202597360082677B /* LTSenior(高级) */ = {
-			isa = PBXGroup;
-			children = (
-				5C5ABD08202597360082677B /* Controller */,
-			);
-			path = "LTSenior(高级)";
-			sourceTree = "<group>";
-		};
-		5C5ABD08202597360082677B /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				5C5ABD0D202598030082677B /* LTSeniorManagerDemo.swift */,
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
 		607FACC71AFB9204008FA782 = {
 			isa = PBXGroup;
 			children = (
@@ -163,7 +145,6 @@
 			children = (
 				5C5ABCF7202591480082677B /* LTSimple(简单) */,
 				5C5ABD05202597360082677B /* LTAdvanced(进阶) */,
-				5C5ABD07202597360082677B /* LTSenior(高级) */,
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
 				607FACD71AFB9204008FA782 /* ViewController.swift */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
@@ -395,7 +376,6 @@
 				5C5ABCFF2025915F0082677B /* LTSimpleManagerDemo.swift in Sources */,
 				5C804A9F2029916300CD8710 /* LTHeaderView.swift in Sources */,
 				5C804A9E2029916300CD8710 /* LTAdvancedTestOneVC.swift in Sources */,
-				5C5ABD0E202598030082677B /* LTSeniorManagerDemo.swift in Sources */,
 				5C5ABD002025915F0082677B /* LTSimpleTestFourVC.swift in Sources */,
 				5C5ABD012025915F0082677B /* LTSimpleTestOneVC.swift in Sources */,
 				5C5ABD022025915F0082677B /* LTSimpleTestThreeVC.swift in Sources */,
