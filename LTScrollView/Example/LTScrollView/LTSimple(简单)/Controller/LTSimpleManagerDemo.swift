@@ -48,12 +48,14 @@ class LTSimpleManagerDemo: UIViewController {
         return simpleManager
     }()
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.white
         self.automaticallyAdjustsScrollViewInsets = false
         view.addSubview(simpleManager)
-        simpleManagerConfig()        
+        simpleManagerConfig()
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -90,6 +92,7 @@ extension LTSimpleManagerDemo {
                 })
             }
         }
+        
     }
     
     @objc private func tapLabel(_ gesture: UITapGestureRecognizer)  {

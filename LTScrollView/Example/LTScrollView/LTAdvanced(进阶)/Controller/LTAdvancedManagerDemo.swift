@@ -55,6 +55,7 @@ class LTAdvancedManagerDemo: UIViewController {
         self.automaticallyAdjustsScrollViewInsets = false
         view.addSubview(advancedManager)
         advancedManagerConfig()
+        
     }
 
 }

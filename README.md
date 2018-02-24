@@ -5,6 +5,7 @@
 [![License](https://img.shields.io/cocoapods/l/LTScrollView.svg?style=flat)](http://cocoapods.org/pods/LTScrollView)
 [![Platform](https://img.shields.io/cocoapods/p/LTScrollView.svg?style=flat)](http://cocoapods.org/pods/LTScrollView)
 
+博客地址： [](http://blog.csdn.net/glt_code/article/details/78576628)
 ![image](https://github.com/gltwy/LTScrollView/blob/master/glt.gif)
 
 ## Example
