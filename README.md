@@ -7,7 +7,6 @@
 [![License](https://img.shields.io/cocoapods/l/LTScrollView.svg?style=flat)](http://cocoapods.org/pods/LTScrollView)
 [![Platform](https://img.shields.io/cocoapods/p/LTScrollView.svg?style=flat)](http://cocoapods.org/pods/LTScrollView)
 
-##
 ![image](https://github.com/gltwy/LTScrollView/blob/master/glt.gif)
 
 ## Example
