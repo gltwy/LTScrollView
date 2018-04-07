@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'LTScrollView_Example' do
+  pod 'LTScrollView', :path => '../'
+
+  target 'LTScrollView_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
