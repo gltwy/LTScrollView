@@ -1,0 +1,16 @@
+PODS:
+  - LTScrollView (0.1.0)
+
+DEPENDENCIES:
+  - LTScrollView (from `../`)
+
+EXTERNAL SOURCES:
+  LTScrollView:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  LTScrollView: 4d08db30feff444eccdfefbaeda004e638bc9752
+
+PODFILE CHECKSUM: abb74ab887ecfbf673d55b74e94cdb73a343e0db
+
+COCOAPODS: 1.2.0
