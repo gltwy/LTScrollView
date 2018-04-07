@@ -8,11 +8,11 @@
 
 Pod::Spec.new do |s|
   s.name             = 'LTScrollView'
-  s.version          = '1.0.0'
+  s.version          = '0.1.0'
   s.summary          = 'summary'
-    s.pod_target_xcconfig = {
-        'SWIFT_VERSION' => '4.0'
-    }
+#    s.pod_target_xcconfig = {
+#       'SWIFT_VERSION' => '4.0'
+#   }
 
 
 # This description is used to generate tags and improve search results.
@@ -22,7 +22,7 @@ Pod::Spec.new do |s|
 #   * Finally, don't worry about the indent, CocoaPods strips it!
 
   s.description      = <<-DESC
-ScrollView multi-level linkage, perfect implementation.xxxsr
+ScrollView嵌套ScrolloView解决方案（初级、进阶）
                        DESC
 
   s.homepage         = 'https://github.com/gltwy/LTScrollView'
@@ -37,9 +37,9 @@ ScrollView multi-level linkage, perfect implementation.xxxsr
 
 
 #s.source_files = 'LTScrollView/Classes/**/*.swift'
-    s.source_files  = 'LTScrollView/Classes/**/*.swift'
+    s.source_files  = 'LTScrollView/Classes/**/*'
 
-    s.requires_arc = true
+#   s.requires_arc = true
 
 
   # s.resource_bundles = {
