@@ -13,6 +13,14 @@
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
+		6AB5A9F92078C4D10065D6F7 /* LTSimpleManagerDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AB5A9EF2078C4D10065D6F7 /* LTSimpleManagerDemo.swift */; };
+		6AB5A9FA2078C4D10065D6F7 /* LTSimpleTestFourVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AB5A9F02078C4D10065D6F7 /* LTSimpleTestFourVC.swift */; };
+		6AB5A9FB2078C4D10065D6F7 /* LTSimpleTestThreeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AB5A9F12078C4D10065D6F7 /* LTSimpleTestThreeVC.swift */; };
+		6AB5A9FC2078C4D10065D6F7 /* LTSimpleTestOneVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AB5A9F22078C4D10065D6F7 /* LTSimpleTestOneVC.swift */; };
+		6AB5A9FD2078C4D10065D6F7 /* LTSimpleTestTwoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AB5A9F32078C4D10065D6F7 /* LTSimpleTestTwoVC.swift */; };
+		6AB5A9FE2078C4D10065D6F7 /* LTHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AB5A9F62078C4D10065D6F7 /* LTHeaderView.swift */; };
+		6AB5A9FF2078C4D10065D6F7 /* LTAdvancedManagerDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AB5A9F72078C4D10065D6F7 /* LTAdvancedManagerDemo.swift */; };
+		6AB5AA002078C4D10065D6F7 /* LTAdvancedTestOneVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AB5A9F82078C4D10065D6F7 /* LTAdvancedTestOneVC.swift */; };
 		7DB01BDC023018210CF4AAA8 /* Pods_LTScrollView_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6CC587E6DBC111962EA1E447 /* Pods_LTScrollView_Tests.framework */; };
 		C1E38C111D3DA84CBF0CFB43 /* Pods_LTScrollView_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C1723AE1BCAADA01BFD6E80 /* Pods_LTScrollView_Example.framework */; };
 /* End PBXBuildFile section */
@@ -43,6 +51,14 @@
 		607FACE51AFB9204008FA782 /* LTScrollView_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LTScrollView_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACEB1AFB9204008FA782 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
+		6AB5A9EF2078C4D10065D6F7 /* LTSimpleManagerDemo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTSimpleManagerDemo.swift; sourceTree = "<group>"; };
+		6AB5A9F02078C4D10065D6F7 /* LTSimpleTestFourVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTSimpleTestFourVC.swift; sourceTree = "<group>"; };
+		6AB5A9F12078C4D10065D6F7 /* LTSimpleTestThreeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTSimpleTestThreeVC.swift; sourceTree = "<group>"; };
+		6AB5A9F22078C4D10065D6F7 /* LTSimpleTestOneVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTSimpleTestOneVC.swift; sourceTree = "<group>"; };
+		6AB5A9F32078C4D10065D6F7 /* LTSimpleTestTwoVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTSimpleTestTwoVC.swift; sourceTree = "<group>"; };
+		6AB5A9F62078C4D10065D6F7 /* LTHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTHeaderView.swift; sourceTree = "<group>"; };
+		6AB5A9F72078C4D10065D6F7 /* LTAdvancedManagerDemo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTAdvancedManagerDemo.swift; sourceTree = "<group>"; };
+		6AB5A9F82078C4D10065D6F7 /* LTAdvancedTestOneVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTAdvancedTestOneVC.swift; sourceTree = "<group>"; };
 		6CC587E6DBC111962EA1E447 /* Pods_LTScrollView_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LTScrollView_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1030EA3F060C63BBB220374 /* Pods-LTScrollView_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LTScrollView_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-LTScrollView_Tests/Pods-LTScrollView_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		B119E2D80EDE6DCAB9CE1BD8 /* Pods-LTScrollView_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LTScrollView_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-LTScrollView_Example/Pods-LTScrollView_Example.release.xcconfig"; sourceTree = "<group>"; };
@@ -93,6 +109,8 @@
 		607FACD21AFB9204008FA782 /* Example for LTScrollView */ = {
 			isa = PBXGroup;
 			children = (
+				6AB5A9F42078C4D10065D6F7 /* LTAdvanced */,
+				6AB5A9ED2078C4D10065D6F7 /* LTSimple */,
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
 				607FACD71AFB9204008FA782 /* ViewController.swift */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
@@ -137,6 +155,44 @@
 				3BA5E27AA5C4C723D920D4F6 /* LICENSE */,
 			);
 			name = "Podspec Metadata";
+			sourceTree = "<group>";
+		};
+		6AB5A9ED2078C4D10065D6F7 /* LTSimple */ = {
+			isa = PBXGroup;
+			children = (
+				6AB5A9EE2078C4D10065D6F7 /* Controller */,
+			);
+			path = LTSimple;
+			sourceTree = "<group>";
+		};
+		6AB5A9EE2078C4D10065D6F7 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				6AB5A9EF2078C4D10065D6F7 /* LTSimpleManagerDemo.swift */,
+				6AB5A9F02078C4D10065D6F7 /* LTSimpleTestFourVC.swift */,
+				6AB5A9F12078C4D10065D6F7 /* LTSimpleTestThreeVC.swift */,
+				6AB5A9F22078C4D10065D6F7 /* LTSimpleTestOneVC.swift */,
+				6AB5A9F32078C4D10065D6F7 /* LTSimpleTestTwoVC.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		6AB5A9F42078C4D10065D6F7 /* LTAdvanced */ = {
+			isa = PBXGroup;
+			children = (
+				6AB5A9F52078C4D10065D6F7 /* Controller */,
+			);
+			path = LTAdvanced;
+			sourceTree = "<group>";
+		};
+		6AB5A9F52078C4D10065D6F7 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				6AB5A9F62078C4D10065D6F7 /* LTHeaderView.swift */,
+				6AB5A9F72078C4D10065D6F7 /* LTAdvancedManagerDemo.swift */,
+				6AB5A9F82078C4D10065D6F7 /* LTAdvancedTestOneVC.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		B96E7A0BE598A4CDBCA2F0C2 /* Pods */ = {
@@ -362,7 +418,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
+				6AB5AA002078C4D10065D6F7 /* LTAdvancedTestOneVC.swift in Sources */,
+				6AB5A9FF2078C4D10065D6F7 /* LTAdvancedManagerDemo.swift in Sources */,
+				6AB5A9FE2078C4D10065D6F7 /* LTHeaderView.swift in Sources */,
+				6AB5A9FC2078C4D10065D6F7 /* LTSimpleTestOneVC.swift in Sources */,
+				6AB5A9FB2078C4D10065D6F7 /* LTSimpleTestThreeVC.swift in Sources */,
+				6AB5A9F92078C4D10065D6F7 /* LTSimpleManagerDemo.swift in Sources */,
+				6AB5A9FA2078C4D10065D6F7 /* LTSimpleTestFourVC.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
+				6AB5A9FD2078C4D10065D6F7 /* LTSimpleTestTwoVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

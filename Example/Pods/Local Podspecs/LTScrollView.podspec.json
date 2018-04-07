@@ -1,6 +1,6 @@
 {
   "name": "LTScrollView",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "summary": "LTScrollView",
   "description": "TODO: Add long description of the pod here.A short description of LTScrollView.",
   "homepage": "https://github.com/gltwy/LTScrollView",
@@ -13,7 +13,7 @@
   },
   "source": {
     "git": "https://github.com/gltwy/LTScrollView.git",
-    "tag": "0.1.0"
+    "tag": "0.1.1"
   },
   "platforms": {
     "ios": "8.0"
