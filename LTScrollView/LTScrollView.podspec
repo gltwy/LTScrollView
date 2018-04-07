@@ -28,7 +28,7 @@ ScrollView嵌套ScrolloView解决方案（初级、进阶）
   s.homepage         = 'https://github.com/gltwy/LTScrollView'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
-  s.author           = { 'gaoliutong' => '1282990794@qq.com' }
+  s.author           = { '1282990794@qq.com' => '1282990794@qq.com' }
   s.source           = { :git => 'https://github.com/gltwy/LTScrollView.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
@@ -37,7 +37,7 @@ ScrollView嵌套ScrolloView解决方案（初级、进阶）
 
 
 #s.source_files = 'LTScrollView/Classes/**/*.swift'
-    s.source_files  = 'LTScrollView/Classes/**/*'
+  s.source_files  = 'LTScrollView/Classes/**/*'
 
 #   s.requires_arc = true
 
@@ -47,6 +47,6 @@ ScrollView嵌套ScrolloView解决方案（初级、进阶）
   # }
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
-  s.frameworks = 'UIKit', 'Foundation'
+#s.frameworks = 'UIKit', 'Foundation'
   # s.dependency 'AFNetworking', '~> 2.3'
 end
