@@ -1,8 +1,12 @@
 use_frameworks!
 
 target 'LTScrollView_Example' do
-  pod 'LTScrollView', :path => '../'
-  pod 'MJRefresh', '~> 3.1.14.1'
+#    个人项目中使用
+#    pod 'LTScrollView', '~> 0.1.1'
+
+#   本Demo中使用
+    pod 'LTScrollView', :path => '../'
+    pod 'MJRefresh', '~> 3.1.14.1'
 
   target 'LTScrollView_Tests' do
     inherit! :search_paths
