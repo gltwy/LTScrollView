@@ -17,7 +17,7 @@ import LTScrollView
 
 class ViewController: UIViewController, LTTableViewProtocal {
     
-    private let datas = ["基础版", "进阶版"]
+    private let datas = ["基础版（LTSimple）", "进阶版（LTAdvanced）"]
     
     private lazy var tableView: UITableView = {
         let tableView: UITableView = tableViewConfig(self, self, nil)
