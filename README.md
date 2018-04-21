@@ -41,7 +41,9 @@ $ pod install
 
 ## Usage
 
-#### Swift使用说明
+### Swift使用说明
+
+#### LTSimple使用说明
 
 ```swift
 private lazy var layout: LTLayout = {
