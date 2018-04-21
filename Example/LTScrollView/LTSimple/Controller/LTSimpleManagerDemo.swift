@@ -16,7 +16,6 @@
 
 import UIKit
 import MJRefresh
-import LTScrollView
 
 class LTSimpleManagerDemo: UIViewController {
 

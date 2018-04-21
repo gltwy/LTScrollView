@@ -11,7 +11,7 @@ import UIKit
 public class LTAdvancedManager: UIView {
     
     public typealias LTAdvancedDidSelectIndexHandle = (Int) -> Void
-    public var advancedDidSelectIndexHandle: LTAdvancedDidSelectIndexHandle?
+    @objc public var advancedDidSelectIndexHandle: LTAdvancedDidSelectIndexHandle?
 
     private var kHeaderHeight: CGFloat = 0.0
     private var currentSelectIndex: Int = 0
@@ -22,7 +22,7 @@ public class LTAdvancedManager: UIView {
     private var currentViewController: UIViewController
     private var pageView: LTPageView!
     
-    public init(viewControllers: [UIViewController], titles: [String], currentViewController:UIViewController, layout: LTLayout, headerViewHandle handle: () -> UIView) {
+    @objc public init(viewControllers: [UIViewController], titles: [String], currentViewController:UIViewController, layout: LTLayout, headerViewHandle handle: () -> UIView) {
         UIScrollView.initializeOnce()
         self.viewControllers = viewControllers
         self.titles = titles
@@ -34,7 +34,7 @@ public class LTAdvancedManager: UIView {
         initSubViewsConfig(handle)
     }
     
-    public init(frame: CGRect, viewControllers: [UIViewController], titles: [String], currentViewController:UIViewController, layout: LTLayout, headerViewHandle handle: () -> UIView) {
+    @objc public init(frame: CGRect, viewControllers: [UIViewController], titles: [String], currentViewController:UIViewController, layout: LTLayout, headerViewHandle handle: () -> UIView) {
         UIScrollView.initializeOnce()
         self.viewControllers = viewControllers
         self.titles = titles
@@ -53,7 +53,7 @@ public class LTAdvancedManager: UIView {
         addSubview(headerView)
     }
     
-    public init(viewControllers: [UIViewController], titles: [String], currentViewController:UIViewController, layout: LTLayout) {
+    @objc public init(viewControllers: [UIViewController], titles: [String], currentViewController:UIViewController, layout: LTLayout) {
         UIScrollView.initializeOnce()
         self.viewControllers = viewControllers
         self.titles = titles

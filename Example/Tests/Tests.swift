@@ -1,5 +1,4 @@
 import XCTest
-import LTScrollView
 
 class Tests: XCTestCase {
     

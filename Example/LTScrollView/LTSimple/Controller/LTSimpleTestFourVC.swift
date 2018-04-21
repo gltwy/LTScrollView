@@ -15,7 +15,6 @@
 
 import UIKit
 import MJRefresh
-import LTScrollView
 
 class LTSimpleTestFourVC: UIViewController, LTTableViewProtocal {
     

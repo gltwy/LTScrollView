@@ -16,7 +16,7 @@ extension UIViewController {
         static var oKey = "glt_upOffsetKey"
     }
     
-    public var glt_scrollView: UIScrollView? {
+    @objc public var glt_scrollView: UIScrollView? {
         get { return objc_getAssociatedObject(self, &LTVCKey.sKey) as? UIScrollView }
         set { objc_setAssociatedObject(self, &LTVCKey.sKey, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC) }
     }

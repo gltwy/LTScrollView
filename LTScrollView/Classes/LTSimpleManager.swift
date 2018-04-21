@@ -10,7 +10,7 @@ import UIKit
 
 public class LTSimpleManager: UIView {
     
-    public func configHeaderView(_ handle: (() -> UIView?)?) {
+    @objc public func configHeaderView(_ handle: (() -> UIView?)?) {
         guard let handle = handle else { return }
         guard let headerView = handle() else { return }
         kHeaderHeight = headerView.bounds.height
@@ -18,15 +18,15 @@ public class LTSimpleManager: UIView {
     }
     
     public typealias LTSimpleDidSelectIndexHandle = (Int) -> Void
-    public var sampleDidSelectIndexHandle: LTSimpleDidSelectIndexHandle?
-    public func didSelectIndexHandle(_ handle: LTSimpleDidSelectIndexHandle?) {
+    @objc public var sampleDidSelectIndexHandle: LTSimpleDidSelectIndexHandle?
+    @objc  public func didSelectIndexHandle(_ handle: LTSimpleDidSelectIndexHandle?) {
         guard let handle = handle else { return }
         sampleDidSelectIndexHandle = handle
     }
     
     public typealias LTSimpleRefreshTableViewHandle = (UIScrollView, Int) -> Void
-    public var simpleRefreshTableViewHandle: LTSimpleRefreshTableViewHandle?
-    public func refreshTableViewHandle(_ handle: LTSimpleRefreshTableViewHandle?) {
+    @objc public var simpleRefreshTableViewHandle: LTSimpleRefreshTableViewHandle?
+    @objc public func refreshTableViewHandle(_ handle: LTSimpleRefreshTableViewHandle?) {
         guard let handle = handle else { return }
         simpleRefreshTableViewHandle = handle
     }
@@ -49,7 +49,7 @@ public class LTSimpleManager: UIView {
         return tableView
     }()
 
-    public init(viewControllers: [UIViewController], titles: [String], currentViewController:UIViewController, layout: LTLayout) {
+    @objc public init(viewControllers: [UIViewController], titles: [String], currentViewController:UIViewController, layout: LTLayout) {
         UIScrollView.initializeOnce()
         self.viewControllers = viewControllers
         self.titles = titles
@@ -61,7 +61,7 @@ public class LTSimpleManager: UIView {
         createSubViews()
     }
     
-    public init(frame: CGRect, viewControllers: [UIViewController], titles: [String], currentViewController:UIViewController, layout: LTLayout) {
+    @objc public init(frame: CGRect, viewControllers: [UIViewController], titles: [String], currentViewController:UIViewController, layout: LTLayout) {
         UIScrollView.initializeOnce()
         self.viewControllers = viewControllers
         self.titles = titles

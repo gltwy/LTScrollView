@@ -13,7 +13,6 @@
  * https://github.com/gltwy/LTScrollView.git
  */
 import UIKit
-import LTScrollView
 
 class ViewController: UIViewController, LTTableViewProtocal {
     

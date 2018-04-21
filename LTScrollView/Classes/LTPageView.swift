@@ -11,13 +11,13 @@ import UIKit
 public let glt_iphoneX = (UIScreen.main.bounds.height == 812.0)
 
 public class LTLayout: NSObject {
-    public var titleColor: UIColor? = UIColor.white
-    public var titleSelectColor: UIColor? = UIColor.blue
-    public var titleViewBgColor: UIColor? = UIColor.gray
-    public var titleFont: UIFont? = UIFont.systemFont(ofSize: 16)
-    public var bottomLineColor: UIColor? = UIColor.blue
-    public var sliderHeight: CGFloat?
-    public var bottomLineHeight: CGFloat?
+    @objc public var titleColor: UIColor? = UIColor.white
+    @objc public var titleSelectColor: UIColor? = UIColor.blue
+    @objc public var titleViewBgColor: UIColor? = UIColor.gray
+    @objc public var titleFont: UIFont? = UIFont.systemFont(ofSize: 16)
+    @objc public var bottomLineColor: UIColor? = UIColor.blue
+    @objc public var sliderHeight: CGFloat = 44.0
+    @objc public var bottomLineHeight: CGFloat = 2.0
 }
 
 public typealias pageViewDidSelectIndexBlock = (LTPageView, Int) -> Void
@@ -40,13 +40,13 @@ public class LTPageView: UIView {
     }
     
     public lazy var pageTitleView: UIView = {
-        let pageTitleView = UIView(frame: CGRect(x: 0, y: 0, width: self.bounds.width, height: self.layout.sliderHeight ?? 44.0))
+        let pageTitleView = UIView(frame: CGRect(x: 0, y: 0, width: self.bounds.width, height: self.layout.sliderHeight))
         pageTitleView.backgroundColor = self.layout.titleViewBgColor
         return pageTitleView
     }()
     
     private lazy var lineView: UIView = {
-        let lineView = UIView(frame: CGRect(x: 0, y: self.pageTitleView.bounds.height - (self.layout.bottomLineHeight ?? 2.0), width: 0, height: self.layout.bottomLineHeight ?? 2.0))
+        let lineView = UIView(frame: CGRect(x: 0, y: self.pageTitleView.bounds.height - (self.layout.bottomLineHeight), width: 0, height: self.layout.bottomLineHeight))
         lineView.backgroundColor = self.layout.bottomLineColor
         return lineView
     }()
@@ -94,7 +94,7 @@ extension LTPageView {
         let totalW = bounds.width
         let subW = totalW / CGFloat(titles.count)
         let subY: CGFloat = 0
-        let subH = pageTitleView.bounds.height - (self.layout.bottomLineHeight ?? 2.0)
+        let subH = pageTitleView.bounds.height - (self.layout.bottomLineHeight)
         lineView.frame.size.width = subW
         for index in 0..<titles.count {
             let subX = subW * CGFloat(index)
