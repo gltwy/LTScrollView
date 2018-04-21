@@ -115,6 +115,62 @@ advancedManager.advancedDidSelectIndexHandle = {
 }
 
 ```
+### OC使用说明
+
+##### OC.LTSimple使用说明
+
+```objective-c
+-(LTSimpleManager *)managerView {
+    if (!_managerView) {
+        CGFloat Y = kIPhoneX ? 64 + 24.0 : 64.0;
+        CGFloat H = kIPhoneX ? (self.view.bounds.size.height - Y - 34) : self.view.bounds.size.height - Y;
+        _managerView = [[LTSimpleManager alloc] initWithFrame:CGRectMake(0, Y, self.view.bounds.size.width, H) viewControllers:self.viewControllers titles:self.titles currentViewController:self layout:self.layout];
+    }
+    return _managerView;
+}
+    
+//配置headerView
+[self.managerView configHeaderView:^UIView * _Nullable{
+    return [weakSelf setupHeaderView];
+}];
+
+//pageView点击事件
+[self.managerView didSelectIndexHandle:^(NSInteger index) {
+    NSLog(@"点击了 -> %ld", index);
+}];
+
+//控制器刷新事件
+[self.managerView refreshTableViewHandle:^(UIScrollView * _Nonnull scrollView, NSInteger index) {
+    __weak typeof(scrollView) weakScrollView = scrollView;
+    scrollView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        __strong typeof(weakScrollView) strongScrollView = weakScrollView;
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            NSLog(@"对应控制器的刷新自己玩吧，这里就不做处理了🙂-----%ld", index);
+            [strongScrollView.mj_header endRefreshing];
+        });
+    }];
+}];
+
+```
+
+##### OC.LTAdvanced使用说明
+```objective-c
+-(LTAdvancedManager *)managerView {
+    if (!_managerView) {
+        CGFloat Y = kIPhoneX ? 64 + 24.0 : 64.0;
+        CGFloat H = kIPhoneX ? (self.view.bounds.size.height - Y - 34) : self.view.bounds.size.height - Y;
+        _managerView = [[LTAdvancedManager alloc] initWithFrame:CGRectMake(0, Y, self.view.bounds.size.width, H) viewControllers:self.viewControllers titles:self.titles currentViewController:self layout:self.layout headerViewHandle:^UIView * _Nonnull{
+            return [self setupHeaderView];
+        }];
+    }
+    return _managerView;
+}
+
+[self.managerView setAdvancedDidSelectIndexHandle:^(NSInteger index) {
+    NSLog(@"%ld", index);
+}];
+
+```
 
 ## Author
 
