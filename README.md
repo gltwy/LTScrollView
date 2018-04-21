@@ -12,16 +12,31 @@
 ## Example
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
+## Installation with CocoaPods
 
-## Requirements
+[CocoaPods](http://cocoapods.org) is a dependency manager for Swift, which automates and simplifies the process of using 3rd-party libraries like LTScrollView in your projects.  You can install it with the following command:
 
-## Installation
+```bash
+$ gem install cocoapods
+```
 
-LTScrollView is available through [CocoaPods](http://cocoapods.org). To install
-it, simply add the following line to your Podfile：
+#### Podfile
+
+To integrate LTScrollView into your Xcode project using CocoaPods, specify it in your `Podfile`:
 
 ```ruby
-pod 'LTScrollView'
+source 'https://github.com/CocoaPods/Specs.git'
+platform :ios, '8.0'
+
+target 'TargetName' do
+pod 'LTScrollView', '~> 0.1.2'
+end
+```
+
+Then, run the following command:
+
+```bash
+$ pod install
 ```
 
 ## Author
