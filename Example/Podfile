@@ -4,13 +4,7 @@ target 'LTScrollView_Example' do
 #    个人项目中使用
 #    pod 'LTScrollView', '~> 0.1.1'
 
-#   本Demo中使用
-#    pod 'LTScrollView', :path => '../'
+#   本Demo中使用, LTScrollView不依赖任何第三方框架
     pod 'MJRefresh', '~> 3.1.14.1'
 
-  target 'LTScrollView_Tests' do
-    inherit! :search_paths
-
-    
-  end
 end

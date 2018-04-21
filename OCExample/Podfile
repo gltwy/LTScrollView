@@ -5,6 +5,7 @@ target 'OCExample' do
 	
     pod 'LTScrollView', '~> 0.1.2'
     
+    #本Demo中使用, LTScrollView不依赖任何第三方框架
     pod 'MJRefresh', '~> 3.1.14.1'
     
 end

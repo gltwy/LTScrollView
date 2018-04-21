@@ -5,13 +5,15 @@
 //  Created by 1282990794@qq.com on 02/03/2018.
 //  Copyright (c) 2018 1282990794@qq.com. All rights reserved.
 //
-/*
- * github地址
- * https://github.com/gltwy/LTScrollView
- *
- * git 下载地址
- * https://github.com/gltwy/LTScrollView.git
- */
+//  如有疑问，欢迎联系本人QQ: 1282990794
+//
+//  ScrollView嵌套ScrolloView解决方案（初级、进阶)， 支持OC/Swift
+//
+//  github地址: https://github.com/gltwy/LTScrollView
+//
+//  clone地址:  https://github.com/gltwy/LTScrollView.git
+//
+
 import UIKit
 
 @UIApplicationMain

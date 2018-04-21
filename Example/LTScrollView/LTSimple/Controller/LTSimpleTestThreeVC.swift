@@ -5,13 +5,15 @@
 //  Created by 高刘通 on 2017/11/27.
 //  Copyright © 2017年 LT. All rights reserved.
 //
-/*
- * github地址
- * https://github.com/gltwy/LTScrollView
- *
- * git 下载地址
- * https://github.com/gltwy/LTScrollView.git
- */
+//  如有疑问，欢迎联系本人QQ: 1282990794
+//
+//  ScrollView嵌套ScrolloView解决方案（初级、进阶)， 支持OC/Swift
+//
+//  github地址: https://github.com/gltwy/LTScrollView
+//
+//  clone地址:  https://github.com/gltwy/LTScrollView.git
+//
+
 import UIKit
 import MJRefresh
 
