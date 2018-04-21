@@ -11,7 +11,9 @@
 
 ## Example
 
-To run the example project, clone the repo, and run `pod install` from the Example directory first.
+LTScrollView/Example：为Swift使用示例
+LTScrollView/OCExample：为OC使用示例
+
 ## Installation with CocoaPods
 
 [CocoaPods](http://cocoapods.org) is a dependency manager for Swift, which automates and simplifies the process of using 3rd-party libraries like LTScrollView in your projects.  You can install it with the following command:
