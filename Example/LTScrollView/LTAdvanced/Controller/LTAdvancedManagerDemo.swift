@@ -65,6 +65,7 @@ extension LTAdvancedManagerDemo {
     
     //MARK: 具体使用请参考以下
     private func advancedManagerConfig() {
+        //MARK: 选中事件
         advancedManager.advancedDidSelectIndexHandle = {
             print($0)
         }
