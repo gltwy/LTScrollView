@@ -105,6 +105,7 @@ extension LTSimpleManagerDemo {
         let headerView = UILabel(frame: CGRect(x: 0, y: 0, width: self.view.bounds.width, height: 185))
         headerView.backgroundColor = UIColor.red
         headerView.text = "点击响应事件"
+        headerView.textColor = UIColor.white
         headerView.textAlignment = .center
         headerView.isUserInteractionEnabled = true
         headerView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.tapLabel(_:))))
