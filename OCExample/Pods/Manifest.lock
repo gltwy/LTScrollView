@@ -1,0 +1,15 @@
+PODS:
+  - LTScrollView (0.1.2)
+  - MJRefresh (3.1.14.1)
+
+DEPENDENCIES:
+  - LTScrollView (~> 0.1.2)
+  - MJRefresh (~> 3.1.14.1)
+
+SPEC CHECKSUMS:
+  LTScrollView: c0dd4030178da6a70b87bc9f03d501a9cfe7f20e
+  MJRefresh: 238e6a37e2dba12160ee3b79f6d2a2b26abcab42
+
+PODFILE CHECKSUM: a7a38fd671b4d6976b474335f364dbb818cb2305
+
+COCOAPODS: 1.2.0

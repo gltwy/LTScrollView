@@ -1,0 +1,10 @@
+ platform :ios, '8.0'
+
+target 'OCExample' do
+  use_frameworks!
+	
+    pod 'LTScrollView', '~> 0.1.2'
+    
+    pod 'MJRefresh', '~> 3.1.14.1'
+    
+end
