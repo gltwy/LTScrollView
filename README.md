@@ -43,7 +43,7 @@ $ pod install
 
 ### Swift使用说明
 
-##### LTSimple使用说明
+##### Swift.LTSimple使用说明
 
 ```swift
 private lazy var layout: LTLayout = {
@@ -86,7 +86,7 @@ simpleManager.refreshTableViewHandle { (scrollView, index) in
 
 ```
 
-##### LTAdvanced使用说明
+##### Swift.LTAdvanced使用说明
 
 ```swift
 private lazy var layout: LTLayout = {
@@ -98,33 +98,20 @@ private lazy var layout: LTLayout = {
     return layout
 }()
 
-private lazy var simpleManager: LTSimpleManager = {
+private lazy var advancedManager: LTAdvancedManager = {
     let Y: CGFloat = glt_iphoneX ? 64 + 24.0 : 64.0
     let H: CGFloat = glt_iphoneX ? (view.bounds.height - Y - 34) : view.bounds.height - Y
-    let simpleManager = LTSimpleManager(frame: CGRect(x: 0, y: Y, width: view.bounds.width, height: H), viewControllers: viewControllers, titles: titles, currentViewController: self, layout: layout)
-    return simpleManager
+    let advancedManager = LTAdvancedManager(frame: CGRect(x: 0, y: Y, width: view.bounds.width, height: H), viewControllers: viewControllers, titles: titles, currentViewController: self, layout: layout, headerViewHandle: {[weak self] in
+        guard let strongSelf = self else { return UIView() }
+        let headerView = strongSelf.testLabel()
+        return headerView
+    })
+    return advancedManager
 }()
 
-//MARK: headerView设置
-simpleManager.configHeaderView {[weak self] in
-    guard let strongSelf = self else { return nil }
-    let headerView = strongSelf.testLabel()
-    return headerView
-}
-
-//MARK: pageView点击事件
-simpleManager.didSelectIndexHandle { (index) in
-    print("点击了 \(index) 😆")
-}
-
-//MARK: 控制器刷新事件
-simpleManager.refreshTableViewHandle { (scrollView, index) in
-    scrollView.mj_header = MJRefreshNormalHeader {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: {
-            print("对应控制器的刷新自己玩吧，这里就不做处理了🙂-----\(index)")
-            scrollView.mj_header.endRefreshing()
-        })
-    }
+//MARK: 选中事件
+advancedManager.advancedDidSelectIndexHandle = {
+    print($0)
 }
 
 ```
