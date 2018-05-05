@@ -27,15 +27,18 @@ class LTAdvancedManagerDemo: UIViewController {
     }()
     
     private lazy var titles: [String] = {
-        return ["热门", "价格", "地区", "其它"]
+        return ["热门", "精彩推荐", "科技控", "游戏"]
     }()
     
     private lazy var layout: LTLayout = {
         let layout = LTLayout()
-        layout.titleColor = UIColor.white
-        layout.titleViewBgColor = UIColor.gray
-        layout.titleSelectColor = UIColor.yellow
-        layout.bottomLineColor = UIColor.yellow
+        layout.titleViewBgColor = UIColor(r: 255, g: 239, b: 213)
+        layout.titleColor = UIColor(r: 0, g: 0, b: 0)
+        layout.titleSelectColor = UIColor(r: 255, g: 0, b: 0)
+        layout.bottomLineColor = UIColor.red
+        layout.pageBottomLineColor = UIColor(r: 230, g: 230, b: 230)
+        layout.isAverage = true
+        layout.sliderWidth = 20
         return layout
     }()
 
@@ -56,7 +59,6 @@ class LTAdvancedManagerDemo: UIViewController {
         self.automaticallyAdjustsScrollViewInsets = false
         view.addSubview(advancedManager)
         advancedManagerConfig()
-        
     }
 
 }

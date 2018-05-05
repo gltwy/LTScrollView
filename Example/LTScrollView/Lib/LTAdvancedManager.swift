@@ -21,18 +21,7 @@ public class LTAdvancedManager: UIView {
     private var titles: [String]
     private var currentViewController: UIViewController
     private var pageView: LTPageView!
-    
-    @objc public init(viewControllers: [UIViewController], titles: [String], currentViewController:UIViewController, layout: LTLayout, headerViewHandle handle: () -> UIView) {
-        UIScrollView.initializeOnce()
-        self.viewControllers = viewControllers
-        self.titles = titles
-        self.currentViewController = currentViewController
-        let Y: CGFloat = glt_iphoneX ? 64+24 : 64
-        let defaultFrame = CGRect(x: 0, y: Y, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height  - Y)
-        super.init(frame: defaultFrame)
-        pageView = createPageViewConfig(currentViewController: currentViewController, layout: layout)
-        initSubViewsConfig(handle)
-    }
+
     
     @objc public init(frame: CGRect, viewControllers: [UIViewController], titles: [String], currentViewController:UIViewController, layout: LTLayout, headerViewHandle handle: () -> UIView) {
         UIScrollView.initializeOnce()
@@ -51,17 +40,6 @@ public class LTAdvancedManager: UIView {
         lastDiffTitleToNav = kHeaderHeight
         createSubViews()
         addSubview(headerView)
-    }
-    
-    @objc public init(viewControllers: [UIViewController], titles: [String], currentViewController:UIViewController, layout: LTLayout) {
-        UIScrollView.initializeOnce()
-        self.viewControllers = viewControllers
-        self.titles = titles
-        self.currentViewController = currentViewController
-        let Y: CGFloat = glt_iphoneX ? 64+24 : 64
-        let defaultFrame = CGRect(x: 0, y: Y, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height  - Y)
-        super.init(frame: defaultFrame)
-        pageView = createPageViewConfig(currentViewController: currentViewController, layout: layout)
     }
     
     required public init?(coder aDecoder: NSCoder) {

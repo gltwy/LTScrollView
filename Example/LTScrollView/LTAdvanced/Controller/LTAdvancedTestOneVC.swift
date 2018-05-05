@@ -32,12 +32,18 @@ class LTAdvancedTestOneVC: UIViewController, LTTableViewProtocal {
         view.addSubview(tableView)
         glt_scrollView = tableView
         reftreshData()
-        self.automaticallyAdjustsScrollViewInsets = false
+        if #available(iOS 11.0, *) {
+            tableView.contentInsetAdjustmentBehavior = .never
+        } else {
+            automaticallyAdjustsScrollViewInsets = false
+        }
     }
 }
 
 extension LTAdvancedTestOneVC {
+    
     fileprivate func reftreshData()  {
+        
         tableView.mj_footer = MJRefreshBackNormalFooter {[weak self] in
             DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: {
                 print("上拉加载更多数据")
@@ -50,6 +56,7 @@ extension LTAdvancedTestOneVC {
                 self?.tableView.mj_header.endRefreshing()
             })
         }
+        
     }
 }
 
@@ -65,7 +72,11 @@ extension LTAdvancedTestOneVC: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
         print("点击了第\(indexPath.row + 1)行")
+    }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 100.0
     }
 }
 

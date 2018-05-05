@@ -22,10 +22,7 @@
 		6A1A7B91208B072D002D3852 /* LTTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A1A7B89208B072D002D3852 /* LTTableView.swift */; };
 		6A1A7B92208B072D002D3852 /* LTPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A1A7B8A208B072D002D3852 /* LTPageView.swift */; };
 		6AB5A9F92078C4D10065D6F7 /* LTSimpleManagerDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AB5A9EF2078C4D10065D6F7 /* LTSimpleManagerDemo.swift */; };
-		6AB5A9FA2078C4D10065D6F7 /* LTSimpleTestFourVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AB5A9F02078C4D10065D6F7 /* LTSimpleTestFourVC.swift */; };
-		6AB5A9FB2078C4D10065D6F7 /* LTSimpleTestThreeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AB5A9F12078C4D10065D6F7 /* LTSimpleTestThreeVC.swift */; };
 		6AB5A9FC2078C4D10065D6F7 /* LTSimpleTestOneVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AB5A9F22078C4D10065D6F7 /* LTSimpleTestOneVC.swift */; };
-		6AB5A9FD2078C4D10065D6F7 /* LTSimpleTestTwoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AB5A9F32078C4D10065D6F7 /* LTSimpleTestTwoVC.swift */; };
 		6AB5A9FE2078C4D10065D6F7 /* LTHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AB5A9F62078C4D10065D6F7 /* LTHeaderView.swift */; };
 		6AB5A9FF2078C4D10065D6F7 /* LTAdvancedManagerDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AB5A9F72078C4D10065D6F7 /* LTAdvancedManagerDemo.swift */; };
 		6AB5AA002078C4D10065D6F7 /* LTAdvancedTestOneVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AB5A9F82078C4D10065D6F7 /* LTAdvancedTestOneVC.swift */; };
@@ -68,10 +65,7 @@
 		6A1A7B89208B072D002D3852 /* LTTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTTableView.swift; sourceTree = "<group>"; };
 		6A1A7B8A208B072D002D3852 /* LTPageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTPageView.swift; sourceTree = "<group>"; };
 		6AB5A9EF2078C4D10065D6F7 /* LTSimpleManagerDemo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTSimpleManagerDemo.swift; sourceTree = "<group>"; };
-		6AB5A9F02078C4D10065D6F7 /* LTSimpleTestFourVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTSimpleTestFourVC.swift; sourceTree = "<group>"; };
-		6AB5A9F12078C4D10065D6F7 /* LTSimpleTestThreeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTSimpleTestThreeVC.swift; sourceTree = "<group>"; };
 		6AB5A9F22078C4D10065D6F7 /* LTSimpleTestOneVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTSimpleTestOneVC.swift; sourceTree = "<group>"; };
-		6AB5A9F32078C4D10065D6F7 /* LTSimpleTestTwoVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTSimpleTestTwoVC.swift; sourceTree = "<group>"; };
 		6AB5A9F62078C4D10065D6F7 /* LTHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTHeaderView.swift; sourceTree = "<group>"; };
 		6AB5A9F72078C4D10065D6F7 /* LTAdvancedManagerDemo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTAdvancedManagerDemo.swift; sourceTree = "<group>"; };
 		6AB5A9F82078C4D10065D6F7 /* LTAdvancedTestOneVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTAdvancedTestOneVC.swift; sourceTree = "<group>"; };
@@ -201,10 +195,7 @@
 			isa = PBXGroup;
 			children = (
 				6AB5A9EF2078C4D10065D6F7 /* LTSimpleManagerDemo.swift */,
-				6AB5A9F02078C4D10065D6F7 /* LTSimpleTestFourVC.swift */,
-				6AB5A9F12078C4D10065D6F7 /* LTSimpleTestThreeVC.swift */,
 				6AB5A9F22078C4D10065D6F7 /* LTSimpleTestOneVC.swift */,
-				6AB5A9F32078C4D10065D6F7 /* LTSimpleTestTwoVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -303,10 +294,12 @@
 				TargetAttributes = {
 					607FACCF1AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
+						DevelopmentTeam = U33J5W5C5M;
 						LastSwiftMigration = 0900;
 					};
 					607FACE41AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
+						DevelopmentTeam = U33J5W5C5M;
 						LastSwiftMigration = 0900;
 						TestTargetID = 607FACCF1AFB9204008FA782;
 					};
@@ -459,14 +452,11 @@
 				6A1A7B92208B072D002D3852 /* LTPageView.swift in Sources */,
 				6AB5A9FC2078C4D10065D6F7 /* LTSimpleTestOneVC.swift in Sources */,
 				6A1A7B8E208B072D002D3852 /* LTTableViewProtocal.swift in Sources */,
-				6AB5A9FB2078C4D10065D6F7 /* LTSimpleTestThreeVC.swift in Sources */,
 				6A1A7B8B208B072D002D3852 /* LTDispatchQueue.swift in Sources */,
 				6A1A7B91208B072D002D3852 /* LTTableView.swift in Sources */,
 				6AB5A9F92078C4D10065D6F7 /* LTSimpleManagerDemo.swift in Sources */,
-				6AB5A9FA2078C4D10065D6F7 /* LTSimpleTestFourVC.swift in Sources */,
 				6A1A7B8F208B072D002D3852 /* LTVCExtension.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
-				6AB5A9FD2078C4D10065D6F7 /* LTSimpleTestTwoVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -612,6 +602,7 @@
 			baseConfigurationReference = 5590D6C6104CB4044192B0FA /* Pods-LTScrollView_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = U33J5W5C5M;
 				INFOPLIST_FILE = LTScrollView/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -628,6 +619,7 @@
 			baseConfigurationReference = B119E2D80EDE6DCAB9CE1BD8 /* Pods-LTScrollView_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = U33J5W5C5M;
 				INFOPLIST_FILE = LTScrollView/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -643,6 +635,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 4C4C58B55C18F4951A56F8BD /* Pods-LTScrollView_Tests.debug.xcconfig */;
 			buildSettings = {
+				DEVELOPMENT_TEAM = U33J5W5C5M;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -664,6 +657,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B1030EA3F060C63BBB220374 /* Pods-LTScrollView_Tests.release.xcconfig */;
 			buildSettings = {
+				DEVELOPMENT_TEAM = U33J5W5C5M;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",

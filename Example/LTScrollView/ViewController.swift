@@ -32,7 +32,11 @@ class ViewController: UIViewController, LTTableViewProtocal {
         self.title = "首页"
         view.backgroundColor = UIColor.white
         view.addSubview(tableView)
-        self.automaticallyAdjustsScrollViewInsets = false
+        if #available(iOS 11.0, *) {
+            self.tableView.contentInsetAdjustmentBehavior = .never
+        } else {
+            self.automaticallyAdjustsScrollViewInsets = false
+        }
     }
     
     override func didReceiveMemoryWarning() {

@@ -1,14 +1,14 @@
  //
-//  LTSimpleManager.swift
-//  LTScrollView
-//
-//  Created by 高刘通 on 2018/2/3.
-//  Copyright © 2018年 LT. All rights reserved.
-//
-
-import UIKit
-
-public class LTSimpleManager: UIView {
+ //  LTSimpleManager.swift
+ //  LTScrollView
+ //
+ //  Created by 高刘通 on 2018/2/3.
+ //  Copyright © 2018年 LT. All rights reserved.
+ //
+ 
+ import UIKit
+ 
+ public class LTSimpleManager: UIView {
     
     @objc public func configHeaderView(_ handle: (() -> UIView?)?) {
         guard let handle = handle else { return }
@@ -31,6 +31,9 @@ public class LTSimpleManager: UIView {
         simpleRefreshTableViewHandle = handle
     }
     
+    /* pageView的scrollView左右滑动监听 */
+    public weak var delegate: LTScrollViewDelegate?
+    
     private var contentTableView: UIScrollView?
     private var kHeaderHeight: CGFloat = 0.0
     private var headerView: UIView?
@@ -39,7 +42,7 @@ public class LTSimpleManager: UIView {
     private var currentViewController: UIViewController
     private var pageView: LTPageView!
     private var currentSelectIndex: Int = 0
-
+    
     private lazy var tableView: LTTableView = {
         let tableView = LTTableView(frame: CGRect(x: 0, y: 0, width: bounds.width, height: bounds.height), style:.plain)
         tableView.delegate = self
@@ -48,7 +51,7 @@ public class LTSimpleManager: UIView {
         registerCell(tableView, UITableViewCell.self)
         return tableView
     }()
-
+    
     @objc public init(viewControllers: [UIViewController], titles: [String], currentViewController:UIViewController, layout: LTLayout) {
         UIScrollView.initializeOnce()
         self.viewControllers = viewControllers
@@ -78,17 +81,30 @@ public class LTSimpleManager: UIView {
     deinit {
         deallocConfig()
     }
-}
+ }
  
-extension LTSimpleManager {
+ extension LTSimpleManager {
     
     private func createPageViewConfig(currentViewController:UIViewController, layout: LTLayout) -> LTPageView {
         let pageView = LTPageView(frame: self.bounds, currentViewController: currentViewController, viewControllers: viewControllers, titles: titles, layout:layout)
+        pageView.delegate = self
         return pageView
     }
-}
-
-extension LTSimpleManager {
+ }
+ 
+ extension LTSimpleManager: LTScrollViewDelegate {
+    
+    public func glt_scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        self.tableView.isScrollEnabled = false
+    }
+    
+    public func glt_scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        self.tableView.isScrollEnabled = true
+    }
+    
+ }
+ 
+ extension LTSimpleManager {
     
     private func createSubViews() {
         backgroundColor = UIColor.white
@@ -99,8 +115,6 @@ extension LTSimpleManager {
         contentScrollViewScrollConfig(viewController)
         if #available(iOS 11.0, *) {
             tableView.contentInsetAdjustmentBehavior = .never
-        } else {
-            // Fallback on earlier versions
         }
     }
     
@@ -117,18 +131,19 @@ extension LTSimpleManager {
         }
     }
     
-}
-
-extension LTSimpleManager {
+ }
+ 
+ extension LTSimpleManager {
     private func refreshData()  {
         DispatchQueue.main.after(0.001) {
             guard let simpleRefreshTableViewHandle = self.simpleRefreshTableViewHandle else { return }
+            
             simpleRefreshTableViewHandle(self.tableView, self.currentSelectIndex)
         }
     }
-}
-
-extension LTSimpleManager {
+ }
+ 
+ extension LTSimpleManager {
     private func pageViewDidSelectConfig()  {
         pageView.didSelectIndexBlock = {[weak self] in
             guard let `self` = self else { return }
@@ -141,12 +156,14 @@ extension LTSimpleManager {
             guard let `self` = self else { return }
             self.contentScrollViewScrollConfig($1)
         }
+        
     }
-}
-
-extension LTSimpleManager: UITableViewDelegate {
+ }
+ 
+ extension LTSimpleManager: UITableViewDelegate {
     
     public func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        delegate?.glt_scrollViewDidScroll?(scrollView)
         guard scrollView == tableView, let contentTableView = contentTableView else { return }
         let offsetY = scrollView.contentOffset.y
         if contentTableView.contentOffset.y > 0.0 || offsetY > kHeaderHeight {
@@ -160,9 +177,29 @@ extension LTSimpleManager: UITableViewDelegate {
         }
     }
     
-}
-
-extension LTSimpleManager: UITableViewDataSource, LTTableViewProtocal {
+    public func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        delegate?.glt_scrollViewWillBeginDragging?(scrollView)
+    }
+    
+    public func scrollViewWillBeginDecelerating(_ scrollView: UIScrollView) {
+        delegate?.glt_scrollViewWillBeginDecelerating?(scrollView)
+    }
+    
+    public func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        delegate?.glt_scrollViewDidEndDecelerating?(scrollView)
+    }
+    
+    public func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        delegate?.glt_scrollViewDidEndDragging?(scrollView, willDecelerate: decelerate)
+    }
+    
+    public func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
+        delegate?.glt_scrollViewDidEndScrollingAnimation?(scrollView)
+    }
+    
+ }
+ 
+ extension LTSimpleManager: UITableViewDataSource, LTTableViewProtocal {
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
@@ -175,13 +212,14 @@ extension LTSimpleManager: UITableViewDataSource, LTTableViewProtocal {
     public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return tableView.bounds.height
     }
-}
-
-extension LTSimpleManager {
+ }
+ 
+ extension LTSimpleManager {
     private func deallocConfig() {
         for viewController in viewControllers {
             viewController.glt_scrollView?.delegate = nil
         }
     }
-}
-
+ }
+ 
+ 

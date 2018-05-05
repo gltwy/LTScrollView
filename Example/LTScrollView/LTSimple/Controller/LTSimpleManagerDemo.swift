@@ -19,24 +19,28 @@ import MJRefresh
 
 class LTSimpleManagerDemo: UIViewController {
 
-    private lazy var viewControllers: [UIViewController] = {
-        let oneVc = LTSimpleTestOneVC()
-        let twoVc = LTSimpleTestTwoVC()
-        let threeVc = LTSimpleTestThreeVC()
-        let fourVc = LTSimpleTestFourVC()
-        return [oneVc, twoVc, threeVc, fourVc]
-    }()
+    //下拉刷新过程中，点击切换使上一个MJ停止刷新
+    private var upSelectScrollView: UIScrollView?
     
     private lazy var titles: [String] = {
-        return ["热门", "价格", "地区", "其它"]
+        return ["热门", "精彩推荐", "科技控", "游戏", "汽车", "财经", "搞笑", "图片"]
+    }()
+    
+    private lazy var viewControllers: [UIViewController] = {
+        var vcs = [UIViewController]()
+        for _ in titles {
+            vcs.append(LTSimpleTestOneVC())
+        }
+        return vcs
     }()
     
     private lazy var layout: LTLayout = {
         let layout = LTLayout()
-        layout.titleColor = UIColor.white
-        layout.titleViewBgColor = UIColor.gray
-        layout.titleSelectColor = UIColor.yellow
-        layout.bottomLineColor = UIColor.yellow
+        layout.titleViewBgColor = UIColor(r: 255, g: 239, b: 213)
+        layout.titleColor = UIColor(r: 0, g: 0, b: 0)
+        layout.titleSelectColor = UIColor(r: 255, g: 0, b: 0)
+        layout.bottomLineColor = UIColor.red
+        layout.pageBottomLineColor = UIColor(r: 230, g: 230, b: 230)
         return layout
     }()
     
@@ -54,7 +58,6 @@ class LTSimpleManagerDemo: UIViewController {
         self.automaticallyAdjustsScrollViewInsets = false
         view.addSubview(simpleManager)
         simpleManagerConfig()
-        
     }
     
     override func didReceiveMemoryWarning() {
@@ -84,6 +87,8 @@ extension LTSimpleManagerDemo {
         
         //MARK: 控制器刷新事件
         simpleManager.refreshTableViewHandle { (scrollView, index) in
+            self.upSelectScrollView?.mj_header.endRefreshing()
+            self.upSelectScrollView = scrollView
             scrollView.mj_header = MJRefreshNormalHeader {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: {
                     print("对应控制器的刷新自己玩吧，这里就不做处理了🙂-----\(index)")
