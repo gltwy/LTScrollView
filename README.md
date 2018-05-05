@@ -11,8 +11,8 @@
 
 ## Example
 
-- LTScrollView / Example: 为 Swift 使用示例.
-- LTScrollView / OCExample: 为 OC 使用示例.
+- LTScrollView / Example : 为 Swift 使用示例.
+- LTScrollView / OCExample : 为 OC 使用示例.
 
 ## Installation with CocoaPods
 
