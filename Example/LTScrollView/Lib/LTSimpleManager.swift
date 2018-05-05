@@ -8,6 +8,15 @@
  
  import UIKit
  
+ @objc public protocol LTSimpleScrollViewDelegate: class {
+    @objc optional func glt_scrollViewDidScroll(_ scrollView: UIScrollView)
+    @objc optional func glt_scrollViewWillBeginDragging(_ scrollView: UIScrollView)
+    @objc optional func glt_scrollViewWillBeginDecelerating(_ scrollView: UIScrollView)
+    @objc optional func glt_scrollViewDidEndDecelerating(_ scrollView: UIScrollView)
+    @objc optional func glt_scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool)
+    @objc optional func glt_scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView)
+ }
+ 
  public class LTSimpleManager: UIView {
     
     @objc public func configHeaderView(_ handle: (() -> UIView?)?) {
@@ -32,7 +41,7 @@
     }
     
     /* pageView的scrollView左右滑动监听 */
-    public weak var delegate: LTScrollViewDelegate?
+    public weak var delegate: LTSimpleScrollViewDelegate?
     
     private var contentTableView: UIScrollView?
     private var kHeaderHeight: CGFloat = 0.0
@@ -92,7 +101,7 @@
     }
  }
  
- extension LTSimpleManager: LTScrollViewDelegate {
+ extension LTSimpleManager: LTPageViewDelegate {
     
     public func glt_scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         self.tableView.isScrollEnabled = false
@@ -136,9 +145,10 @@
  extension LTSimpleManager {
     private func refreshData()  {
         DispatchQueue.main.after(0.001) {
-            guard let simpleRefreshTableViewHandle = self.simpleRefreshTableViewHandle else { return }
-            
-            simpleRefreshTableViewHandle(self.tableView, self.currentSelectIndex)
+            UIView.animate(withDuration: 0.34, animations: {
+                self.tableView.contentInset = .zero
+            })
+            self.simpleRefreshTableViewHandle?(self.tableView, self.currentSelectIndex)
         }
     }
  }
@@ -149,8 +159,7 @@
             guard let `self` = self else { return }
             self.currentSelectIndex = $1
             self.refreshData()
-            guard let handle = self.sampleDidSelectIndexHandle else { return }
-            handle($1)
+            self.sampleDidSelectIndexHandle?($1)
         }
         pageView.addChildVcBlock = {[weak self] in
             guard let `self` = self else { return }

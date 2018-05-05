@@ -76,7 +76,7 @@ public class LTLayout: NSObject {
 public typealias PageViewDidSelectIndexBlock = (LTPageView, Int) -> Void
 public typealias AddChildViewControllerBlock = (Int, UIViewController) -> Void
 
-@objc public protocol LTScrollViewDelegate: class {
+@objc public protocol LTPageViewDelegate: class {
     @objc optional func glt_scrollViewDidScroll(_ scrollView: UIScrollView)
     @objc optional func glt_scrollViewWillBeginDragging(_ scrollView: UIScrollView)
     @objc optional func glt_scrollViewWillBeginDecelerating(_ scrollView: UIScrollView)
@@ -103,7 +103,7 @@ public class LTPageView: UIView {
     private var glt_lineWidths: [CGFloat] = []
     
     /* pageView的scrollView左右滑动监听 */
-    public weak var delegate: LTScrollViewDelegate?
+    public weak var delegate: LTPageViewDelegate?
     
     private lazy var glt_titleRGBlColor: (r : CGFloat, g : CGFloat, b : CGFloat) = getRGBWithColor(layout.titleColor ?? NORMAL_BASE_COLOR)
     

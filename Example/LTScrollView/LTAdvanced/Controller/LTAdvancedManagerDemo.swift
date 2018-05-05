@@ -50,6 +50,7 @@ class LTAdvancedManagerDemo: UIViewController {
             let headerView = strongSelf.testLabel()
             return headerView
         })
+        advancedManager.delegate = self
         return advancedManager
     }()
     
@@ -63,7 +64,7 @@ class LTAdvancedManagerDemo: UIViewController {
 
 }
 
-extension LTAdvancedManagerDemo {
+extension LTAdvancedManagerDemo: LTAdvancedScrollViewDelegate {
     
     //MARK: 具体使用请参考以下
     private func advancedManagerConfig() {
@@ -71,6 +72,10 @@ extension LTAdvancedManagerDemo {
         advancedManager.advancedDidSelectIndexHandle = {
             print($0)
         }
+    }
+    
+    func glt_scrollViewOffsetY(_ offsetY: CGFloat) {
+        print("offset --> ", offsetY)
     }
 }
 

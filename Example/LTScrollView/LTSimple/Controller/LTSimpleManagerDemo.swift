@@ -18,9 +18,6 @@ import UIKit
 import MJRefresh
 
 class LTSimpleManagerDemo: UIViewController {
-
-    //下拉刷新过程中，点击切换使上一个MJ停止刷新
-    private var upSelectScrollView: UIScrollView?
     
     private lazy var titles: [String] = {
         return ["热门", "精彩推荐", "科技控", "游戏", "汽车", "财经", "搞笑", "图片"]
@@ -48,6 +45,7 @@ class LTSimpleManagerDemo: UIViewController {
         let Y: CGFloat = glt_iphoneX ? 64 + 24.0 : 64.0
         let H: CGFloat = glt_iphoneX ? (view.bounds.height - Y - 34) : view.bounds.height - Y
         let simpleManager = LTSimpleManager(frame: CGRect(x: 0, y: Y, width: view.bounds.width, height: H), viewControllers: viewControllers, titles: titles, currentViewController: self, layout: layout)
+        simpleManager.delegate = self
         return simpleManager
     }()
     
@@ -87,8 +85,6 @@ extension LTSimpleManagerDemo {
         
         //MARK: 控制器刷新事件
         simpleManager.refreshTableViewHandle { (scrollView, index) in
-            self.upSelectScrollView?.mj_header.endRefreshing()
-            self.upSelectScrollView = scrollView
             scrollView.mj_header = MJRefreshNormalHeader {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: {
                     print("对应控制器的刷新自己玩吧，这里就不做处理了🙂-----\(index)")
@@ -104,6 +100,11 @@ extension LTSimpleManagerDemo {
     }
 }
 
+extension LTSimpleManagerDemo: LTSimpleScrollViewDelegate {
+    func glt_scrollViewDidScroll(_ scrollView: UIScrollView) {
+        print("offset -> ", scrollView.contentOffset.y)
+    }
+}
 
 extension LTSimpleManagerDemo {
     private func testLabel() -> UILabel {
