@@ -20,10 +20,10 @@ public class LTLayout: NSObject {
     @objc public var titleViewBgColor: UIColor? = UIColor.gray
     
     /* 标题颜色，请使用RGB赋值 */
-    @objc public var titleColor: UIColor? = SELECT_BASE_COLOR
+    @objc public var titleColor: UIColor? = NORMAL_BASE_COLOR
     
     /* 标题选中颜色，请使用RGB赋值 */
-    @objc public var titleSelectColor: UIColor? = NORMAL_BASE_COLOR
+    @objc public var titleSelectColor: UIColor? = SELECT_BASE_COLOR
     
     /* 标题字号 */
     @objc public var titleFont: UIFont? = UIFont.systemFont(ofSize: 16)

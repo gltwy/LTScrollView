@@ -8,11 +8,11 @@
 
 Pod::Spec.new do |s|
   s.name             = 'LTScrollView'
-  s.version          = '0.1.3'
+  s.version          = '0.1.4'
   s.summary          = 'LTScrollView'
 
   s.description      = <<-DESC
-TODO: Add long description of the pod here.A short description of LTScrollView.
+TODO: ScrollView嵌套ScrolloView解决方案（初级、进阶)， 支持OC / Swift，实现原理：http://blog.csdn.net/glt_code/article/details/78576628
                        DESC
 
   s.homepage         = 'https://github.com/gltwy/LTScrollView'

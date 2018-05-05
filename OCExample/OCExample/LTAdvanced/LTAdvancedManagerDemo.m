@@ -21,8 +21,9 @@
 #import "LTScrollView-Swift.h"
 
 #define kIPhoneX ([UIScreen mainScreen].bounds.size.height == 812.0)
+#define RGBA(r,g,b,a) [UIColor colorWithRed:(float)r/255.0f green:(float)g/255.0f blue:(float)b/255.0f alpha:a]
 
-@interface LTAdvancedManagerDemo ()
+@interface LTAdvancedManagerDemo () <LTAdvancedScrollViewDelegate>
 @property(copy, nonatomic) NSArray <UIViewController *> *viewControllers;
 @property(copy, nonatomic) NSArray <NSString *> *titles;
 @property(strong, nonatomic) LTLayout *layout;
@@ -57,8 +58,13 @@
         _managerView = [[LTAdvancedManager alloc] initWithFrame:CGRectMake(0, Y, self.view.bounds.size.width, H) viewControllers:self.viewControllers titles:self.titles currentViewController:self layout:self.layout headerViewHandle:^UIView * _Nonnull{
             return [self setupHeaderView];
         }];
+        _managerView.delegate = self;
     }
     return _managerView;
+}
+
+-(void)glt_scrollViewOffsetY:(CGFloat)offsetY {
+    NSLog(@"---> %lf", offsetY);
 }
 
 -(LTHeaderView *)setupHeaderView {
@@ -69,10 +75,11 @@
 -(LTLayout *)layout {
     if (!_layout) {
         _layout = [[LTLayout alloc] init];
-        _layout.titleColor = [UIColor whiteColor];
-        _layout.titleViewBgColor = [UIColor grayColor];
-        _layout.titleSelectColor = [UIColor yellowColor];
-        _layout.bottomLineColor = [UIColor yellowColor];
+        _layout.titleViewBgColor = RGBA(255, 239, 213, 1);
+        _layout.pageBottomLineColor = RGBA(230, 230, 230, 1);
+        _layout.bottomLineColor = [UIColor redColor];
+        _layout.isAverage = YES;
+        _layout.sliderWidth = 20;
     }
     return _layout;
 }
@@ -80,7 +87,7 @@
 
 - (NSArray <NSString *> *)titles {
     if (!_titles) {
-        _titles = @[@"热门", @"价格", @"地区", @"其它"];
+        _titles = @[@"热门", @"精彩推荐", @"科技控", @"游戏"];
     }
     return _titles;
 }
