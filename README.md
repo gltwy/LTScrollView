@@ -265,6 +265,7 @@ public class LTLayout: NSObject {
 1. LTPageView 支持更多样式，详情可见LTLayout属性说明
 2. 修复LTSimpleManager下拉刷新过程中切换Bug
 3. 修复LTAdvancedManager数据较少时的显示Bug
+4. 增加滑动过程中UIScrollView代理方法的监听
 ```
 
 ## Author
