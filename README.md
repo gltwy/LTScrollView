@@ -31,7 +31,7 @@ source 'https://github.com/CocoaPods/Specs.git'
 platform :ios, '8.0'
 
 target 'TargetName' do
-pod 'LTScrollView', '~> 0.1.2'
+pod 'LTScrollView', '~> 0.1.4'
 end
 ```
 
@@ -260,7 +260,7 @@ public class LTLayout: NSObject {
 ```
 ## 更新说明
 
------------ 2018.05.05  ----------- 
+2018.05.05 - 0.1.4
 ```objective-c
 1. LTPageView 支持更多样式，详情可见LTLayout属性说明
 2. 修复LTSimpleManager下拉刷新过程中切换Bug
