@@ -1,9 +1,9 @@
 PODS:
-  - LTScrollView (0.1.3)
+  - LTScrollView (0.1.4)
   - MJRefresh (3.1.14.1)
 
 DEPENDENCIES:
-  - LTScrollView (~> 0.1.3)
+  - LTScrollView (~> 0.1.4)
   - MJRefresh (~> 3.1.14.1)
 
 SPEC REPOS:
@@ -12,9 +12,9 @@ SPEC REPOS:
     - MJRefresh
 
 SPEC CHECKSUMS:
-  LTScrollView: 8ff655a81b62096bfe4df86c4d354e1428a7cd25
+  LTScrollView: c29d1ab2596d39a6518b2b16b5a24156d49bcb91
   MJRefresh: 238e6a37e2dba12160ee3b79f6d2a2b26abcab42
 
-PODFILE CHECKSUM: a0986468b4a403129817bbcb7435f91c63589075
+PODFILE CHECKSUM: 90359820cabf009ca525824794ac301b33f71083
 
 COCOAPODS: 1.5.0

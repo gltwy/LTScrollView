@@ -40,7 +40,7 @@
         simpleRefreshTableViewHandle = handle
     }
     
-    /* pageView的scrollView左右滑动监听 */
+    /* LTSimple的scrollView上下滑动监听 */
     @objc public weak var delegate: LTSimpleScrollViewDelegate?
     
     private var contentTableView: UIScrollView?

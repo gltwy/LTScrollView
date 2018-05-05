@@ -2,8 +2,8 @@
 
 target 'OCExample' do
   use_frameworks!
-	
-    pod 'LTScrollView', '~> 0.1.3'
+
+    pod 'LTScrollView', '~> 0.1.4'
     
     #本Demo中使用, LTScrollView不依赖任何第三方框架
     pod 'MJRefresh', '~> 3.1.14.1'
