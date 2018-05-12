@@ -283,7 +283,7 @@ public class LTLayout: NSObject {
 2018.05.12 - 0.1.5
 ```objective-c
 1. 修复循环引用导致控制器无法释放的问题
-2. 可手动设置悬停PageViewTitleView的位置（y值）
+2. 可手动设置悬停PageTitleView的位置（y值）
 3. 修复了LTAdvanced的已知Bug
 ```
 
