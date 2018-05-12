@@ -17,7 +17,7 @@
 import UIKit
 
 class LTAdvancedManagerDemo: UIViewController {
-
+    
     private lazy var viewControllers: [UIViewController] = {
         let oneVc = LTAdvancedTestOneVC()
         let twoVc = LTAdvancedTestOneVC()
@@ -39,9 +39,11 @@ class LTAdvancedManagerDemo: UIViewController {
         layout.pageBottomLineColor = UIColor(r: 230, g: 230, b: 230)
         layout.isAverage = true
         layout.sliderWidth = 20
+        //调节滑块的高 默认44
+        layout.sliderHeight = 45
         return layout
     }()
-
+    
     private lazy var advancedManager: LTAdvancedManager = {
         let Y: CGFloat = glt_iphoneX ? 64 + 24.0 : 64.0
         let H: CGFloat = glt_iphoneX ? (view.bounds.height - Y - 34) : view.bounds.height - Y
@@ -50,6 +52,8 @@ class LTAdvancedManagerDemo: UIViewController {
             let headerView = strongSelf.testLabel()
             return headerView
         })
+        //设置悬停位置Y值
+        //        advancedManager.hoverY = Y
         advancedManager.delegate = self
         return advancedManager
     }()
@@ -61,7 +65,11 @@ class LTAdvancedManagerDemo: UIViewController {
         view.addSubview(advancedManager)
         advancedManagerConfig()
     }
-
+    
+    deinit {
+        print("LTAdvancedManagerDemo < --> deinit")
+    }
+    
 }
 
 extension LTAdvancedManagerDemo: LTAdvancedScrollViewDelegate {
@@ -70,12 +78,13 @@ extension LTAdvancedManagerDemo: LTAdvancedScrollViewDelegate {
     private func advancedManagerConfig() {
         //MARK: 选中事件
         advancedManager.advancedDidSelectIndexHandle = {
-            print($0)
+            print("选中了 -> \($0)")
         }
+        
     }
     
     func glt_scrollViewOffsetY(_ offsetY: CGFloat) {
-        print("offset --> ", offsetY)
+        //        print("offset --> ", offsetY)
     }
 }
 

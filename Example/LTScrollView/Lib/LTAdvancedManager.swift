@@ -16,8 +16,9 @@ public class LTAdvancedManager: UIView {
     
     public typealias LTAdvancedDidSelectIndexHandle = (Int) -> Void
     @objc public var advancedDidSelectIndexHandle: LTAdvancedDidSelectIndexHandle?
-    
     @objc public weak var delegate: LTAdvancedScrollViewDelegate?
+    //设置悬停位置Y值
+    @objc public var hoverY: CGFloat = 0
     
     private var kHeaderHeight: CGFloat = 0.0
     private var currentSelectIndex: Int = 0
@@ -25,29 +26,19 @@ public class LTAdvancedManager: UIView {
     private var headerView: UIView?
     private var viewControllers: [UIViewController]
     private var titles: [String]
-    private var currentViewController: UIViewController
+    private weak var currentViewController: UIViewController?
     private var pageView: LTPageView!
-    
-//    @objc public var testVC: UIViewController?
-    
+    private var layout: LTLayout
     
     @objc public init(frame: CGRect, viewControllers: [UIViewController], titles: [String], currentViewController:UIViewController, layout: LTLayout, headerViewHandle handle: () -> UIView) {
         UIScrollView.initializeOnce()
         self.viewControllers = viewControllers
         self.titles = titles
         self.currentViewController = currentViewController
+        self.layout = layout
         super.init(frame: frame)
-        pageView = createPageViewConfig(currentViewController: currentViewController, layout: layout)
-        initSubViewsConfig(handle)
-    }
-    
-    private func initSubViewsConfig(_ handle: () -> UIView) {
-        let headerView = handle()
-        kHeaderHeight = headerView.bounds.height
-        self.headerView = headerView
-        lastDiffTitleToNav = kHeaderHeight
-        createSubViews()
-        addSubview(headerView)
+        pageView = setupPageViewConfig(currentViewController: currentViewController, layout: layout)
+        setupSubViewsConfig(handle)
     }
     
     required public init?(coder aDecoder: NSCoder) {
@@ -56,135 +47,259 @@ public class LTAdvancedManager: UIView {
 }
 
 extension LTAdvancedManager {
-    
-//    @objc public func loadSuccessData(_ notification: Notification) {
-//        DispatchQueue.main.after(0.01, execute: {
-//            let vc = self.testVC!
-//            let contentSizeH = vc.glt_scrollView?.contentSize.height ?? 0
-//            let boundsH = vc.glt_scrollView?.bounds.height ?? 0
-//            if contentSizeH <  boundsH {
-//                vc.glt_scrollView?.setContentOffset(CGPoint(x: 0, y: -self.kHeaderHeight-44), animated: true)
-//                self.testMethod(vc.glt_scrollView!)
-//            }else {
-//                vc.glt_scrollView?.contentOffset.y = self.distanceBottomOffset()
-//            }
-//        })
-//    }
-    
-    private func createSubViews() {
-        
-//        NotificationCenter.default.addObserver(self, selector: #selector(loadSuccessData(_:)), name: Notification.Name("loadSuccess"), object: nil)
-        
-        pageView.pageTitleView.frame.origin.y = kHeaderHeight
-        backgroundColor = UIColor.white
-        addSubview(pageView)
-        pageViewDidSelect()
-        pageView.addChildVcBlock = {[weak self] in
-            guard let `self` = self else { return }
-            let vc = self.viewControllers[$0]
-//            self.testVC = vc
-            self.scrollInsets(vc, self.kHeaderHeight+44)
-            self.contentScrollViewScrollConfig($1)
-            DispatchQueue.main.after(0.01, execute: {
-                let contentSizeH = vc.glt_scrollView?.contentSize.height ?? 0
-                let boundsH = vc.glt_scrollView?.bounds.height ?? 0
-                if contentSizeH <  boundsH {
-                    vc.glt_scrollView?.setContentOffset(CGPoint(x: 0, y: -self.kHeaderHeight-44), animated: true)
-                    self.adjustMethod(vc.glt_scrollView!)
-                }else {
-                    vc.glt_scrollView?.contentOffset.y = self.distanceBottomOffset()
-                }
-            })
-        }
-        guard let viewController = viewControllers.first else { return }
-//        self.testVC = viewController
-        self.contentScrollViewScrollConfig(viewController)
-        scrollInsets(viewController, kHeaderHeight+44)
-    }
-    
-    func adjustMethod(_ scrollView: UIScrollView) {
-        let currentVc = self.viewControllers[self.currentSelectIndex]
-        let scrollUpOffset = CGFloat(Double(currentVc.glt_upOffset ?? String(describing: self.distanceBottomOffset())) ?? Double(self.distanceBottomOffset()))
-        let absOffset = scrollView.contentOffset.y - scrollUpOffset
-        self.contentScrollViewDidScroll(scrollView, absOffset)
-        currentVc.glt_upOffset = String(describing: scrollView.contentOffset.y)
-    }
-    
-    
-    private func scrollInsets(_ currentVC: UIViewController ,_ up: CGFloat) {
-        currentVC.glt_scrollView?.contentInset = UIEdgeInsetsMake(up, 0, 0, 0)
-        currentVC.glt_scrollView?.scrollIndicatorInsets = UIEdgeInsetsMake(up, 0, 0, 0)
-    }
-}
-
-extension LTAdvancedManager {
-    
-    private func createPageViewConfig(currentViewController:UIViewController, layout: LTLayout) -> LTPageView {
+    //MARK: 创建PageView
+    private func setupPageViewConfig(currentViewController:UIViewController, layout: LTLayout) -> LTPageView {
         let pageView = LTPageView(frame: self.bounds, currentViewController: currentViewController, viewControllers: viewControllers, titles: titles, layout:layout)
         return pageView
     }
 }
 
 extension LTAdvancedManager {
-    func pageViewDidSelect()  {
-        pageView.didSelectIndexBlock = {[weak self] in
+    
+    private func setupSubViewsConfig(_ handle: () -> UIView) {
+        let headerView = handle()
+        kHeaderHeight = headerView.bounds.height
+        self.headerView = headerView
+        lastDiffTitleToNav = kHeaderHeight
+        setupSubViews()
+        addSubview(headerView)
+    }
+    
+    private func setupSubViews() {
+        pageView.pageTitleView.frame.origin.y = kHeaderHeight
+        backgroundColor = UIColor.white
+        addSubview(pageView)
+        setupPageViewDidSelectItem()
+        setupFirstAddChildViewController()
+        guard let viewController = viewControllers.first else { return }
+        self.contentScrollViewScrollConfig(viewController)
+        scrollInsets(viewController, kHeaderHeight+layout.sliderHeight)
+    }
+    
+}
+
+
+extension LTAdvancedManager {
+    
+    //设置ScrollView的contentInset
+    private func scrollInsets(_ currentVC: UIViewController ,_ up: CGFloat) {
+        currentVC.glt_scrollView?.contentInset = UIEdgeInsetsMake(up, 0, 0, 0)
+        currentVC.glt_scrollView?.scrollIndicatorInsets = UIEdgeInsetsMake(up, 0, 0, 0)
+    }
+    
+    //MARK: 首次创建pageView的ChildVC回调
+    private func setupFirstAddChildViewController() {
+        
+        //首次创建pageView的ChildVC回调
+        pageView.addChildVcBlock = {[weak self] in
             guard let `self` = self else { return }
-            self.currentSelectIndex = $1
-            self.advancedDidSelectIndexHandle?($1)
-            let vc = self.viewControllers[self.currentSelectIndex]
-            let contentSizeH = vc.glt_scrollView?.contentSize.height ?? 0
-            let boundsH = vc.glt_scrollView?.bounds.height ?? 0
-            if contentSizeH <  boundsH {
-                vc.glt_scrollView?.setContentOffset(CGPoint(x: 0, y: -self.kHeaderHeight-44), animated: true)
+            let currentVC = self.viewControllers[$0]
+            
+            //设置ScrollView的contentInset
+            self.scrollInsets(currentVC, self.kHeaderHeight+self.layout.sliderHeight)
+            //            self.scrollInsets(currentVC, 100)
+            
+            //初始化滚动回调 首次加载并不会执行内部方法
+            self.contentScrollViewScrollConfig($1)
+            
+            //注意：节流---否则此方法无效。。
+            self.setupFirstAddChildScrollView()
+            
+        }
+    }
+    
+    //MARK: 首次创建pageView的ChildVC回调 自适应调节
+    private func setupFirstAddChildScrollView() {
+        
+        //注意：节流---否则此方法无效。。
+        DispatchQueue.main.after(0.01, execute: {
+            
+            let currentVC = self.viewControllers[self.currentSelectIndex]
+            
+            guard let glt_scrollView = currentVC.glt_scrollView else { return }
+            
+            //当前ScrollView的contentSize的高
+            let contentSizeHeight = glt_scrollView.contentSize.height
+            
+            //当前ScrollView的的高
+            let boundsHeight = glt_scrollView.bounds.height
+            
+            //此处说明内容的高度小于bounds 应该让pageTitleView自动回滚到初始位置
+            if contentSizeHeight <  boundsHeight {
+                
+                //为自动掉落加一个动画
+                UIView.animate(withDuration: 0.12, animations: {
+                    //初始的偏移量 即初始的contentInset的值
+                    let offsetPoint = CGPoint(x: 0, y: -self.kHeaderHeight-self.layout.sliderHeight)
+                    
+                    //注意：此处调用此方法并不会执行scrollViewDidScroll:原因未可知
+                    glt_scrollView.setContentOffset(offsetPoint, animated: true)
+                    
+                    //在这里手动执行一下scrollViewDidScroll:事件
+                    self.setupGlt_scrollViewDidScroll(scrollView: glt_scrollView, currentVC: currentVC)
+                })
+                
+                
+            }else {
+                //首次初始化，通过改变当前ScrollView的偏移量，来确保ScrollView正好在pageTitleView下方
+                glt_scrollView.contentOffset.y = self.distanceBottomOffset()
+            }
+        })
+        
+    }
+    
+    //MARK: 当前的scrollView滚动的代理方法开始
+    private func contentScrollViewScrollConfig(_ viewController: UIViewController) {
+        
+        viewController.glt_scrollView?.scrollHandle = {[weak self] scrollView in
+            
+            guard let `self` = self else { return }
+            
+            let currentVC = self.viewControllers[self.currentSelectIndex]
+            
+            guard currentVC.glt_scrollView == scrollView else { return }
+            
+            self.setupGlt_scrollViewDidScroll(scrollView: scrollView, currentVC: currentVC)
+        }
+    }
+    
+    //MARK: 当前控制器的滑动方法事件处理 1
+    private func setupGlt_scrollViewDidScroll(scrollView: UIScrollView, currentVC: UIViewController)  {
+        
+        //pageTitleView距离屏幕顶部到pageTitleView最底部的距离
+        let distanceBottomOffset = self.distanceBottomOffset()
+        
+        //当前控制器上一次的偏移量
+        let glt_upOffsetString = currentVC.glt_upOffset ?? String(describing: distanceBottomOffset)
+        
+        //先转化为Double(String转CGFloat步骤：String -> Double -> CGFloat)
+        let glt_upOffsetDouble = Double(glt_upOffsetString) ?? Double(distanceBottomOffset)
+        
+        //再转化为CGFloat
+        let glt_upOffset = CGFloat(glt_upOffsetDouble)
+        
+        //计算上一次偏移和当前偏移量y的差值
+        let absOffset = scrollView.contentOffset.y - glt_upOffset
+        
+        //处理滚动
+        self.contentScrollViewDidScroll(scrollView, absOffset)
+        
+        //记录上一次的偏移量
+        currentVC.glt_upOffset = String(describing: scrollView.contentOffset.y)
+        
+    }
+    
+    
+    //MARK: 当前控制器的滑动方法事件处理 2
+    private func contentScrollViewDidScroll(_ contentScrollView: UIScrollView, _ absOffset: CGFloat)  {
+        
+        //获取当前控制器
+        let currentVc = viewControllers[currentSelectIndex]
+        
+        //外部监听当前ScrollView的偏移量
+        self.delegate?.glt_scrollViewOffsetY?((currentVc.glt_scrollView?.contentOffset.y ?? kHeaderHeight) + self.kHeaderHeight + layout.sliderHeight)
+        
+        //获取偏移量
+        let offsetY = contentScrollView.contentOffset.y
+        
+        //获取当前pageTitleView的Y值
+        var pageTitleViewY = pageView.pageTitleView.frame.origin.y
+        
+        //pageTitleView从初始位置上升的距离
+        let titleViewBottomDistance = offsetY + kHeaderHeight + layout.sliderHeight
+        
+        let headerViewOffset = titleViewBottomDistance + pageTitleViewY
+        
+        if absOffset > 0 && titleViewBottomDistance > 0 {//向上滑动
+            if headerViewOffset >= kHeaderHeight {
+                pageTitleViewY += -absOffset
+                if pageTitleViewY <= hoverY {
+                    pageTitleViewY = hoverY
+                }
+            }
+        }else{//向下滑动
+            if headerViewOffset < kHeaderHeight {
+                pageTitleViewY = -titleViewBottomDistance + kHeaderHeight
+                if pageTitleViewY >= kHeaderHeight {
+                    pageTitleViewY = kHeaderHeight
+                }
             }
         }
+        
+        pageView.pageTitleView.frame.origin.y = pageTitleViewY
+        headerView?.frame.origin.y = pageTitleViewY - kHeaderHeight
+        let lastDiffTitleToNavOffset = pageTitleViewY - lastDiffTitleToNav
+        lastDiffTitleToNav = pageTitleViewY
+        //使其他控制器跟随改变
+        for subVC in viewControllers {
+            guard subVC != currentVc else { continue }
+            guard let vcGlt_scrollView = subVC.glt_scrollView else { continue }
+            vcGlt_scrollView.contentOffset.y += (-lastDiffTitleToNavOffset)
+            subVC.glt_upOffset = String(describing: vcGlt_scrollView.contentOffset.y)
+        }
+    }
+    
+    private func distanceBottomOffset() -> CGFloat {
+        return -(self.pageView.pageTitleView.frame.origin.y + layout.sliderHeight)
     }
 }
 
 extension LTAdvancedManager {
     
-    private func contentScrollViewScrollConfig(_ viewController: UIViewController) {
-        viewController.glt_scrollView?.scrollHandle = {[weak self] scrollView in
+    //MARK: pageView选中事件
+    private func setupPageViewDidSelectItem()  {
+        
+        pageView.didSelectIndexBlock = {[weak self] in
+            
             guard let `self` = self else { return }
-            let currentVc = self.viewControllers[self.currentSelectIndex]
-            let scrollUpOffset = CGFloat(Double(currentVc.glt_upOffset ?? String(describing: self.distanceBottomOffset())) ?? Double(self.distanceBottomOffset()))
-            let absOffset = scrollView.contentOffset.y - scrollUpOffset
-            self.contentScrollViewDidScroll(scrollView, absOffset)
-            currentVc.glt_upOffset = String(describing: scrollView.contentOffset.y)
+            
+            self.setupUpViewControllerEndRefreshing()
+            
+            self.currentSelectIndex = $1
+            
+            self.advancedDidSelectIndexHandle?($1)
+            
+            self.setupContentSizeBoundsHeightAdjust()
+            
         }
     }
     
-    private func distanceBottomOffset() -> CGFloat {
-        return -(self.pageView.pageTitleView.frame.origin.y + 44)
+    //MARK: 内容的高度小于bounds 应该让pageTitleView自动回滚到初始位置
+    private func setupContentSizeBoundsHeightAdjust()  {
+        
+        DispatchQueue.main.after(0.01, execute: {
+            
+            let currentVC = self.viewControllers[self.currentSelectIndex]
+            
+            guard let glt_scrollView = currentVC.glt_scrollView else { return }
+            //当前ScrollView的contentSize的高
+            let contentSizeHeight = glt_scrollView.contentSize.height
+            
+            //当前ScrollView的的高
+            let boundsHeight = glt_scrollView.bounds.height
+            
+            //此处说明内容的高度小于bounds 应该让pageTitleView自动回滚到初始位置
+            //这里不用再进行其他操作，因为会调用ScrollViewDidScroll:
+            if contentSizeHeight <  boundsHeight {
+                let offsetPoint = CGPoint(x: 0, y: -self.kHeaderHeight-self.layout.sliderHeight)
+                glt_scrollView.setContentOffset(offsetPoint, animated: true)
+            }
+        })
     }
     
-    private func contentScrollViewDidScroll(_ contentScrollView: UIScrollView, _ absOffset: CGFloat)  {
-        let currentVc = viewControllers[self.currentSelectIndex]
-        guard currentVc.glt_scrollView == contentScrollView else { return }
-        self.delegate?.glt_scrollViewOffsetY?((currentVc.glt_scrollView?.contentOffset.y ?? 0) + self.kHeaderHeight + 44)
-        let offsetY = contentScrollView.contentOffset.y
-        var pageTitleViewY = pageView.pageTitleView.frame.origin.y
-        let titleViewBottomDistance = offsetY + kHeaderHeight + 44
-        let headerViewOffset = titleViewBottomDistance + pageTitleViewY
-        if absOffset > 0 && titleViewBottomDistance > 0 {
-            if headerViewOffset >= kHeaderHeight {
-                pageTitleViewY += -absOffset
-                if pageTitleViewY <= 0 { pageTitleViewY = 0 }
+    //MARK: 处理下拉刷新的过程中切换导致的问题
+    private func setupUpViewControllerEndRefreshing() {
+        //如果正在下拉，则在切换之前把上一个的ScrollView的偏移量设置为初始位置
+        DispatchQueue.main.after(0.01) {
+            let upVC = self.viewControllers[self.currentSelectIndex]
+            guard let glt_scrollView = upVC.glt_scrollView else { return }
+            //判断是下拉
+            if glt_scrollView.contentOffset.y < (-self.kHeaderHeight-self.layout.sliderHeight) {
+                let offsetPoint = CGPoint(x: 0, y: -self.kHeaderHeight-self.layout.sliderHeight)
+                glt_scrollView.setContentOffset(offsetPoint, animated: true)
             }
-        }else{
-            if headerViewOffset <= kHeaderHeight {
-                pageTitleViewY = -titleViewBottomDistance + kHeaderHeight
-                if pageTitleViewY >= kHeaderHeight { pageTitleViewY = kHeaderHeight }
-            }
-        }
-        pageView.pageTitleView.frame.origin.y = pageTitleViewY
-        headerView?.frame.origin.y = pageTitleViewY - kHeaderHeight
-        let lastDiffTitleToNavOffset = pageTitleViewY - lastDiffTitleToNav
-        lastDiffTitleToNav = pageTitleViewY
-        for VC in viewControllers {
-            guard VC != currentVc else { continue }
-            VC.glt_scrollView?.contentOffset.y += (-lastDiffTitleToNavOffset)
         }
     }
+    
 }
 

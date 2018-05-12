@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'LTScrollView'
-  s.version          = '0.1.4'
+  s.version          = '0.1.5'
   s.summary          = 'LTScrollView'
 
   s.description      = <<-DESC

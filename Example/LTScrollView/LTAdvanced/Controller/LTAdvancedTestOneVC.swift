@@ -45,13 +45,13 @@ extension LTAdvancedTestOneVC {
     fileprivate func reftreshData()  {
         
         tableView.mj_footer = MJRefreshBackNormalFooter {[weak self] in
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
                 print("上拉加载更多数据")
                 self?.tableView.mj_footer.endRefreshing()
             })
         }
         tableView.mj_header = MJRefreshNormalHeader {[weak self] in
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
                 print("下拉刷新 --- 1")
                 self?.tableView.mj_header.endRefreshing()
             })

@@ -2,7 +2,7 @@ use_frameworks!
 
 target 'LTScrollView_Example' do
 #    个人项目中使用
-#    pod 'LTScrollView', '~> 0.1.2'
+#    pod 'LTScrollView'
 
 #   本Demo中使用, LTScrollView不依赖任何第三方框架
     pod 'MJRefresh', '~> 3.1.14.1'

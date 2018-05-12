@@ -46,6 +46,8 @@ class LTSimpleManagerDemo: UIViewController {
         let H: CGFloat = glt_iphoneX ? (view.bounds.height - Y - 34) : view.bounds.height - Y
         let simpleManager = LTSimpleManager(frame: CGRect(x: 0, y: Y, width: view.bounds.width, height: H), viewControllers: viewControllers, titles: titles, currentViewController: self, layout: layout)
         simpleManager.delegate = self
+        //设置悬停位置
+        //        simpleManager.hoverY = 64
         return simpleManager
     }()
     
@@ -62,7 +64,10 @@ class LTSimpleManagerDemo: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
+    deinit {
+        print("LTSimpleManagerDemo < --> deinit")
+    }
 }
 
 
@@ -102,7 +107,7 @@ extension LTSimpleManagerDemo {
 
 extension LTSimpleManagerDemo: LTSimpleScrollViewDelegate {
     func glt_scrollViewDidScroll(_ scrollView: UIScrollView) {
-        print("offset -> ", scrollView.contentOffset.y)
+        //        print("offset -> ", scrollView.contentOffset.y)
     }
 }
 
