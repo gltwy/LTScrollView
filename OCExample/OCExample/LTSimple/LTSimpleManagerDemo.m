@@ -96,6 +96,8 @@
         CGFloat H = kIPhoneX ? (self.view.bounds.size.height - Y - 34) : self.view.bounds.size.height - Y;
         _managerView = [[LTSimpleManager alloc] initWithFrame:CGRectMake(0, Y, self.view.bounds.size.width, H) viewControllers:self.viewControllers titles:self.titles currentViewController:self layout:self.layout];
         _managerView.delegate = self;
+        //设置悬停位置
+//        _managerView.hoverY = 64;
     }
     return _managerView;
 }
@@ -137,6 +139,9 @@
     return testVCS.copy;
 }
 
+-(void)dealloc {
+    NSLog(@"%s",__func__);
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

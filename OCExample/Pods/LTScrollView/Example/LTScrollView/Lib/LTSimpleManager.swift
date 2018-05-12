@@ -40,6 +40,9 @@
         simpleRefreshTableViewHandle = handle
     }
     
+    //设置悬停位置Y值
+    @objc public var hoverY: CGFloat = 0
+    
     /* LTSimple的scrollView上下滑动监听 */
     @objc public weak var delegate: LTSimpleScrollViewDelegate?
     
@@ -48,7 +51,7 @@
     private var headerView: UIView?
     private var viewControllers: [UIViewController]
     private var titles: [String]
-    private var currentViewController: UIViewController
+    private weak var currentViewController: UIViewController?
     private var pageView: LTPageView!
     private var currentSelectIndex: Int = 0
     
@@ -60,18 +63,6 @@
         registerCell(tableView, UITableViewCell.self)
         return tableView
     }()
-    
-    @objc public init(viewControllers: [UIViewController], titles: [String], currentViewController:UIViewController, layout: LTLayout) {
-        UIScrollView.initializeOnce()
-        self.viewControllers = viewControllers
-        self.titles = titles
-        self.currentViewController = currentViewController
-        let Y: CGFloat = glt_iphoneX ? 64+24 : 64
-        let defaultFrame = CGRect(x: 0, y: Y, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height  - Y)
-        super.init(frame: defaultFrame)
-        pageView = createPageViewConfig(currentViewController: currentViewController, layout: layout)
-        createSubViews()
-    }
     
     @objc public init(frame: CGRect, viewControllers: [UIViewController], titles: [String], currentViewController:UIViewController, layout: LTLayout) {
         UIScrollView.initializeOnce()
@@ -95,6 +86,7 @@
  extension LTSimpleManager {
     
     private func createPageViewConfig(currentViewController:UIViewController, layout: LTLayout) -> LTPageView {
+        
         let pageView = LTPageView(frame: self.bounds, currentViewController: currentViewController, viewControllers: viewControllers, titles: titles, layout:layout)
         pageView.delegate = self
         return pageView
@@ -127,12 +119,15 @@
         }
     }
     
+    /*
+     * 当滑动底部tableView的时候，当tableView的contentOffset.y 小于 header的高的时候，将内容ScrollView的contentOffset设置为.zero
+     */
     private func contentScrollViewScrollConfig(_ viewController: UIViewController) {
         viewController.glt_scrollView?.scrollHandle = {[weak self] scrollView in
             guard let `self` = self else { return }
             self.contentTableView = scrollView
-            if self.tableView.contentOffset.y < self.kHeaderHeight {
-                scrollView.contentOffset = .zero;
+            if self.tableView.contentOffset.y < self.kHeaderHeight - self.hoverY {
+                scrollView.contentOffset = .zero
                 scrollView.showsVerticalScrollIndicator = false
             }else{
                 scrollView.showsVerticalScrollIndicator = true
@@ -171,14 +166,18 @@
  
  extension LTSimpleManager: UITableViewDelegate {
     
+    /*
+     * 当滑动内容ScrollView的时候， 当内容contentOffset.y 大于 0（说明滑动的是内容ScrollView） 或者 当底部tableview的contentOffset.y大于 header的高度的时候，将底部tableView的偏移量设置为kHeaderHeight， 并将其他的scrollView的contentOffset置为.zero
+     */
     public func scrollViewDidScroll(_ scrollView: UIScrollView) {
         delegate?.glt_scrollViewDidScroll?(scrollView)
         guard scrollView == tableView, let contentTableView = contentTableView else { return }
         let offsetY = scrollView.contentOffset.y
-        if contentTableView.contentOffset.y > 0.0 || offsetY > kHeaderHeight {
-            tableView.contentOffset = CGPoint(x: 0.0, y: kHeaderHeight)
+        print(offsetY, contentTableView.contentOffset.y)
+        if contentTableView.contentOffset.y > hoverY || offsetY > kHeaderHeight - hoverY {
+            tableView.contentOffset = CGPoint(x: 0.0, y: kHeaderHeight - hoverY)
         }
-        if scrollView.contentOffset.y < kHeaderHeight {
+        if scrollView.contentOffset.y < kHeaderHeight - hoverY {
             for viewController in viewControllers {
                 guard viewController.glt_scrollView != scrollView else { continue }
                 viewController.glt_scrollView?.contentOffset = .zero

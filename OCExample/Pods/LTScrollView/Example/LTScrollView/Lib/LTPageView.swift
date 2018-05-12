@@ -31,10 +31,10 @@ public class LTLayout: NSObject {
     /* 滑块底部线的颜色 */
     @objc public var bottomLineColor: UIColor? = UIColor.blue
     
-    /* 整个滑块的高 */
+    /* 整个滑块的高，pageTitleView的高 */
     @objc public var sliderHeight: CGFloat = 44.0
     
-    /* 整个滑块的宽度, 一旦设置，将不再自动计算宽度，而是固定为你传递的值 */
+    /* 单个滑块的宽度, 一旦设置，将不再自动计算宽度，而是固定为你传递的值 */
     @objc public var sliderWidth: CGFloat = glt_sliderDefaultWidth
     
     /*
@@ -87,7 +87,7 @@ public typealias AddChildViewControllerBlock = (Int, UIViewController) -> Void
 
 public class LTPageView: UIView {
     
-    private var currentViewController: UIViewController
+    private weak var currentViewController: UIViewController?
     private var viewControllers: [UIViewController]
     private var titles: [String]
     private var layout: LTLayout = LTLayout()
@@ -323,16 +323,14 @@ extension LTPageView {
     
     private func createViewController(_ index: Int)  {
         let VC = viewControllers[index]
+        guard let currentViewController = currentViewController else { return }
         if currentViewController.childViewControllers.contains(VC) {
             return
         }
         currentViewController.addChildViewController(VC)
         VC.view.frame = CGRect(x: scrollView.bounds.width * CGFloat(index), y: 0, width: scrollView.bounds.width, height: scrollView.bounds.height)
         scrollView.addSubview(VC.view)
-        guard let addChildVcBlock = addChildVcBlock else {
-            return
-        }
-        addChildVcBlock(index, VC)
+        addChildVcBlock?(index, VC)
     }
     
     private func scrollViewDidScrollOffsetX(_ offsetX: CGFloat)  {

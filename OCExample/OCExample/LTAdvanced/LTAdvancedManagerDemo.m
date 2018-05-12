@@ -58,6 +58,8 @@
         _managerView = [[LTAdvancedManager alloc] initWithFrame:CGRectMake(0, Y, self.view.bounds.size.width, H) viewControllers:self.viewControllers titles:self.titles currentViewController:self layout:self.layout headerViewHandle:^UIView * _Nonnull{
             return [self setupHeaderView];
         }];
+        //设置悬停位置Y值
+//        _managerView.hoverY = Y;
         _managerView.delegate = self;
     }
     return _managerView;
@@ -110,6 +112,9 @@
     return testVCS.copy;
 }
 
+-(void)dealloc {
+    NSLog(@"%s",__func__);
+}
 
 /*
 #pragma mark - Navigation
