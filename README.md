@@ -41,9 +41,10 @@ Then, run the following command:
 $ pod install
 ```
 
-提示错误 `[!] Unable to find a specification for YCDownloadSession ` 解决办法：
+提示错误 `[!] Unable to find a specification for LTScrollView ` 解决办法：
 
 ```
+$ pod repo remove master
 $ pod setup
 ```
 
