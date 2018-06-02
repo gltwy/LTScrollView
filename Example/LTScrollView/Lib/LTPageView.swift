@@ -46,6 +46,9 @@ public class LTLayout: NSObject {
     /* 滑块底部线的高 */
     @objc public var bottomLineHeight: CGFloat = 2.0
     
+    /* 滑块底部线圆角 */
+    @objc public var bottomLineCornerRadius: CGFloat = 0.0
+    
     /* 是否隐藏滑块 */
     @objc public var isHiddenSlider: Bool = false
     
@@ -66,10 +69,13 @@ public class LTLayout: NSObject {
     
     /* 是否隐藏底部线 */
     @objc public var isHiddenPageBottomLine: Bool = false
+    
     /* pageView底部线的高度 */
     @objc public var pageBottomLineHeight: CGFloat = 0.5
+    
     /* pageView底部线的颜色 */
     @objc public var pageBottomLineColor: UIColor? = UIColor.gray
+    
     
 }
 
@@ -99,8 +105,11 @@ public class LTPageView: UIView {
     private var glt_startOffsetX: CGFloat = 0.0
     private var glt_clickIndex: Int = 0
     private var isClick: Bool = false
-    
     private var glt_lineWidths: [CGFloat] = []
+    
+    private var glt_isClickScrollAnimation = false
+    /* 点击切换滚动过程动画  */
+    public var isClickScrollAnimation = false
     
     /* pageView的scrollView左右滑动监听 */
     public weak var delegate: LTPageViewDelegate?
@@ -177,6 +186,40 @@ public class LTPageView: UIView {
             scrollView.contentInsetAdjustmentBehavior = .never
             sliderScrollView.contentInsetAdjustmentBehavior = .never
         }
+    }
+    
+    /* 滚动到某个位置 */
+    public func scrollToIndex(index: Int)  {
+        
+        var index = index
+        if index >= titles.count {
+            print("超过最大数量限制, 请正确设置值, 默认这里取第一个")
+            index = 0
+        }
+        
+        if isClickScrollAnimation {
+            
+            let nextButton = glt_buttons[index]
+            
+            if layout.sliderWidth == glt_sliderDefaultWidth {
+                
+                if layout.isAverage {
+                    let adjustX = (nextButton.frame.size.width - glt_lineWidths[index]) * 0.5
+                    sliderLineView.frame.origin.x = nextButton.frame.origin.x + adjustX
+                    sliderLineView.frame.size.width = glt_lineWidths[index]
+                }else {
+                    sliderLineView.frame.origin.x = nextButton.frame.origin.x
+                    sliderLineView.frame.size.width = nextButton.frame.width
+                }
+                
+            }else {
+                setupSliderLineViewWidth(currentButton: nextButton)
+            }
+            
+        }
+        
+        setupTitleSelectIndex(index)
+        
     }
     
     required public init?(coder aDecoder: NSCoder) {
@@ -258,6 +301,12 @@ extension LTPageView {
             sliderLineView.frame.origin.x = ((glt_textWidths[0] + layout.lrMargin * 2) - layout.sliderWidth) * 0.5
         }
         
+        if layout.bottomLineCornerRadius != 0.0 {
+            sliderLineView.layer.cornerRadius = layout.bottomLineCornerRadius
+            sliderLineView.layer.masksToBounds = true
+            sliderLineView.clipsToBounds = true
+        }
+        
         if layout.isAverage {
             sliderScrollView.contentSize = CGSize(width: pageTitleView.bounds.width, height: 0)
             return
@@ -277,24 +326,37 @@ extension LTPageView {
     
     @objc private func titleSelectIndex(_ btn: UIButton)  {
         
-        if glt_currentIndex == btn.tag || scrollView.isDragging || scrollView.isDecelerating {
+        setupTitleSelectIndex(btn.tag)
+        
+    }
+    
+    private func setupTitleSelectIndex(_ btnSelectIndex: Int) {
+        
+        if glt_currentIndex == btnSelectIndex || scrollView.isDragging || scrollView.isDecelerating {
             return
         }
         
         let totalW = bounds.width
         
         isClick = true
+        glt_isClickScrollAnimation = true
         
-        scrollView.setContentOffset(CGPoint(x: totalW * CGFloat(btn.tag), y: 0), animated: false)
         
-        let nextButton = glt_buttons[btn.tag]
+        scrollView.setContentOffset(CGPoint(x: totalW * CGFloat(btnSelectIndex), y: 0), animated: isClickScrollAnimation)
+        
+        
+        if isClickScrollAnimation {
+            return
+        }
+        
+        let nextButton = glt_buttons[btnSelectIndex]
         
         if layout.sliderWidth == glt_sliderDefaultWidth {
             
             if layout.isAverage {
-                let adjustX = (nextButton.frame.size.width - glt_lineWidths[btn.tag]) * 0.5
+                let adjustX = (nextButton.frame.size.width - glt_lineWidths[btnSelectIndex]) * 0.5
                 sliderLineView.frame.origin.x = nextButton.frame.origin.x + adjustX
-                sliderLineView.frame.size.width = glt_lineWidths[btn.tag]
+                sliderLineView.frame.size.width = glt_lineWidths[btnSelectIndex]
             }else {
                 sliderLineView.frame.origin.x = nextButton.frame.origin.x
                 sliderLineView.frame.size.width = nextButton.frame.width
@@ -304,9 +366,10 @@ extension LTPageView {
             setupSliderLineViewWidth(currentButton: nextButton)
         }
         
-        glt_currentIndex = btn.tag
+        glt_currentIndex = btnSelectIndex
         
     }
+    
     
     // currentButton将要滚动到的按钮
     private func setupSliderLineViewWidth(currentButton: UIButton)  {
@@ -341,8 +404,18 @@ extension LTPageView {
         
         if glt_currentIndex != index {
             
-            //设置滚动的位置
-            setupSlierScrollToCenter(offsetX: offsetX, index: index)
+            //如果开启滚动动画
+            if isClickScrollAnimation {
+                //如果不是点击事件继续在这个地方设置偏移
+                if !glt_isClickScrollAnimation {
+                    setupSlierScrollToCenter(offsetX: offsetX, index: index)
+                }
+            }else {
+                //设置滚动的位置
+                setupSlierScrollToCenter(offsetX: offsetX, index: index)
+            }
+            
+            
             
             // 如果是点击的话
             if isClick {
@@ -368,16 +441,48 @@ extension LTPageView {
                 setupButtonStatusAnimation(upButton: upButton, currentButton: currentButton)
             }
             
-            createViewController(index)
-            
-            didSelectIndexBlock?(self, index)
+            //如果开启滚动动画
+            if isClickScrollAnimation {
+                //如果不是点击事件继续在这个地方设置偏移
+                if !glt_isClickScrollAnimation {
+                    
+                    createViewController(index)
+                    
+                    didSelectIndexBlock?(self, index)
+                }
+            }else {
+                //默认的设置
+                createViewController(index)
+                
+                didSelectIndexBlock?(self, index)
+            }
             
             glt_currentIndex = index
             
         }
         
+        
         isClick = false
         
+    }
+    
+    private func setupIsClickScrollAnimation(index: Int) {
+        if !isClickScrollAnimation {
+            return
+        }
+        for button in glt_buttons {
+            if button.tag == index {
+                UIView.animate(withDuration: 0.2, animations: {
+                    
+                })
+                button.transform = CGAffineTransform(scaleX: layout.scale , y: layout.scale)
+                button.setTitleColor(self.layout.titleSelectColor, for: .normal)
+            }else {
+                button.transform = CGAffineTransform(scaleX: 1.0 , y: 1.0)
+                button.setTitleColor(self.layout.titleColor, for: .normal)
+            }
+        }
+        glt_isClickScrollAnimation = false
     }
     
     private func setupButtonStatusAnimation(upButton: UIButton, currentButton: UIButton)  {
@@ -411,6 +516,7 @@ extension LTPageView {
         if isClick {
             return false
         }
+        
         
         //目的是改变它的值，让制滑动第一个和最后一个的时候（-0.5），导致数组下标越界
         var offsetX = offsetX
@@ -596,6 +702,16 @@ extension LTPageView: UIScrollViewDelegate {
     
     public func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
         delegate?.glt_scrollViewDidEndScrollingAnimation?(scrollView)
+        
+        
+        if glt_isClickScrollAnimation {
+            let index = currentIndex()
+            createViewController(index)
+            setupSlierScrollToCenter(offsetX: scrollView.contentOffset.x, index: index)
+            setupIsClickScrollAnimation(index: index)
+            didSelectIndexBlock?(self, index)
+        }
+        
     }
 }
 
@@ -614,3 +730,4 @@ extension LTPageView {
     }
     
 }
+

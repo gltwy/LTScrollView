@@ -19,11 +19,23 @@
  
  public class LTSimpleManager: UIView {
     
+    /* headerView配置 */
     @objc public func configHeaderView(_ handle: (() -> UIView?)?) {
         guard let handle = handle else { return }
         guard let headerView = handle() else { return }
-        kHeaderHeight = headerView.bounds.height
+        kHeaderHeight = CGFloat(Int(headerView.bounds.height))
+        headerView.frame.size.height = kHeaderHeight
+        self.headerView = headerView
         tableView.tableHeaderView = headerView
+    }
+    
+    /* 动态改变header的高度 */
+    @objc public var glt_headerHeight: CGFloat = 0.0 {
+        didSet {
+            kHeaderHeight = glt_headerHeight
+            headerView?.frame.size.height = kHeaderHeight
+            tableView.tableHeaderView = headerView
+        }
     }
     
     public typealias LTSimpleDidSelectIndexHandle = (Int) -> Void
@@ -38,6 +50,18 @@
     @objc public func refreshTableViewHandle(_ handle: LTSimpleRefreshTableViewHandle?) {
         guard let handle = handle else { return }
         simpleRefreshTableViewHandle = handle
+    }
+    
+    /* 代码设置滚动到第几个位置 */
+    @objc public func scrollToIndex(index: Int)  {
+        pageView.scrollToIndex(index: index)
+    }
+    
+    /* 点击切换滚动过程动画  */
+    @objc public var isClickScrollAnimation = false {
+        didSet {
+            pageView.isClickScrollAnimation = isClickScrollAnimation
+        }
     }
     
     //设置悬停位置Y值
@@ -126,7 +150,7 @@
         viewController.glt_scrollView?.scrollHandle = {[weak self] scrollView in
             guard let `self` = self else { return }
             self.contentTableView = scrollView
-            if self.tableView.contentOffset.y < self.kHeaderHeight - self.hoverY {
+            if self.tableView.contentOffset.y  < self.kHeaderHeight - self.hoverY {
                 scrollView.contentOffset = .zero
                 scrollView.showsVerticalScrollIndicator = false
             }else{
@@ -173,7 +197,6 @@
         delegate?.glt_scrollViewDidScroll?(scrollView)
         guard scrollView == tableView, let contentTableView = contentTableView else { return }
         let offsetY = scrollView.contentOffset.y
-        print(offsetY, contentTableView.contentOffset.y)
         if contentTableView.contentOffset.y > hoverY || offsetY > kHeaderHeight - hoverY {
             tableView.contentOffset = CGPoint(x: 0.0, y: kHeaderHeight - hoverY)
         }

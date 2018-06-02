@@ -1,14 +1,7 @@
-#
-# Be sure to run `pod lib lint LTScrollView.podspec' to ensure this is a
-# valid spec before submitting.
-#
-# Any lines starting with a # are optional, but their use is encouraged
-# To learn more about a Podspec see http://guides.cocoapods.org/syntax/podspec.html
-#
 
 Pod::Spec.new do |s|
   s.name             = 'LTScrollView'
-  s.version          = '0.1.5'
+  s.version          = '0.1.6'
   s.summary          = 'LTScrollView'
 
   s.description      = <<-DESC

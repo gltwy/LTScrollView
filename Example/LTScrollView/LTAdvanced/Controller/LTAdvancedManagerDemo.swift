@@ -46,15 +46,27 @@ class LTAdvancedManagerDemo: UIViewController {
     
     private lazy var advancedManager: LTAdvancedManager = {
         let Y: CGFloat = glt_iphoneX ? 64 + 24.0 : 64.0
+        
         let H: CGFloat = glt_iphoneX ? (view.bounds.height - Y - 34) : view.bounds.height - Y
+        
         let advancedManager = LTAdvancedManager(frame: CGRect(x: 0, y: Y, width: view.bounds.width, height: H), viewControllers: viewControllers, titles: titles, currentViewController: self, layout: layout, headerViewHandle: {[weak self] in
             guard let strongSelf = self else { return UIView() }
             let headerView = strongSelf.testLabel()
             return headerView
         })
-        //设置悬停位置Y值
-        //        advancedManager.hoverY = Y
+        
+        /* 设置代理 监听滚动 */
         advancedManager.delegate = self
+        
+        /* 设置悬停位置 */
+//        advancedManager.hoverY = 64
+        
+        /* 点击切换滚动过程动画 */
+        advancedManager.isClickScrollAnimation = true
+        
+        /* 代码设置滚动到第几个位置 */
+        advancedManager.scrollToIndex(index: viewControllers.count - 1)
+        
         return advancedManager
     }()
     

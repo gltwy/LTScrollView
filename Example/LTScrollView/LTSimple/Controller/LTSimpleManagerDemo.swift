@@ -42,12 +42,27 @@ class LTSimpleManagerDemo: UIViewController {
     }()
     
     private lazy var simpleManager: LTSimpleManager = {
+        
         let Y: CGFloat = glt_iphoneX ? 64 + 24.0 : 64.0
         let H: CGFloat = glt_iphoneX ? (view.bounds.height - Y - 34) : view.bounds.height - Y
+        
         let simpleManager = LTSimpleManager(frame: CGRect(x: 0, y: Y, width: view.bounds.width, height: H), viewControllers: viewControllers, titles: titles, currentViewController: self, layout: layout)
+        
+        /* 设置代理 监听滚动 */
         simpleManager.delegate = self
-        //设置悬停位置
-        //        simpleManager.hoverY = 64
+        
+        /* 设置悬停位置 */
+//        simpleManager.hoverY = 64
+        
+        /* 点击切换滚动过程动画 */
+//        simpleManager.isClickScrollAnimation = true
+        
+        /* 代码设置滚动到第几个位置 */
+//        simpleManager.scrollToIndex(index: 1)
+        
+        /* 动态改变header的高度 */
+//        simpleManager.glt_headerHeight = 180
+        
         return simpleManager
     }()
     
@@ -113,7 +128,7 @@ extension LTSimpleManagerDemo: LTSimpleScrollViewDelegate {
 
 extension LTSimpleManagerDemo {
     private func testLabel() -> UILabel {
-        let headerView = UILabel(frame: CGRect(x: 0, y: 0, width: self.view.bounds.width, height: 185))
+        let headerView = UILabel(frame: CGRect(x: 0, y: 0, width: self.view.bounds.width, height: 180))
         headerView.backgroundColor = UIColor.red
         headerView.text = "点击响应事件"
         headerView.textColor = UIColor.white
