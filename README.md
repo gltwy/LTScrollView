@@ -31,7 +31,7 @@ source 'https://github.com/CocoaPods/Specs.git'
 platform :ios, '8.0'
 
 target 'TargetName' do
-pod 'LTScrollView', '~> 0.1.5'
+pod 'LTScrollView', '~> 0.1.6'
 end
 ```
 
@@ -69,9 +69,21 @@ private lazy var simpleManager: LTSimpleManager = {
     let Y: CGFloat = glt_iphoneX ? 64 + 24.0 : 64.0
     let H: CGFloat = glt_iphoneX ? (view.bounds.height - Y - 34) : view.bounds.height - Y
     let simpleManager = LTSimpleManager(frame: CGRect(x: 0, y: Y, width: view.bounds.width, height: H), viewControllers: viewControllers, titles: titles, currentViewController: self, layout: layout)
-    simpleManager.delegate = self
-    //设置悬停位置
-    //        simpleManager.hoverY = 64
+    
+        /* 设置代理 监听滚动 */
+        simpleManager.delegate = self
+        
+        //设置悬停位置
+        simpleManager.hoverY = 64
+
+        //点击切换滚动过程动画
+        simpleManager.isClickScrollAnimation = true
+
+         //代码设置滚动到第几个位置
+        simpleManager.scrollToIndex(index: 1)
+        
+        //动态改变header的高度
+        simpleManager.glt_headerHeight = 180
     return simpleManager
 }()
 
@@ -132,9 +144,18 @@ private lazy var advancedManager: LTAdvancedManager = {
         let headerView = strongSelf.testLabel()
         return headerView
     })
-    //设置悬停位置Y值
-    //        advancedManager.hoverY = Y
-    advancedManager.delegate = self
+         /* 设置代理 监听滚动 */
+        advancedManager.delegate = self
+        
+        /* 设置悬停位置 */
+        advancedManager.hoverY = 64
+        
+        /* 点击切换滚动过程动画 */
+        advancedManager.isClickScrollAnimation = true
+        
+        /* 代码设置滚动到第几个位置 */
+        advancedManager.scrollToIndex(index: viewControllers.count - 1)
+        
     return advancedManager
 }()
 
@@ -159,6 +180,18 @@ func glt_scrollViewOffsetY(_ offsetY: CGFloat) {
         CGFloat Y = kIPhoneX ? 64 + 24.0 : 64.0;
         CGFloat H = kIPhoneX ? (self.view.bounds.size.height - Y - 34) : self.view.bounds.size.height - Y;
         _managerView = [[LTSimpleManager alloc] initWithFrame:CGRectMake(0, Y, self.view.bounds.size.width, H) viewControllers:self.viewControllers titles:self.titles currentViewController:self layout:self.layout];
+        
+        /* 设置代理 监听滚动 */
+        _managerView.delegate = self;
+        
+        /* 设置悬停位置 */
+//        _managerView.hoverY = 64;
+        
+        /* 点击切换滚动过程动画 */
+//        _managerView.isClickScrollAnimation = YES;
+        
+        /* 代码设置滚动到第几个位置 */
+//        [_managerView scrollToIndexWithIndex:self.viewControllers.count - 1];
     }
     return _managerView;
 }
@@ -201,6 +234,17 @@ func glt_scrollViewOffsetY(_ offsetY: CGFloat) {
         _managerView = [[LTAdvancedManager alloc] initWithFrame:CGRectMake(0, Y, self.view.bounds.size.width, H) viewControllers:self.viewControllers titles:self.titles currentViewController:self layout:self.layout headerViewHandle:^UIView * _Nonnull{
             return [self setupHeaderView];
         }];
+        /* 设置代理 监听滚动 */
+        _managerView.delegate = self;
+        
+        /* 设置悬停位置 */
+//        _managerView.hoverY = 64;
+        
+        /* 点击切换滚动过程动画 */
+        _managerView.isClickScrollAnimation = YES;
+        
+        /* 代码设置滚动到第几个位置 */
+        [_managerView scrollToIndexWithIndex:self.viewControllers.count - 1];
     }
     return _managerView;
 }
@@ -250,6 +294,9 @@ public class LTLayout: NSObject {
     /* 滑块底部线的高 */
     @objc public var bottomLineHeight: CGFloat = 2.0
     
+    /* 滑块底部线圆角 */
+    @objc public var bottomLineCornerRadius: CGFloat = 0.0
+    
     /* 是否隐藏滑块 */
     @objc public var isHiddenSlider: Bool = false
     
@@ -270,15 +317,26 @@ public class LTLayout: NSObject {
     
     /* 是否隐藏底部线 */
     @objc public var isHiddenPageBottomLine: Bool = false
+    
     /* pageView底部线的高度 */
     @objc public var pageBottomLineHeight: CGFloat = 0.5
+    
     /* pageView底部线的颜色 */
     @objc public var pageBottomLineColor: UIColor? = UIColor.gray
+    
     
 }
 
 ```
 ## 更新说明
+
+2018.06.02 - 0.1.6
+```objective-c
+1. 修复LTSimple当HeaderView的高度为小数时无法滑动的Bug
+2. 增加代码设置滚动位置的方法
+3. 增加切换动画属性设置
+4. 修复已知Bug
+```
 
 2018.05.12 - 0.1.5
 ```objective-c
