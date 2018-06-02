@@ -58,9 +58,18 @@
         _managerView = [[LTAdvancedManager alloc] initWithFrame:CGRectMake(0, Y, self.view.bounds.size.width, H) viewControllers:self.viewControllers titles:self.titles currentViewController:self layout:self.layout headerViewHandle:^UIView * _Nonnull{
             return [self setupHeaderView];
         }];
-        //设置悬停位置Y值
-//        _managerView.hoverY = Y;
+        
+        /* 设置代理 监听滚动 */
         _managerView.delegate = self;
+        
+        /* 设置悬停位置 */
+//        _managerView.hoverY = 64;
+        
+        /* 点击切换滚动过程动画 */
+        _managerView.isClickScrollAnimation = YES;
+        
+        /* 代码设置滚动到第几个位置 */
+        [_managerView scrollToIndexWithIndex:self.viewControllers.count - 1];
     }
     return _managerView;
 }

@@ -31,7 +31,7 @@ source 'https://github.com/CocoaPods/Specs.git'
 platform :ios, '8.0'
 
 target 'TargetName' do
-pod 'LTScrollView', '~> 0.1.4'
+pod 'LTScrollView', '~> 0.1.5'
 end
 ```
 
@@ -39,6 +39,13 @@ Then, run the following command:
 
 ```bash
 $ pod install
+```
+
+提示错误 `[!] Unable to find a specification for LTScrollView ` 解决办法：
+
+```
+$ pod repo remove master
+$ pod setup
 ```
 
 ## Usage
@@ -50,10 +57,11 @@ $ pod install
 ```swift
 private lazy var layout: LTLayout = {
     let layout = LTLayout()
-    layout.titleColor = UIColor.white
-    layout.titleViewBgColor = UIColor.gray
-    layout.titleSelectColor = UIColor.yellow
-    layout.bottomLineColor = UIColor.yellow
+    layout.titleViewBgColor = UIColor(r: 255, g: 239, b: 213)
+    layout.titleColor = UIColor(r: 0, g: 0, b: 0)
+    layout.titleSelectColor = UIColor(r: 255, g: 0, b: 0)
+    layout.bottomLineColor = UIColor.red
+    layout.pageBottomLineColor = UIColor(r: 230, g: 230, b: 230)
     return layout
 }()
 
@@ -61,6 +69,9 @@ private lazy var simpleManager: LTSimpleManager = {
     let Y: CGFloat = glt_iphoneX ? 64 + 24.0 : 64.0
     let H: CGFloat = glt_iphoneX ? (view.bounds.height - Y - 34) : view.bounds.height - Y
     let simpleManager = LTSimpleManager(frame: CGRect(x: 0, y: Y, width: view.bounds.width, height: H), viewControllers: viewControllers, titles: titles, currentViewController: self, layout: layout)
+    simpleManager.delegate = self
+    //设置悬停位置
+    //        simpleManager.hoverY = 64
     return simpleManager
 }()
 
@@ -100,10 +111,16 @@ simpleManager.refreshTableViewHandle { (scrollView, index) in
 ```swift
 private lazy var layout: LTLayout = {
     let layout = LTLayout()
-    layout.titleColor = UIColor.white
-    layout.titleViewBgColor = UIColor.gray
-    layout.titleSelectColor = UIColor.yellow
-    layout.bottomLineColor = UIColor.yellow
+    layout.titleViewBgColor = UIColor(r: 255, g: 239, b: 213)
+    layout.titleColor = UIColor(r: 0, g: 0, b: 0)
+    layout.titleSelectColor = UIColor(r: 255, g: 0, b: 0)
+    layout.bottomLineColor = UIColor.red
+    layout.pageBottomLineColor = UIColor(r: 230, g: 230, b: 230)
+    layout.isAverage = true
+    //设置滑块的宽度
+    layout.sliderWidth = 20
+    //调节滑块的高 默认44
+    layout.sliderHeight = 45
     return layout
 }()
 
@@ -115,6 +132,9 @@ private lazy var advancedManager: LTAdvancedManager = {
         let headerView = strongSelf.testLabel()
         return headerView
     })
+    //设置悬停位置Y值
+    //        advancedManager.hoverY = Y
+    advancedManager.delegate = self
     return advancedManager
 }()
 
@@ -215,10 +235,10 @@ public class LTLayout: NSObject {
     /* 滑块底部线的颜色 */
     @objc public var bottomLineColor: UIColor? = UIColor.blue
     
-    /* 整个滑块的高 */
+    /* 整个滑块的高，pageTitleView的高 */
     @objc public var sliderHeight: CGFloat = 44.0
     
-    /* 整个滑块的宽度, 一旦设置，将不再自动计算宽度，而是固定为你传递的值 */
+    /* 单个滑块的宽度, 一旦设置，将不再自动计算宽度，而是固定为你传递的值 */
     @objc public var sliderWidth: CGFloat = glt_sliderDefaultWidth
     
     /*
@@ -259,6 +279,13 @@ public class LTLayout: NSObject {
 
 ```
 ## 更新说明
+
+2018.05.12 - 0.1.5
+```objective-c
+1. 修复循环引用导致控制器无法释放的问题
+2. 可手动设置悬停PageTitleView的位置（y值）
+3. 修复了LTAdvanced的已知Bug
+```
 
 2018.05.05 - 0.1.4
 ```objective-c

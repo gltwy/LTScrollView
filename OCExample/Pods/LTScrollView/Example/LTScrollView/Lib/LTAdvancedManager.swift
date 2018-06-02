@@ -17,8 +17,21 @@ public class LTAdvancedManager: UIView {
     public typealias LTAdvancedDidSelectIndexHandle = (Int) -> Void
     @objc public var advancedDidSelectIndexHandle: LTAdvancedDidSelectIndexHandle?
     @objc public weak var delegate: LTAdvancedScrollViewDelegate?
+    
     //设置悬停位置Y值
     @objc public var hoverY: CGFloat = 0
+    
+    /* 点击切换滚动过程动画 */
+    @objc public var isClickScrollAnimation = false {
+        didSet {
+            pageView.isClickScrollAnimation = isClickScrollAnimation
+        }
+    }
+    
+    /* 代码设置滚动到第几个位置 */
+    @objc public func scrollToIndex(index: Int)  {
+        pageView.scrollToIndex(index: index)
+    }
     
     private var kHeaderHeight: CGFloat = 0.0
     private var currentSelectIndex: Int = 0
@@ -40,6 +53,8 @@ public class LTAdvancedManager: UIView {
         pageView = setupPageViewConfig(currentViewController: currentViewController, layout: layout)
         setupSubViewsConfig(handle)
     }
+    
+    
     
     required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

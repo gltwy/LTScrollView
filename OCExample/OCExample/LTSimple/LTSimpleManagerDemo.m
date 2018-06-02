@@ -95,9 +95,19 @@
         CGFloat Y = kIPhoneX ? 64 + 24.0 : 64.0;
         CGFloat H = kIPhoneX ? (self.view.bounds.size.height - Y - 34) : self.view.bounds.size.height - Y;
         _managerView = [[LTSimpleManager alloc] initWithFrame:CGRectMake(0, Y, self.view.bounds.size.width, H) viewControllers:self.viewControllers titles:self.titles currentViewController:self layout:self.layout];
+        
+        /* 设置代理 监听滚动 */
         _managerView.delegate = self;
-        //设置悬停位置
+        
+        /* 设置悬停位置 */
 //        _managerView.hoverY = 64;
+        
+        /* 点击切换滚动过程动画 */
+//        _managerView.isClickScrollAnimation = YES;
+        
+        /* 代码设置滚动到第几个位置 */
+//        [_managerView scrollToIndexWithIndex:self.viewControllers.count - 1];
+        
     }
     return _managerView;
 }
