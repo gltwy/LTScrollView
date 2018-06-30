@@ -17,7 +17,7 @@ private let glt_sliderDefaultWidth: CGFloat = 40.010101010
 public class LTLayout: NSObject {
     
     /* pageView背景颜色 */
-    @objc public var titleViewBgColor: UIColor? = UIColor.gray
+    @objc public var titleViewBgColor: UIColor? = UIColor(r: 255, g: 239, b: 213)
     
     /* 标题颜色，请使用RGB赋值 */
     @objc public var titleColor: UIColor? = NORMAL_BASE_COLOR
@@ -28,8 +28,8 @@ public class LTLayout: NSObject {
     /* 标题字号 */
     @objc public var titleFont: UIFont? = UIFont.systemFont(ofSize: 16)
     
-    /* 滑块底部线的颜色 */
-    @objc public var bottomLineColor: UIColor? = UIColor.blue
+    /* 滑块底部线的颜色 - UIColor.blue */
+    @objc public var bottomLineColor: UIColor? = UIColor.red
     
     /* 整个滑块的高，pageTitleView的高 */
     @objc public var sliderHeight: CGFloat = 44.0
@@ -49,7 +49,7 @@ public class LTLayout: NSObject {
     /* 滑块底部线圆角 */
     @objc public var bottomLineCornerRadius: CGFloat = 0.0
     
-    /* 是否隐藏滑块 */
+    /* 是否隐藏滑块、底部线*/
     @objc public var isHiddenSlider: Bool = false
     
     /* 标题直接的间隔（标题距离下一个标题的间隔）*/
@@ -74,9 +74,13 @@ public class LTLayout: NSObject {
     @objc public var pageBottomLineHeight: CGFloat = 0.5
     
     /* pageView底部线的颜色 */
-    @objc public var pageBottomLineColor: UIColor? = UIColor.gray
+    @objc public var pageBottomLineColor: UIColor? = UIColor(r: 230, g: 230, b: 230)
     
+    /* pageView的内容ScrollView是否开启左右弹性效果 */
+    @objc public var isShowBounces: Bool = false
     
+    /* 内部使用-外界不要调用 */
+    var isSinglePageView: Bool = false
 }
 
 public typealias PageViewDidSelectIndexBlock = (LTPageView, Int) -> Void
@@ -97,22 +101,27 @@ public class LTPageView: UIView {
     private var viewControllers: [UIViewController]
     private var titles: [String]
     private var layout: LTLayout = LTLayout()
-    public var didSelectIndexBlock: PageViewDidSelectIndexBlock?
-    public var addChildVcBlock: AddChildViewControllerBlock?
+    
     private var glt_currentIndex: Int = 0;
     private var glt_buttons: [UIButton] = []
     private var glt_textWidths: [CGFloat] = []
     private var glt_startOffsetX: CGFloat = 0.0
     private var glt_clickIndex: Int = 0
     private var isClick: Bool = false
+    private var isFirstLoad: Bool = true
     private var glt_lineWidths: [CGFloat] = []
     
     private var glt_isClickScrollAnimation = false
+    
+    @objc public var didSelectIndexBlock: PageViewDidSelectIndexBlock?
+    
+    @objc public var addChildVcBlock: AddChildViewControllerBlock?
+    
     /* 点击切换滚动过程动画  */
-    public var isClickScrollAnimation = false
+    @objc public var isClickScrollAnimation = false
     
     /* pageView的scrollView左右滑动监听 */
-    public weak var delegate: LTPageViewDelegate?
+    @objc public weak var delegate: LTPageViewDelegate?
     
     private lazy var glt_titleRGBlColor: (r : CGFloat, g : CGFloat, b : CGFloat) = getRGBWithColor(layout.titleColor ?? NORMAL_BASE_COLOR)
     
@@ -157,12 +166,12 @@ public class LTPageView: UIView {
         scrollView.tag = 302
         scrollView.isPagingEnabled = true
         scrollView.delegate = self
-        scrollView.bounces = false
+        scrollView.bounces = layout.isShowBounces
         return scrollView
     }()
     
     
-    public init(frame: CGRect, currentViewController: UIViewController, viewControllers:[UIViewController], titles: [String], layout: LTLayout) {
+    @objc public init(frame: CGRect, currentViewController: UIViewController, viewControllers:[UIViewController], titles: [String], layout: LTLayout) {
         self.currentViewController = currentViewController
         self.viewControllers = viewControllers
         self.titles = titles
@@ -171,6 +180,10 @@ public class LTPageView: UIView {
             fatalError("控制器数量和标题数量不一致")
         }
         super.init(frame: frame)
+        if #available(iOS 11.0, *) {
+            scrollView.contentInsetAdjustmentBehavior = .never
+            sliderScrollView.contentInsetAdjustmentBehavior = .never
+        }
         addSubview(scrollView)
         addSubview(pageTitleView)
         buttonsLayout()
@@ -182,14 +195,10 @@ public class LTPageView: UIView {
         if layout.isHiddenSlider {
             sliderLineView.frame.size.height = 0.0
         }
-        if #available(iOS 11.0, *) {
-            scrollView.contentInsetAdjustmentBehavior = .never
-            sliderScrollView.contentInsetAdjustmentBehavior = .never
-        }
     }
     
     /* 滚动到某个位置 */
-    public func scrollToIndex(index: Int)  {
+    @objc public func scrollToIndex(index: Int)  {
         
         var index = index
         if index >= titles.count {
@@ -213,9 +222,11 @@ public class LTPageView: UIView {
                 }
                 
             }else {
-                setupSliderLineViewWidth(currentButton: nextButton)
+                if isFirstLoad {
+                    setupSliderLineViewWidth(currentButton: glt_buttons[index])
+                    isFirstLoad = false
+                }
             }
-            
         }
         
         setupTitleSelectIndex(index)
@@ -390,10 +401,19 @@ extension LTPageView {
         if currentViewController.childViewControllers.contains(VC) {
             return
         }
-        currentViewController.addChildViewController(VC)
-        VC.view.frame = CGRect(x: scrollView.bounds.width * CGFloat(index), y: 0, width: scrollView.bounds.width, height: scrollView.bounds.height)
+        var viewControllerY: CGFloat = 0.0
+        layout.isSinglePageView ? viewControllerY = 0.0 : (viewControllerY = layout.sliderHeight)
+        VC.view.frame = CGRect(x: scrollView.bounds.width * CGFloat(index), y: viewControllerY, width: scrollView.bounds.width, height: scrollView.bounds.height)
         scrollView.addSubview(VC.view)
+        currentViewController.addChildViewController(VC)
+        VC.automaticallyAdjustsScrollViewInsets = false
         addChildVcBlock?(index, VC)
+        if let glt_scrollView = VC.glt_scrollView {
+            if #available(iOS 11.0, *) {
+                glt_scrollView.contentInsetAdjustmentBehavior = .never
+            }
+            glt_scrollView.frame.size.height = glt_scrollView.frame.size.height - viewControllerY
+        }
     }
     
     private func scrollViewDidScrollOffsetX(_ offsetX: CGFloat)  {
@@ -414,8 +434,6 @@ extension LTPageView {
                 //设置滚动的位置
                 setupSlierScrollToCenter(offsetX: offsetX, index: index)
             }
-            
-            
             
             // 如果是点击的话
             if isClick {
@@ -472,13 +490,14 @@ extension LTPageView {
         }
         for button in glt_buttons {
             if button.tag == index {
-                UIView.animate(withDuration: 0.2, animations: {
-                    
-                })
-                button.transform = CGAffineTransform(scaleX: layout.scale , y: layout.scale)
+                if layout.isNeedScale {
+                    button.transform = CGAffineTransform(scaleX: layout.scale , y: layout.scale)
+                }
                 button.setTitleColor(self.layout.titleSelectColor, for: .normal)
             }else {
-                button.transform = CGAffineTransform(scaleX: 1.0 , y: 1.0)
+                if layout.isNeedScale {
+                    button.transform = CGAffineTransform(scaleX: 1.0 , y: 1.0)
+                }
                 button.setTitleColor(self.layout.titleColor, for: .normal)
             }
         }

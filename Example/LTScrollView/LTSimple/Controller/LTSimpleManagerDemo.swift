@@ -20,7 +20,7 @@ import MJRefresh
 class LTSimpleManagerDemo: UIViewController {
     
     private lazy var titles: [String] = {
-        return ["热门", "精彩推荐", "科技控", "游戏", "汽车", "财经", "搞笑", "图片"]
+        return ["热门", "精彩推荐", "科技控", "游戏"]
     }()
     
     private lazy var viewControllers: [UIViewController] = {
@@ -33,17 +33,16 @@ class LTSimpleManagerDemo: UIViewController {
     
     private lazy var layout: LTLayout = {
         let layout = LTLayout()
-        layout.titleViewBgColor = UIColor(r: 255, g: 239, b: 213)
-        layout.titleColor = UIColor(r: 0, g: 0, b: 0)
-        layout.titleSelectColor = UIColor(r: 255, g: 0, b: 0)
-        layout.bottomLineColor = UIColor.red
-        layout.pageBottomLineColor = UIColor(r: 230, g: 230, b: 230)
+        layout.bottomLineHeight = 4.0
+        layout.bottomLineCornerRadius = 2.0
+        /* 更多属性设置请参考 LTLayout 中 public 属性说明 */
         return layout
     }()
     
     private lazy var simpleManager: LTSimpleManager = {
         
-        let Y: CGFloat = glt_iphoneX ? 64 + 24.0 : 64.0
+        let statusBarH = UIApplication.shared.statusBarFrame.size.height
+        let Y: CGFloat = statusBarH + 44
         let H: CGFloat = glt_iphoneX ? (view.bounds.height - Y - 34) : view.bounds.height - Y
         
         let simpleManager = LTSimpleManager(frame: CGRect(x: 0, y: Y, width: view.bounds.width, height: H), viewControllers: viewControllers, titles: titles, currentViewController: self, layout: layout)
@@ -52,16 +51,16 @@ class LTSimpleManagerDemo: UIViewController {
         simpleManager.delegate = self
         
         /* 设置悬停位置 */
-//        simpleManager.hoverY = 64
+        //        simpleManager.hoverY = 64
         
         /* 点击切换滚动过程动画 */
-//        simpleManager.isClickScrollAnimation = true
+        //        simpleManager.isClickScrollAnimation = true
         
         /* 代码设置滚动到第几个位置 */
-//        simpleManager.scrollToIndex(index: 1)
+        //        simpleManager.scrollToIndex(index: 1)
         
         /* 动态改变header的高度 */
-//        simpleManager.glt_headerHeight = 180
+        //        simpleManager.glt_headerHeight = 180
         
         return simpleManager
     }()
@@ -103,16 +102,6 @@ extension LTSimpleManagerDemo {
             print("点击了 \(index) 😆")
         }
         
-        //MARK: 控制器刷新事件
-        simpleManager.refreshTableViewHandle { (scrollView, index) in
-            scrollView.mj_header = MJRefreshNormalHeader {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: {
-                    print("对应控制器的刷新自己玩吧，这里就不做处理了🙂-----\(index)")
-                    scrollView.mj_header.endRefreshing()
-                })
-            }
-        }
-        
     }
     
     @objc private func tapLabel(_ gesture: UITapGestureRecognizer)  {
@@ -121,8 +110,21 @@ extension LTSimpleManagerDemo {
 }
 
 extension LTSimpleManagerDemo: LTSimpleScrollViewDelegate {
+    
+    //MARK: 滚动代理方法
     func glt_scrollViewDidScroll(_ scrollView: UIScrollView) {
         //        print("offset -> ", scrollView.contentOffset.y)
+    }
+    
+    //MARK: 控制器刷新事件代理方法
+    func glt_refreshScrollView(_ scrollView: UIScrollView, _ index: Int) {
+        //注意这里循环引用问题。
+        scrollView.mj_header = MJRefreshNormalHeader {[weak scrollView] in
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: {
+                print("对应控制器的刷新自己玩吧，这里就不做处理了🙂-----\(index)")
+                scrollView?.mj_header.endRefreshing()
+            })
+        }
     }
 }
 

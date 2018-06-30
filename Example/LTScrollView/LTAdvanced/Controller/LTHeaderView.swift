@@ -26,7 +26,6 @@ class LTHeaderView: UIView {
         label.frame.origin.x = 50
         label.isUserInteractionEnabled = true
         label.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.tapLabel(_:))))
-        label.backgroundColor = UIColor.gray
         label.sizeToFit()
         return label
     }()

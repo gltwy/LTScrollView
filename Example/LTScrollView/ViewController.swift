@@ -18,11 +18,14 @@ import UIKit
 
 class ViewController: UIViewController, LTTableViewProtocal {
     
-    private let datas = ["基础版（LTSimple）", "进阶版（LTAdvanced）"]
+    private let datas = ["基础版-刷新控件在顶部\nLTSimple",
+                         "进阶版-刷新控件在中间\nLTAdvanced",
+                         "下拉放大-导航渐变\nLTPersonalMainPage",
+                         "切换视图\nLTPageView"]
     
     private lazy var tableView: UITableView = {
         let tableView: UITableView = tableViewConfig(self, self, nil)
-        tableView.frame.origin.y = 64
+        tableView.frame.origin.y = UIApplication.shared.statusBarFrame.height + 44
         tableView.tableFooterView = UIView()
         return tableView
     }()
@@ -37,6 +40,7 @@ class ViewController: UIViewController, LTTableViewProtocal {
         } else {
             self.automaticallyAdjustsScrollViewInsets = false
         }
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -53,19 +57,50 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = cellWithTableView(tableView)
-        cell.textLabel?.text = datas[indexPath.row]
+        cell.textLabel?.attributedText = textAttributes(string: datas[indexPath.row])
+        cell.textLabel?.numberOfLines = 0
         return cell
+    }
+    
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 64
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let viewControllers = [LTSimpleManagerDemo(), LTAdvancedManagerDemo()]
-        pushVc(viewControllers[indexPath.row], index: indexPath.row)
+        switch indexPath.row {
+        case 0:
+            pushVc(LTSimpleManagerDemo(), index: indexPath.row)
+            break
+        case 1:
+            pushVc(LTAdvancedManagerDemo(), index: indexPath.row)
+            break
+        case 2:
+            pushVc(LTPersonMainPageDemo(), index: indexPath.row)
+            break
+        case 3:
+            pushVc(LTPageViewDemo(), index: indexPath.row)
+            break
+        default:break
+        }
     }
     
     private func pushVc(_ VC: UIViewController, index: Int) {
         VC.title = datas[index]
         navigationController?.pushViewController(VC, animated: true)
+    }
+}
+
+extension ViewController {
+    
+    private func textAttributes(string: String) -> NSAttributedString {
+        var attributes:[NSAttributedStringKey: Any] = [NSAttributedStringKey : Any]()
+        attributes[NSAttributedStringKey.font] = UIFont.systemFont(ofSize: 16)
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineSpacing = 3.0
+        attributes[NSAttributedStringKey.paragraphStyle] = paragraphStyle
+        return NSAttributedString(string: string, attributes: attributes)
     }
 }
 

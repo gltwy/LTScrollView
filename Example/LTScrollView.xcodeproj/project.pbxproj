@@ -26,6 +26,11 @@
 		6AB5A9FE2078C4D10065D6F7 /* LTHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AB5A9F62078C4D10065D6F7 /* LTHeaderView.swift */; };
 		6AB5A9FF2078C4D10065D6F7 /* LTAdvancedManagerDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AB5A9F72078C4D10065D6F7 /* LTAdvancedManagerDemo.swift */; };
 		6AB5AA002078C4D10065D6F7 /* LTAdvancedTestOneVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AB5A9F82078C4D10065D6F7 /* LTAdvancedTestOneVC.swift */; };
+		6ABD2BA420E679D600473B06 /* LTPageViewDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ABD2B9E20E679D500473B06 /* LTPageViewDemo.swift */; };
+		6ABD2BA520E679D600473B06 /* LTPageViewTestOneVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ABD2B9F20E679D500473B06 /* LTPageViewTestOneVC.swift */; };
+		6ABD2BA620E679D600473B06 /* LTPersonalMainPageTestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ABD2BA220E679D500473B06 /* LTPersonalMainPageTestVC.swift */; };
+		6ABD2BA720E679D600473B06 /* LTPersonMainPageDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ABD2BA320E679D500473B06 /* LTPersonMainPageDemo.swift */; };
+		6ABD2BA920E67A3300473B06 /* test.png in Resources */ = {isa = PBXBuildFile; fileRef = 6ABD2BA820E67A3300473B06 /* test.png */; };
 		7DB01BDC023018210CF4AAA8 /* Pods_LTScrollView_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6CC587E6DBC111962EA1E447 /* Pods_LTScrollView_Tests.framework */; };
 		C1E38C111D3DA84CBF0CFB43 /* Pods_LTScrollView_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C1723AE1BCAADA01BFD6E80 /* Pods_LTScrollView_Example.framework */; };
 /* End PBXBuildFile section */
@@ -69,6 +74,11 @@
 		6AB5A9F62078C4D10065D6F7 /* LTHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTHeaderView.swift; sourceTree = "<group>"; };
 		6AB5A9F72078C4D10065D6F7 /* LTAdvancedManagerDemo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTAdvancedManagerDemo.swift; sourceTree = "<group>"; };
 		6AB5A9F82078C4D10065D6F7 /* LTAdvancedTestOneVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTAdvancedTestOneVC.swift; sourceTree = "<group>"; };
+		6ABD2B9E20E679D500473B06 /* LTPageViewDemo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTPageViewDemo.swift; sourceTree = "<group>"; };
+		6ABD2B9F20E679D500473B06 /* LTPageViewTestOneVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTPageViewTestOneVC.swift; sourceTree = "<group>"; };
+		6ABD2BA220E679D500473B06 /* LTPersonalMainPageTestVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTPersonalMainPageTestVC.swift; sourceTree = "<group>"; };
+		6ABD2BA320E679D500473B06 /* LTPersonMainPageDemo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTPersonMainPageDemo.swift; sourceTree = "<group>"; };
+		6ABD2BA820E67A3300473B06 /* test.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test.png; sourceTree = "<group>"; };
 		6CC587E6DBC111962EA1E447 /* Pods_LTScrollView_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LTScrollView_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1030EA3F060C63BBB220374 /* Pods-LTScrollView_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LTScrollView_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-LTScrollView_Tests/Pods-LTScrollView_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		B119E2D80EDE6DCAB9CE1BD8 /* Pods-LTScrollView_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LTScrollView_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-LTScrollView_Example/Pods-LTScrollView_Example.release.xcconfig"; sourceTree = "<group>"; };
@@ -120,8 +130,10 @@
 			isa = PBXGroup;
 			children = (
 				6A1A7B62208B0364002D3852 /* Lib */,
-				6AB5A9F42078C4D10065D6F7 /* LTAdvanced */,
 				6AB5A9ED2078C4D10065D6F7 /* LTSimple */,
+				6AB5A9F42078C4D10065D6F7 /* LTAdvanced */,
+				6ABD2BA020E679D500473B06 /* LTPersonalMainPage */,
+				6ABD2B9C20E679D500473B06 /* LTPageView */,
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
 				607FACD71AFB9204008FA782 /* ViewController.swift */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
@@ -136,6 +148,7 @@
 		607FACD31AFB9204008FA782 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				6ABD2BA820E67A3300473B06 /* test.png */,
 				607FACD41AFB9204008FA782 /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -214,6 +227,40 @@
 				6AB5A9F62078C4D10065D6F7 /* LTHeaderView.swift */,
 				6AB5A9F72078C4D10065D6F7 /* LTAdvancedManagerDemo.swift */,
 				6AB5A9F82078C4D10065D6F7 /* LTAdvancedTestOneVC.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		6ABD2B9C20E679D500473B06 /* LTPageView */ = {
+			isa = PBXGroup;
+			children = (
+				6ABD2B9D20E679D500473B06 /* Controller */,
+			);
+			path = LTPageView;
+			sourceTree = "<group>";
+		};
+		6ABD2B9D20E679D500473B06 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				6ABD2B9E20E679D500473B06 /* LTPageViewDemo.swift */,
+				6ABD2B9F20E679D500473B06 /* LTPageViewTestOneVC.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		6ABD2BA020E679D500473B06 /* LTPersonalMainPage */ = {
+			isa = PBXGroup;
+			children = (
+				6ABD2BA120E679D500473B06 /* Controller */,
+			);
+			path = LTPersonalMainPage;
+			sourceTree = "<group>";
+		};
+		6ABD2BA120E679D500473B06 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				6ABD2BA320E679D500473B06 /* LTPersonMainPageDemo.swift */,
+				6ABD2BA220E679D500473B06 /* LTPersonalMainPageTestVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -332,6 +379,7 @@
 				607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */,
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
 				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,
+				6ABD2BA920E67A3300473B06 /* test.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -444,16 +492,20 @@
 			files = (
 				6A1A7B8D208B072D002D3852 /* LTAdvancedManager.swift in Sources */,
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
+				6ABD2BA620E679D600473B06 /* LTPersonalMainPageTestVC.swift in Sources */,
 				6AB5AA002078C4D10065D6F7 /* LTAdvancedTestOneVC.swift in Sources */,
 				6A1A7B8C208B072D002D3852 /* LTScrollExtension.swift in Sources */,
 				6AB5A9FF2078C4D10065D6F7 /* LTAdvancedManagerDemo.swift in Sources */,
 				6A1A7B90208B072D002D3852 /* LTSimpleManager.swift in Sources */,
+				6ABD2BA720E679D600473B06 /* LTPersonMainPageDemo.swift in Sources */,
 				6AB5A9FE2078C4D10065D6F7 /* LTHeaderView.swift in Sources */,
 				6A1A7B92208B072D002D3852 /* LTPageView.swift in Sources */,
 				6AB5A9FC2078C4D10065D6F7 /* LTSimpleTestOneVC.swift in Sources */,
 				6A1A7B8E208B072D002D3852 /* LTTableViewProtocal.swift in Sources */,
 				6A1A7B8B208B072D002D3852 /* LTDispatchQueue.swift in Sources */,
 				6A1A7B91208B072D002D3852 /* LTTableView.swift in Sources */,
+				6ABD2BA520E679D600473B06 /* LTPageViewTestOneVC.swift in Sources */,
+				6ABD2BA420E679D600473B06 /* LTPageViewDemo.swift in Sources */,
 				6AB5A9F92078C4D10065D6F7 /* LTSimpleManagerDemo.swift in Sources */,
 				6A1A7B8F208B072D002D3852 /* LTVCExtension.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,

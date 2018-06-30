@@ -21,6 +21,7 @@ class LTAdvancedManagerDemo: UIViewController {
     private lazy var viewControllers: [UIViewController] = {
         let oneVc = LTAdvancedTestOneVC()
         let twoVc = LTAdvancedTestOneVC()
+        twoVc.count = 5
         let threeVc = LTAdvancedTestOneVC()
         let fourVc = LTAdvancedTestOneVC()
         return [oneVc, twoVc, threeVc, fourVc]
@@ -32,29 +33,21 @@ class LTAdvancedManagerDemo: UIViewController {
     
     private lazy var layout: LTLayout = {
         let layout = LTLayout()
-        layout.titleViewBgColor = UIColor(r: 255, g: 239, b: 213)
-        layout.titleColor = UIColor(r: 0, g: 0, b: 0)
-        layout.titleSelectColor = UIColor(r: 255, g: 0, b: 0)
-        layout.bottomLineColor = UIColor.red
-        layout.pageBottomLineColor = UIColor(r: 230, g: 230, b: 230)
         layout.isAverage = true
         layout.sliderWidth = 20
-        //调节滑块的高 默认44
-        layout.sliderHeight = 45
+        /* 更多属性设置请参考 LTLayout 中 public 属性说明 */
         return layout
     }()
     
     private lazy var advancedManager: LTAdvancedManager = {
-        let Y: CGFloat = glt_iphoneX ? 64 + 24.0 : 64.0
-        
+        let statusBarH = UIApplication.shared.statusBarFrame.size.height
+        let Y: CGFloat = statusBarH + 44
         let H: CGFloat = glt_iphoneX ? (view.bounds.height - Y - 34) : view.bounds.height - Y
-        
         let advancedManager = LTAdvancedManager(frame: CGRect(x: 0, y: Y, width: view.bounds.width, height: H), viewControllers: viewControllers, titles: titles, currentViewController: self, layout: layout, headerViewHandle: {[weak self] in
             guard let strongSelf = self else { return UIView() }
             let headerView = strongSelf.testLabel()
             return headerView
         })
-        
         /* 设置代理 监听滚动 */
         advancedManager.delegate = self
         
@@ -62,10 +55,10 @@ class LTAdvancedManagerDemo: UIViewController {
 //        advancedManager.hoverY = 64
         
         /* 点击切换滚动过程动画 */
-        advancedManager.isClickScrollAnimation = true
+//        advancedManager.isClickScrollAnimation = true
         
         /* 代码设置滚动到第几个位置 */
-        advancedManager.scrollToIndex(index: viewControllers.count - 1)
+//        advancedManager.scrollToIndex(index: viewControllers.count - 1)
         
         return advancedManager
     }()

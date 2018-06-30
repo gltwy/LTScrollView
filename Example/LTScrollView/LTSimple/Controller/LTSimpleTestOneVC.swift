@@ -21,7 +21,6 @@ import MJRefresh
 class LTSimpleTestOneVC: UIViewController, LTTableViewProtocal {
     
     private lazy var tableView: UITableView = {
-        print(UIScreen.main.bounds.height)
         let H: CGFloat = glt_iphoneX ? (view.bounds.height - 44 - 64 - 24 - 34) : view.bounds.height - 44 - 64
         let tableView = tableViewConfig(CGRect(x: 0, y: 44, width: view.bounds.width, height: H), self, self, nil)
         return tableView
@@ -43,7 +42,7 @@ class LTSimpleTestOneVC: UIViewController, LTTableViewProtocal {
 
 extension LTSimpleTestOneVC {
     fileprivate func reftreshData()  {
-        tableView.mj_footer = MJRefreshBackNormalFooter {[weak self] in
+        self.tableView.mj_footer = MJRefreshBackNormalFooter {[weak self] in
             DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: {
                 print("上拉加载更多数据")
                 self?.tableView.mj_footer.endRefreshing()

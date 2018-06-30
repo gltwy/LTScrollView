@@ -1,9 +1,9 @@
-//
-//  LTAdvancedTestOneVC.swift
+//  LTSimpleTestOneVC.swift
 //  LTScrollView
 //
-//  Created by 高刘通 on 2018/2/3.
-//  Copyright © 2018年 CocoaPods. All rights reserved.
+//  Created by 高刘通 on 2017/11/27.
+//  Copyright © 2017年 LT. All rights reserved.
+//
 //
 //  如有疑问，欢迎联系本人QQ: 1282990794
 //
@@ -17,13 +17,15 @@
 import UIKit
 import MJRefresh
 
-class LTAdvancedTestOneVC: UIViewController, LTTableViewProtocal {
-    
-    var count = 20;
+class LTPersonalMainPageTestVC: UIViewController, LTTableViewProtocal {
     
     private lazy var tableView: UITableView = {
-        let H: CGFloat = glt_iphoneX ? (view.bounds.height - 64 - 24 - 34) : view.bounds.height  - 64
-        let tableView = tableViewConfig(CGRect(x: 0, y: 0, width: view.bounds.width, height: H), self, self, nil)
+        let statusBarH = UIApplication.shared.statusBarFrame.size.height
+        //这个44为导航高度
+        let Y: CGFloat = statusBarH + 44
+        //这个44为切换条的高度
+        let H: CGFloat = glt_iphoneX ? (view.bounds.height - Y - 44 - 34) : view.bounds.height - Y - 44
+        let tableView = tableViewConfig(CGRect(x: 0, y: 44, width: view.bounds.width, height: H), self, self, nil)
         return tableView
     }()
     
@@ -34,38 +36,29 @@ class LTAdvancedTestOneVC: UIViewController, LTTableViewProtocal {
         glt_scrollView = tableView
         reftreshData()
         if #available(iOS 11.0, *) {
-            tableView.contentInsetAdjustmentBehavior = .never
+            glt_scrollView?.contentInsetAdjustmentBehavior = .never
         } else {
-            automaticallyAdjustsScrollViewInsets = false
+            self.automaticallyAdjustsScrollViewInsets = false
         }
     }
 }
 
-extension LTAdvancedTestOneVC {
-    
+extension LTPersonalMainPageTestVC {
     fileprivate func reftreshData()  {
-        
-        tableView.mj_footer = MJRefreshBackNormalFooter {[weak self] in
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
+        self.tableView.mj_footer = MJRefreshBackNormalFooter {[weak self] in
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: {
                 print("上拉加载更多数据")
                 self?.tableView.mj_footer.endRefreshing()
             })
         }
-        tableView.mj_header = MJRefreshNormalHeader {[weak self] in
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
-                print("下拉刷新 --- 1")
-                self?.tableView.mj_header.endRefreshing()
-            })
-        }
-        
     }
 }
 
 
-extension LTAdvancedTestOneVC: UITableViewDelegate, UITableViewDataSource {
+extension LTPersonalMainPageTestVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return count
+        return 30
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = cellWithTableView(tableView)
@@ -77,7 +70,7 @@ extension LTAdvancedTestOneVC: UITableViewDelegate, UITableViewDataSource {
         print("点击了第\(indexPath.row + 1)行")
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 60.0
+        return 100.0
     }
 }
 

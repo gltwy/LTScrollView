@@ -50,11 +50,14 @@ public class LTAdvancedManager: UIView {
         self.currentViewController = currentViewController
         self.layout = layout
         super.init(frame: frame)
+        layout.isSinglePageView = true
         pageView = setupPageViewConfig(currentViewController: currentViewController, layout: layout)
         setupSubViewsConfig(handle)
     }
     
-    
+    deinit {
+        deallocConfig()
+    }
     
     required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -132,6 +135,11 @@ extension LTAdvancedManager {
             let currentVC = self.viewControllers[self.currentSelectIndex]
             
             guard let glt_scrollView = currentVC.glt_scrollView else { return }
+            
+            //当前ScrollView的contentSize的高 = 当前ScrollView的的高 避免自动掉落
+            if glt_scrollView.contentSize.height < glt_scrollView.bounds.height {
+                glt_scrollView.contentSize.height = glt_scrollView.bounds.height
+            }
             
             //当前ScrollView的contentSize的高
             let contentSizeHeight = glt_scrollView.contentSize.height
@@ -287,6 +295,12 @@ extension LTAdvancedManager {
             let currentVC = self.viewControllers[self.currentSelectIndex]
             
             guard let glt_scrollView = currentVC.glt_scrollView else { return }
+            
+            //当前ScrollView的contentSize的高 = 当前ScrollView的的高 避免自动掉落
+            if glt_scrollView.contentSize.height < glt_scrollView.bounds.height {
+                glt_scrollView.contentSize.height = glt_scrollView.bounds.height
+            }
+            
             //当前ScrollView的contentSize的高
             let contentSizeHeight = glt_scrollView.contentSize.height
             
@@ -318,3 +332,10 @@ extension LTAdvancedManager {
     
 }
 
+extension LTAdvancedManager {
+    private func deallocConfig() {
+        for viewController in viewControllers {
+            viewController.glt_scrollView?.delegate = nil
+        }
+    }
+}

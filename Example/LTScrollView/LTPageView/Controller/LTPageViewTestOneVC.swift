@@ -1,5 +1,5 @@
 //
-//  LTAdvancedTestOneVC.swift
+//  LTPageViewTestOneVC.swift
 //  LTScrollView
 //
 //  Created by 高刘通 on 2018/2/3.
@@ -17,9 +17,7 @@
 import UIKit
 import MJRefresh
 
-class LTAdvancedTestOneVC: UIViewController, LTTableViewProtocal {
-    
-    var count = 20;
+class LTPageViewTestOneVC: UIViewController, LTTableViewProtocal {
     
     private lazy var tableView: UITableView = {
         let H: CGFloat = glt_iphoneX ? (view.bounds.height - 64 - 24 - 34) : view.bounds.height  - 64
@@ -41,7 +39,7 @@ class LTAdvancedTestOneVC: UIViewController, LTTableViewProtocal {
     }
 }
 
-extension LTAdvancedTestOneVC {
+extension LTPageViewTestOneVC {
     
     fileprivate func reftreshData()  {
         
@@ -62,10 +60,10 @@ extension LTAdvancedTestOneVC {
 }
 
 
-extension LTAdvancedTestOneVC: UITableViewDelegate, UITableViewDataSource {
+extension LTPageViewTestOneVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return count
+        return 50
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = cellWithTableView(tableView)
@@ -77,7 +75,7 @@ extension LTAdvancedTestOneVC: UITableViewDelegate, UITableViewDataSource {
         print("点击了第\(indexPath.row + 1)行")
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 60.0
+        return 100.0
     }
 }
 
