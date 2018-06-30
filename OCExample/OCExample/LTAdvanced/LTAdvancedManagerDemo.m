@@ -63,13 +63,13 @@
         _managerView.delegate = self;
         
         /* 设置悬停位置 */
-//        _managerView.hoverY = 64;
+        //        _managerView.hoverY = 64;
         
         /* 点击切换滚动过程动画 */
-        _managerView.isClickScrollAnimation = YES;
+//        _managerView.isClickScrollAnimation = YES;
         
         /* 代码设置滚动到第几个位置 */
-        [_managerView scrollToIndexWithIndex:self.viewControllers.count - 1];
+//        [_managerView scrollToIndexWithIndex:self.viewControllers.count - 1];
     }
     return _managerView;
 }
@@ -86,11 +86,9 @@
 -(LTLayout *)layout {
     if (!_layout) {
         _layout = [[LTLayout alloc] init];
-        _layout.titleViewBgColor = RGBA(255, 239, 213, 1);
-        _layout.pageBottomLineColor = RGBA(230, 230, 230, 1);
-        _layout.bottomLineColor = [UIColor redColor];
         _layout.isAverage = YES;
         _layout.sliderWidth = 20;
+        /* 更多属性设置请参考 LTLayout 中 public 属性说明 */
     }
     return _layout;
 }
@@ -114,7 +112,7 @@
 
 -(NSArray <UIViewController *> *)setupViewControllers {
     NSMutableArray <UIViewController *> *testVCS = [NSMutableArray arrayWithCapacity:0];
-    [self.titles enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+    [self.titles enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger index, BOOL * _Nonnull stop) {
         LTAdvancedTestViewController *testVC = [[LTAdvancedTestViewController alloc] init];
         [testVCS addObject:testVC];
     }];
@@ -126,13 +124,13 @@
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end

@@ -15,6 +15,9 @@
     @objc optional func glt_scrollViewDidEndDecelerating(_ scrollView: UIScrollView)
     @objc optional func glt_scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool)
     @objc optional func glt_scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView)
+    //刷新tableView的代理方法
+    @objc optional func glt_refreshScrollView(_ scrollView: UIScrollView, _ index: Int);
+    
  }
  
  public class LTSimpleManager: UIView {
@@ -41,14 +44,12 @@
     public typealias LTSimpleDidSelectIndexHandle = (Int) -> Void
     @objc public var sampleDidSelectIndexHandle: LTSimpleDidSelectIndexHandle?
     @objc  public func didSelectIndexHandle(_ handle: LTSimpleDidSelectIndexHandle?) {
-        guard let handle = handle else { return }
         sampleDidSelectIndexHandle = handle
     }
     
     public typealias LTSimpleRefreshTableViewHandle = (UIScrollView, Int) -> Void
     @objc public var simpleRefreshTableViewHandle: LTSimpleRefreshTableViewHandle?
     @objc public func refreshTableViewHandle(_ handle: LTSimpleRefreshTableViewHandle?) {
-        guard let handle = handle else { return }
         simpleRefreshTableViewHandle = handle
     }
     
@@ -94,6 +95,7 @@
         self.titles = titles
         self.currentViewController = currentViewController
         super.init(frame: frame)
+        layout.isSinglePageView = true
         pageView = createPageViewConfig(currentViewController: currentViewController, layout: layout)
         createSubViews()
     }
@@ -110,7 +112,6 @@
  extension LTSimpleManager {
     
     private func createPageViewConfig(currentViewController:UIViewController, layout: LTLayout) -> LTPageView {
-        
         let pageView = LTPageView(frame: self.bounds, currentViewController: currentViewController, viewControllers: viewControllers, titles: titles, layout:layout)
         pageView.delegate = self
         return pageView
@@ -134,13 +135,14 @@
     private func createSubViews() {
         backgroundColor = UIColor.white
         addSubview(tableView)
-        refreshData()
-        pageViewDidSelectConfig()
-        guard let viewController = viewControllers.first else { return }
-        contentScrollViewScrollConfig(viewController)
         if #available(iOS 11.0, *) {
             tableView.contentInsetAdjustmentBehavior = .never
         }
+        refreshData()
+        pageViewDidSelectConfig()
+        guard let viewController = viewControllers.first else { return }
+        viewController.beginAppearanceTransition(true, animated: true)
+        contentScrollViewScrollConfig(viewController)
     }
     
     /*
@@ -151,7 +153,7 @@
             guard let `self` = self else { return }
             self.contentTableView = scrollView
             if self.tableView.contentOffset.y  < self.kHeaderHeight - self.hoverY {
-                scrollView.contentOffset = .zero
+                scrollView.contentOffset = CGPoint(x: 0, y: 0)
                 scrollView.showsVerticalScrollIndicator = false
             }else{
                 scrollView.showsVerticalScrollIndicator = true
@@ -168,7 +170,9 @@
                 self.tableView.contentInset = .zero
             })
             self.simpleRefreshTableViewHandle?(self.tableView, self.currentSelectIndex)
+            self.delegate?.glt_refreshScrollView?(self.tableView, self.currentSelectIndex)
         }
+        
     }
  }
  
@@ -197,7 +201,7 @@
         delegate?.glt_scrollViewDidScroll?(scrollView)
         guard scrollView == tableView, let contentTableView = contentTableView else { return }
         let offsetY = scrollView.contentOffset.y
-        if contentTableView.contentOffset.y > hoverY || offsetY > kHeaderHeight - hoverY {
+        if contentTableView.contentOffset.y > 0 || offsetY > kHeaderHeight - hoverY {
             tableView.contentOffset = CGPoint(x: 0.0, y: kHeaderHeight - hoverY)
         }
         if scrollView.contentOffset.y < kHeaderHeight - hoverY {

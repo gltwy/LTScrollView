@@ -1,4 +1,4 @@
- //
+//
 //  ViewController.m
 //  OCExample
 //
@@ -19,6 +19,8 @@
 #import "TestTableViewCell.h"
 #import "LTSimpleManagerDemo.h"
 #import "LTAdvancedManagerDemo.h"
+#import "LTPersonMainPageDemo.h"
+#import "LTPageViewDemo.h"
 
 @interface ViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -34,12 +36,19 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     self.view.backgroundColor = [UIColor whiteColor];
-    self.automaticallyAdjustsScrollViewInsets = NO;
+    if (@available(iOS 11.0, *)) {
+        self.tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+    } else {
+        self.automaticallyAdjustsScrollViewInsets = NO;
+    }
     [self.view addSubview:self.tableView];
     
-    self.titles = @[@"基础版（LTSimple）", @"进阶版（LTAdvanced）"];
+    self.titles = @[@"基础版-刷新控件在顶部\nLTSimple",
+                    @"进阶版-刷新控件在中间\nLTAdvanced",
+                    @"下拉放大-导航渐变\nLTPersonalMainPage",
+                    @"切换视图\nLTPageView"];
     self.title = @"首页";
-
+    
 }
 
 
@@ -49,22 +58,62 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     TestTableViewCell *cell = [TestTableViewCell cellWithTableView:tableView];
-    cell.textLabel.text = self.titles[indexPath.row];
+    cell.textLabel.attributedText = [self textAttribute:self.titles[indexPath.row]];
+    cell.textLabel.numberOfLines = 0;
     return cell;
+}
+
+-(NSAttributedString *)textAttribute:(NSString *)string {
+    NSMutableAttributedString *attr = [[NSMutableAttributedString alloc] initWithString:string];
+    NSRange range = NSRangeFromString(string);
+    [attr addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:16] range:range];
+    NSMutableParagraphStyle *style = [[NSMutableParagraphStyle alloc] init];
+    style.lineSpacing = 3.0;
+    [attr addAttribute:NSParagraphStyleAttributeName value:style range:range];
+    return [[NSAttributedString alloc] initWithAttributedString:attr];
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 64.0;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    LTSimpleManagerDemo *simpleVc = [[LTSimpleManagerDemo alloc] init];
-    LTAdvancedManagerDemo *simpleVc1 = [[LTAdvancedManagerDemo alloc] init];
-    NSArray <UIViewController *> *viewControllers = @[simpleVc, simpleVc1];
-    viewControllers[indexPath.row].title = self.titles[indexPath.row];
-    [self.navigationController pushViewController:viewControllers[indexPath.row] animated:YES];
+    switch (indexPath.row) {
+        case 0:
+        {
+            LTSimpleManagerDemo *demoVC = [[LTSimpleManagerDemo alloc] init];
+            demoVC.title = self.titles[indexPath.row];
+            [self.navigationController pushViewController:demoVC animated:YES];
+        }break;
+        case 1:
+        {
+            LTAdvancedManagerDemo *demoVC = [[LTAdvancedManagerDemo alloc] init];
+            demoVC.title = self.titles[indexPath.row];
+            [self.navigationController pushViewController:demoVC animated:YES];
+        }break;
+        case 2:
+        {
+            LTPersonMainPageDemo *demoVC = [[LTPersonMainPageDemo alloc] init];
+            demoVC.title = self.titles[indexPath.row];
+            [self.navigationController pushViewController:demoVC animated:YES];
+        }break;
+        case 3:
+        {
+            LTPageViewDemo *demoVC = [[LTPageViewDemo alloc] init];
+            demoVC.title = self.titles[indexPath.row];
+            [self.navigationController pushViewController:demoVC animated:YES];
+        }break;
+            
+            
+        default:break;
+    }
+    
 }
 
 - (UITableView *)tableView {
     if (!_tableView) {
-        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height) style:UITableViewStylePlain];
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, [UIApplication sharedApplication].statusBarFrame.size.height + 44, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height) style:UITableViewStylePlain];
         _tableView.delegate = self;
         _tableView.dataSource = self;
     }

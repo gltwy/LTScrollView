@@ -1,5 +1,8 @@
 //
-//  LTAdvancedTestViewController.m
+//  LTPageViewTestOneVC.m
+//  OCExample
+//
+//  LTPageViewTestOneVC.m
 //  OCExample
 //
 //  Created by 高刘通 on 2018/4/19.
@@ -14,21 +17,21 @@
 //  clone地址:  https://github.com/gltwy/LTScrollView.git
 //
 
-#import "LTAdvancedTestViewController.h"
+#import "LTPageViewTestOneVC.h"
 #import "LTScrollView-Swift.h"
 #import "TestTableViewCell.h"
 #import "MJRefresh.h"
 
 #define kIPhoneX ([UIScreen mainScreen].bounds.size.height == 812.0)
 
-@interface LTAdvancedTestViewController () <UITableViewDelegate, UITableViewDataSource>
+@interface LTPageViewTestOneVC () <UITableViewDelegate, UITableViewDataSource>
 
 @property(strong, nonatomic) UITableView *tableView;
 
 
 @end
 
-@implementation LTAdvancedTestViewController
+@implementation LTPageViewTestOneVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -39,11 +42,11 @@
     } else {
         self.automaticallyAdjustsScrollViewInsets = NO;
     }
-    
-    self.totalCount = 20;
-    
     [self.view addSubview:self.tableView];
     
+    if (self.totalCount == 0) {
+        self.totalCount = 20;
+    }
     
 #warning 重要 必须赋值
     self.glt_scrollView = self.tableView;
@@ -102,15 +105,5 @@
     }
     return _tableView;
 }
-
-/*
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- */
 
 @end

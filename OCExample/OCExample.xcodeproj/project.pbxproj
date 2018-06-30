@@ -21,6 +21,11 @@
 		5C7C60442088311F005FF7C8 /* LTAdvancedManagerDemo.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C7C60432088311F005FF7C8 /* LTAdvancedManagerDemo.m */; };
 		5C7C604720883383005FF7C8 /* LTAdvancedTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C7C604620883383005FF7C8 /* LTAdvancedTestViewController.m */; };
 		5C7C604D20883641005FF7C8 /* LTHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C7C604C20883641005FF7C8 /* LTHeaderView.m */; };
+		6ABD2BB020E7BDBF00473B06 /* LTPersonalMainPageTestVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ABD2BAE20E7BDBD00473B06 /* LTPersonalMainPageTestVC.m */; };
+		6ABD2BB120E7BDBF00473B06 /* LTPersonMainPageDemo.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ABD2BAF20E7BDBD00473B06 /* LTPersonMainPageDemo.m */; };
+		6ABD2BB820E7BDC400473B06 /* LTPageViewDemo.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ABD2BB420E7BDC400473B06 /* LTPageViewDemo.m */; };
+		6ABD2BB920E7BDC400473B06 /* LTPageViewTestOneVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ABD2BB720E7BDC400473B06 /* LTPageViewTestOneVC.m */; };
+		6ABD2BBB20E7BDE000473B06 /* test.png in Resources */ = {isa = PBXBuildFile; fileRef = 6ABD2BBA20E7BDE000473B06 /* test.png */; };
 		78B8F26710CB23F41972961E /* Pods_OCExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C17311F097F65BC65B3D978 /* Pods_OCExample.framework */; };
 /* End PBXBuildFile section */
 
@@ -76,6 +81,15 @@
 		5C7C604620883383005FF7C8 /* LTAdvancedTestViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LTAdvancedTestViewController.m; sourceTree = "<group>"; };
 		5C7C604B20883641005FF7C8 /* LTHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTHeaderView.h; sourceTree = "<group>"; };
 		5C7C604C20883641005FF7C8 /* LTHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LTHeaderView.m; sourceTree = "<group>"; };
+		6ABD2BAC20E7BDBD00473B06 /* LTPersonalMainPageTestVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTPersonalMainPageTestVC.h; sourceTree = "<group>"; };
+		6ABD2BAD20E7BDBD00473B06 /* LTPersonMainPageDemo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTPersonMainPageDemo.h; sourceTree = "<group>"; };
+		6ABD2BAE20E7BDBD00473B06 /* LTPersonalMainPageTestVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LTPersonalMainPageTestVC.m; sourceTree = "<group>"; };
+		6ABD2BAF20E7BDBD00473B06 /* LTPersonMainPageDemo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LTPersonMainPageDemo.m; sourceTree = "<group>"; };
+		6ABD2BB420E7BDC400473B06 /* LTPageViewDemo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LTPageViewDemo.m; sourceTree = "<group>"; };
+		6ABD2BB520E7BDC400473B06 /* LTPageViewTestOneVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTPageViewTestOneVC.h; sourceTree = "<group>"; };
+		6ABD2BB620E7BDC400473B06 /* LTPageViewDemo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTPageViewDemo.h; sourceTree = "<group>"; };
+		6ABD2BB720E7BDC400473B06 /* LTPageViewTestOneVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LTPageViewTestOneVC.m; sourceTree = "<group>"; };
+		6ABD2BBA20E7BDE000473B06 /* test.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,9 +163,11 @@
 		5C241E6220871B400022F9CA /* OCExample */ = {
 			isa = PBXGroup;
 			children = (
-				6A1A7B93208B0A17002D3852 /* View */,
-				5C7C6041208830FC005FF7C8 /* LTAdvanced */,
 				5C1F2E9120872728002F9B70 /* LTSimple */,
+				5C7C6041208830FC005FF7C8 /* LTAdvanced */,
+				6ABD2BAA20E7BDBD00473B06 /* LTPersonalMainPage */,
+				6ABD2BB220E7BDC400473B06 /* LTPageView */,
+				6A1A7B93208B0A17002D3852 /* View */,
 				5C241E6320871B400022F9CA /* AppDelegate.h */,
 				5C241E6420871B410022F9CA /* AppDelegate.m */,
 				5C241E6620871B410022F9CA /* ViewController.h */,
@@ -160,6 +176,7 @@
 				5C241E6C20871B410022F9CA /* Assets.xcassets */,
 				5C241E6E20871B410022F9CA /* LaunchScreen.storyboard */,
 				5C241E7120871B410022F9CA /* Info.plist */,
+				6ABD2BBA20E7BDE000473B06 /* test.png */,
 				5C241E7220871B410022F9CA /* main.m */,
 				5C1F2E7620871F0E002F9B70 /* OCExample-Bridging-Header.h */,
 			);
@@ -214,6 +231,44 @@
 				5C1F2E8F2087257A002F9B70 /* TestTableViewCell.m */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		6ABD2BAA20E7BDBD00473B06 /* LTPersonalMainPage */ = {
+			isa = PBXGroup;
+			children = (
+				6ABD2BAB20E7BDBD00473B06 /* Controller */,
+			);
+			path = LTPersonalMainPage;
+			sourceTree = "<group>";
+		};
+		6ABD2BAB20E7BDBD00473B06 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				6ABD2BAD20E7BDBD00473B06 /* LTPersonMainPageDemo.h */,
+				6ABD2BAF20E7BDBD00473B06 /* LTPersonMainPageDemo.m */,
+				6ABD2BAE20E7BDBD00473B06 /* LTPersonalMainPageTestVC.m */,
+				6ABD2BAC20E7BDBD00473B06 /* LTPersonalMainPageTestVC.h */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		6ABD2BB220E7BDC400473B06 /* LTPageView */ = {
+			isa = PBXGroup;
+			children = (
+				6ABD2BB320E7BDC400473B06 /* Controller */,
+			);
+			path = LTPageView;
+			sourceTree = "<group>";
+		};
+		6ABD2BB320E7BDC400473B06 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				6ABD2BB620E7BDC400473B06 /* LTPageViewDemo.h */,
+				6ABD2BB420E7BDC400473B06 /* LTPageViewDemo.m */,
+				6ABD2BB520E7BDC400473B06 /* LTPageViewTestOneVC.h */,
+				6ABD2BB720E7BDC400473B06 /* LTPageViewTestOneVC.m */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -328,6 +383,7 @@
 				5C241E7020871B410022F9CA /* LaunchScreen.storyboard in Resources */,
 				5C241E6D20871B410022F9CA /* Assets.xcassets in Resources */,
 				5C241E6B20871B410022F9CA /* Main.storyboard in Resources */,
+				6ABD2BBB20E7BDE000473B06 /* test.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -398,10 +454,14 @@
 				5C1F2E902087257A002F9B70 /* TestTableViewCell.m in Sources */,
 				5C1F2E9420872772002F9B70 /* LTSimpleManagerDemo.m in Sources */,
 				5C241E6820871B410022F9CA /* ViewController.m in Sources */,
+				6ABD2BB920E7BDC400473B06 /* LTPageViewTestOneVC.m in Sources */,
 				5C241E7320871B410022F9CA /* main.m in Sources */,
+				6ABD2BB020E7BDBF00473B06 /* LTPersonalMainPageTestVC.m in Sources */,
 				5C1F2E9D20872CDA002F9B70 /* LTSimpleTestOneVC.m in Sources */,
+				6ABD2BB820E7BDC400473B06 /* LTPageViewDemo.m in Sources */,
 				5C241E6520871B410022F9CA /* AppDelegate.m in Sources */,
 				5C7C604720883383005FF7C8 /* LTAdvancedTestViewController.m in Sources */,
+				6ABD2BB120E7BDBF00473B06 /* LTPersonMainPageDemo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

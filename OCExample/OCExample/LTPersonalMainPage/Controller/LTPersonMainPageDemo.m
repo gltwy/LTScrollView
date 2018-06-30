@@ -1,8 +1,8 @@
 //
-//  LTSimpleManagerDemo.m
+//  LTPersonMainPageDemo.m
 //  OCExample
 //
-//  Created by 高刘通 on 2018/4/18.
+//  Created by 高刘通 on 2018/4/19.
 //  Copyright © 2018年 LT. All rights reserved.
 //
 //  如有疑问，欢迎联系本人QQ: 1282990794
@@ -14,23 +14,35 @@
 //  clone地址:  https://github.com/gltwy/LTScrollView.git
 //
 
-#import "LTSimpleManagerDemo.h"
-#import "LTSimpleTestOneVC.h"
+#import "LTPersonMainPageDemo.h"
+#import "LTPersonalMainPageTestVC.h"
 #import "MJRefresh.h"
 #import "LTScrollView-Swift.h"
 
 #define RGBA(r,g,b,a) [UIColor colorWithRed:(float)r/255.0f green:(float)g/255.0f blue:(float)b/255.0f alpha:a]
 #define kIPhoneX ([UIScreen mainScreen].bounds.size.height == 812.0)
+#define HeaderHeight 200.0f
+#define NavHeight ([UIApplication sharedApplication].statusBarFrame.size.height + 44)
 
-@interface LTSimpleManagerDemo () <LTSimpleScrollViewDelegate>
+@interface LTPersonMainPageDemo () <LTSimpleScrollViewDelegate>
 
 @property(copy, nonatomic) NSArray <UIViewController *> *viewControllers;
 @property(copy, nonatomic) NSArray <NSString *> *titles;
 @property(strong, nonatomic) LTLayout *layout;
 @property(strong, nonatomic) LTSimpleManager *managerView;
+@property(strong, nonatomic) UIView *headerView;
+@property(strong, nonatomic) UIImageView *headerImageView;
+@property(assign, nonatomic) CGFloat currentProgress;
 @end
 
-@implementation LTSimpleManagerDemo
+@implementation LTPersonMainPageDemo
+
+-(void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBar.alpha = self.currentProgress;
+    self.navigationController.navigationBar.barTintColor = [UIColor whiteColor];
+    self.navigationController.navigationBar.titleTextAttributes = @{NSFontAttributeName : [UIFont systemFontOfSize:18.0f]};
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -50,7 +62,8 @@
     
     //配置headerView
     [self.managerView configHeaderView:^UIView * _Nullable{
-        return [weakSelf setupHeaderView];
+        [weakSelf.headerView addSubview:weakSelf.headerImageView];
+        return weakSelf.headerView;
     }];
     
     //pageView点击事件
@@ -72,15 +85,6 @@
     
 }
 
--(UILabel *)setupHeaderView {
-    UILabel *headerView = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 185)];
-    headerView.backgroundColor = [UIColor redColor];
-    headerView.text = @"点击响应事件";
-    headerView.userInteractionEnabled = YES;
-    UITapGestureRecognizer *gesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapGesture:)];
-    [headerView addGestureRecognizer:gesture];
-    return headerView;
-}
 
 -(void)tapGesture:(UITapGestureRecognizer *)gesture {
     NSLog(@"tapGesture");
@@ -88,11 +92,33 @@
 
 -(void)glt_scrollViewDidScroll:(UIScrollView *)scrollView {
     NSLog(@"---> %lf", scrollView.contentOffset.y);
+    CGFloat offsetY = scrollView.contentOffset.y;
+    CGFloat headerImageY = offsetY;
+    CGFloat headerImageH = HeaderHeight - offsetY;
+    if (offsetY <= 0.0) {
+        self.navigationController.navigationBar.alpha = 0.0;
+        self.currentProgress = 0.0;
+    }else {
+        headerImageY = 0;
+        headerImageH = HeaderHeight;
+        
+        CGFloat adjustHeight = HeaderHeight - NavHeight;
+        
+        CGFloat progress = 1 - (offsetY / adjustHeight);
+        self.navigationController.navigationBar.barStyle = progress > 0.5 ? UIStatusBarStyleLightContent : UIStatusBarStyleDefault;
+        
+        self.navigationController.navigationBar.alpha = 1 - progress;
+        self.currentProgress = 1 - progress;
+    }
+    CGRect headerImageFrame = self.headerImageView.frame;
+    headerImageFrame.origin.y = headerImageY;
+    headerImageFrame.size.height = headerImageH;
+    self.headerImageView.frame = headerImageFrame;
 }
 
 -(LTSimpleManager *)managerView {
     if (!_managerView) {
-        CGFloat Y = kIPhoneX ? 64 + 24.0 : 64.0;
+        CGFloat Y = 0.0;
         CGFloat H = kIPhoneX ? (self.view.bounds.size.height - Y - 34) : self.view.bounds.size.height - Y;
         _managerView = [[LTSimpleManager alloc] initWithFrame:CGRectMake(0, Y, self.view.bounds.size.width, H) viewControllers:self.viewControllers titles:self.titles currentViewController:self layout:self.layout];
         
@@ -100,25 +126,33 @@
         _managerView.delegate = self;
         
         /* 设置悬停位置 */
-        //        _managerView.hoverY = 64;
-        
-        /* 点击切换滚动过程动画 */
-        //        _managerView.isClickScrollAnimation = YES;
-        
-        /* 代码设置滚动到第几个位置 */
-        //        [_managerView scrollToIndexWithIndex:self.viewControllers.count - 1];
+        _managerView.hoverY = NavHeight;
         
     }
     return _managerView;
 }
 
+-(UIImageView *)headerImageView {
+    if (!_headerImageView) {
+        _headerImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.headerView.frame.size.width, HeaderHeight)];
+        _headerImageView.image = [UIImage imageNamed:@"test"];
+        UITapGestureRecognizer *gesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapGesture:)];
+        _headerImageView.userInteractionEnabled = YES;
+        [_headerImageView addGestureRecognizer:gesture];
+    }
+    return _headerImageView;
+}
+
+-(UIView *)headerView {
+    if (!_headerView) {
+        _headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, HeaderHeight)];
+    }
+    return _headerView;
+}
 
 -(LTLayout *)layout {
     if (!_layout) {
         _layout = [[LTLayout alloc] init];
-        _layout.bottomLineHeight = 4.0;
-        _layout.bottomLineCornerRadius = 2.0;
-        /* 更多属性设置请参考 LTLayout 中 public 属性说明 */
     }
     return _layout;
 }
@@ -126,7 +160,7 @@
 
 - (NSArray <NSString *> *)titles {
     if (!_titles) {
-        _titles = @[@"热门", @"精彩推荐", @"科技控", @"游戏"];
+        _titles = @[@"热门", @"精彩推荐", @"科技控", @"游戏", @"汽车", @"财经", @"搞笑", @"图片"];
     }
     return _titles;
 }
@@ -143,7 +177,7 @@
 -(NSArray <UIViewController *> *)setupViewControllers {
     NSMutableArray <UIViewController *> *testVCS = [NSMutableArray arrayWithCapacity:0];
     [self.titles enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        LTSimpleTestOneVC *testVC = [[LTSimpleTestOneVC alloc] init];
+        LTPersonalMainPageTestVC *testVC = [[LTPersonalMainPageTestVC alloc] init];
         [testVCS addObject:testVC];
     }];
     return testVCS.copy;
@@ -151,6 +185,18 @@
 
 -(void)dealloc {
     NSLog(@"%s",__func__);
+}
+
+-(void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    //侧滑出现的透明细节调整
+    self.navigationController.navigationBar.alpha = self.currentProgress;
+    self.navigationController.navigationBar.barStyle = UIBarStyleDefault;
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    self.navigationController.navigationBar.alpha = 0;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -169,3 +215,4 @@
  */
 
 @end
+
