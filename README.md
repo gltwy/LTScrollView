@@ -31,7 +31,7 @@ source 'https://github.com/CocoaPods/Specs.git'
 platform :ios, '8.0'
 
 target 'TargetName' do
-pod 'LTScrollView', '~> 0.1.6'
+pod 'LTScrollView', '~> 0.1.7'
 end
 ```
 
@@ -55,66 +55,14 @@ $ pod setup
 ##### Swift.LTSimple使用说明
 
 ```swift
-private lazy var layout: LTLayout = {
-    let layout = LTLayout()
-    layout.titleViewBgColor = UIColor(r: 255, g: 239, b: 213)
-    layout.titleColor = UIColor(r: 0, g: 0, b: 0)
-    layout.titleSelectColor = UIColor(r: 255, g: 0, b: 0)
-    layout.bottomLineColor = UIColor.red
-    layout.pageBottomLineColor = UIColor(r: 230, g: 230, b: 230)
-    return layout
-}()
+1. 创建LTSimpleManager实例对象
+@objc public init(frame: CGRect, viewControllers: [UIViewController], titles: [String], currentViewController:UIViewController, layout: LTLayout)
 
-private lazy var simpleManager: LTSimpleManager = {
-    let Y: CGFloat = glt_iphoneX ? 64 + 24.0 : 64.0
-    let H: CGFloat = glt_iphoneX ? (view.bounds.height - Y - 34) : view.bounds.height - Y
-    let simpleManager = LTSimpleManager(frame: CGRect(x: 0, y: Y, width: view.bounds.width, height: H), viewControllers: viewControllers, titles: titles, currentViewController: self, layout: layout)
-    
-        /* 设置代理 监听滚动 */
-        simpleManager.delegate = self
-        
-        //设置悬停位置
-        simpleManager.hoverY = 64
+2. 设置headerView
+@objc public func configHeaderView(_ handle: (() -> UIView?)?)
 
-        //点击切换滚动过程动画
-        simpleManager.isClickScrollAnimation = true
-
-         //代码设置滚动到第几个位置
-        simpleManager.scrollToIndex(index: 1)
-        
-        //动态改变header的高度
-        simpleManager.glt_headerHeight = 180
-    return simpleManager
-}()
-
-//MARK: headerView设置
-simpleManager.configHeaderView {[weak self] in
-    guard let strongSelf = self else { return nil }
-    let headerView = strongSelf.testLabel()
-    return headerView
-}
-
-//MARK: pageView点击事件
-simpleManager.didSelectIndexHandle { (index) in
-    print("点击了 \(index) 😆")
-}
-
-//MARK: 滚动代理方法监听
-extension LTSimpleManagerDemo: LTSimpleScrollViewDelegate {
-    func glt_scrollViewDidScroll(_ scrollView: UIScrollView) {
-        print("offset -> ", scrollView.contentOffset.y)
-    }
-}
-
-//MARK: 控制器刷新事件
-simpleManager.refreshTableViewHandle { (scrollView, index) in
-    scrollView.mj_header = MJRefreshNormalHeader {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: {
-            print("对应控制器的刷新自己玩吧，这里就不做处理了🙂-----\(index)")
-            scrollView.mj_header.endRefreshing()
-        })
-    }
-}
+3. 子控制器中glt_scrollView进行赋值
+self.glt_scrollView = self.tableView（self.scrollView / self.collectionView）
 
 ```
 
@@ -330,6 +278,13 @@ public class LTLayout: NSObject {
 ```
 ## 更新说明
 
+2018.06.30 - 0.1.7
+```objective-c
+1. 修复LTAdvancedManager数据较少时，其他子控制器自动下落Bug
+2. 解决issue中的部分问题
+3. 优化内部实现
+```
+
 2018.06.02 - 0.1.6
 ```objective-c
 1. 修复LTSimple当HeaderView的高度为小数时无法滑动的Bug
@@ -344,15 +299,6 @@ public class LTLayout: NSObject {
 2. 可手动设置悬停PageTitleView的位置（y值）
 3. 修复了LTAdvanced的已知Bug
 ```
-
-2018.05.05 - 0.1.4
-```objective-c
-1. LTPageView 支持更多样式，详情可见LTLayout属性说明
-2. 修复LTSimpleManager下拉刷新过程中切换Bug
-3. 修复LTAdvancedManager数据较少时的显示Bug
-4. 增加滑动过程中UIScrollView代理方法的监听
-```
-
 ## Author
 
 1282990794@qq.com
