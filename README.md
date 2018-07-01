@@ -71,23 +71,11 @@ self.glt_scrollView = self.tableView（self.scrollView / self.collectionView）
 ```swift
 private lazy var layout: LTLayout = {
     let layout = LTLayout()
-    layout.titleViewBgColor = UIColor(r: 255, g: 239, b: 213)
-    layout.titleColor = UIColor(r: 0, g: 0, b: 0)
-    layout.titleSelectColor = UIColor(r: 255, g: 0, b: 0)
-    layout.bottomLineColor = UIColor.red
-    layout.pageBottomLineColor = UIColor(r: 230, g: 230, b: 230)
-    layout.isAverage = true
-    //设置滑块的宽度
-    layout.sliderWidth = 20
-    //调节滑块的高 默认44
-    layout.sliderHeight = 45
     return layout
 }()
 
 private lazy var advancedManager: LTAdvancedManager = {
-    let Y: CGFloat = glt_iphoneX ? 64 + 24.0 : 64.0
-    let H: CGFloat = glt_iphoneX ? (view.bounds.height - Y - 34) : view.bounds.height - Y
-    let advancedManager = LTAdvancedManager(frame: CGRect(x: 0, y: Y, width: view.bounds.width, height: H), viewControllers: viewControllers, titles: titles, currentViewController: self, layout: layout, headerViewHandle: {[weak self] in
+    let advancedManager = LTAdvancedManager(frame: frame, viewControllers: viewControllers, titles: titles, currentViewController: self, layout: layout, headerViewHandle: {[weak self] in
         guard let strongSelf = self else { return UIView() }
         let headerView = strongSelf.testLabel()
         return headerView
@@ -125,9 +113,7 @@ func glt_scrollViewOffsetY(_ offsetY: CGFloat) {
 ```objective-c
 -(LTSimpleManager *)managerView {
     if (!_managerView) {
-        CGFloat Y = kIPhoneX ? 64 + 24.0 : 64.0;
-        CGFloat H = kIPhoneX ? (self.view.bounds.size.height - Y - 34) : self.view.bounds.size.height - Y;
-        _managerView = [[LTSimpleManager alloc] initWithFrame:CGRectMake(0, Y, self.view.bounds.size.width, H) viewControllers:self.viewControllers titles:self.titles currentViewController:self layout:self.layout];
+        _managerView = [[LTSimpleManager alloc] initWithFrame:frame viewControllers:self.viewControllers titles:self.titles currentViewController:self layout:self.layout];
         
         /* 设置代理 监听滚动 */
         _managerView.delegate = self;
@@ -177,8 +163,6 @@ func glt_scrollViewOffsetY(_ offsetY: CGFloat) {
 ```objective-c
 -(LTAdvancedManager *)managerView {
     if (!_managerView) {
-        CGFloat Y = kIPhoneX ? 64 + 24.0 : 64.0;
-        CGFloat H = kIPhoneX ? (self.view.bounds.size.height - Y - 34) : self.view.bounds.size.height - Y;
         _managerView = [[LTAdvancedManager alloc] initWithFrame:CGRectMake(0, Y, self.view.bounds.size.width, H) viewControllers:self.viewControllers titles:self.titles currentViewController:self layout:self.layout headerViewHandle:^UIView * _Nonnull{
             return [self setupHeaderView];
         }];
