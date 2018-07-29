@@ -35,7 +35,7 @@ target 'TargetName' do
 #注意此处需要添加use_frameworks!
 use_frameworks!
 
-pod 'LTScrollView', '~> 0.1.7'
+pod 'LTScrollView', '~> 0.1.8'
 end
 ```
 
@@ -178,12 +178,22 @@ public class LTLayout: NSObject {
     /* pageView的内容ScrollView是否开启左右弹性效果 */
     @objc public var isShowBounces: Bool = false
     
+    /* pageView的内容ScrollView是否开启左右滚动 */
+    @objc public var isScrollEnabled: Bool = true
+    
     /* 内部使用-外界不要调用 */
     var isSinglePageView: Bool = false
 }
 
 ```
 ## 更新说明
+
+2018.07.29 - 0.1.8
+```objective-c
+1. 新增LTLayout中关闭左右滑动的属性isScrollEnabled
+2. 修复LTAdvancedManager数据较少时切换Bug
+3. 解决issue中的部分问题
+```
 
 2018.06.30 - 0.1.7
 ```objective-c
