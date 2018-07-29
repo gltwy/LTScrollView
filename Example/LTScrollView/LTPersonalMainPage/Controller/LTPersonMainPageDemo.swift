@@ -25,14 +25,12 @@ class LTPersonMainPageDemo: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        print("viewWillAppear", currentProgress)
         navigationController?.navigationBar.alpha = currentProgress
         navigationController?.navigationBar.barTintColor = UIColor.white
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.font : UIFont.systemFont(ofSize: 18.0)]
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        print("viewWillDisappear", currentProgress)
         super.viewWillDisappear(animated)
         navigationController?.navigationBar.barStyle = .default
         navigationController?.navigationBar.alpha = 1.0
@@ -70,7 +68,6 @@ class LTPersonMainPageDemo: UIViewController {
     
     private lazy var simpleManager: LTSimpleManager = {
         let Y: CGFloat = 0.0
-        print(view.bounds.height)
         let H: CGFloat = glt_iphoneX ? (view.bounds.height - 34) : view.bounds.height
         let simpleManager = LTSimpleManager(frame: CGRect(x: 0, y: Y, width: view.bounds.width, height: H), viewControllers: viewControllers, titles: titles, currentViewController: self, layout: layout)
         

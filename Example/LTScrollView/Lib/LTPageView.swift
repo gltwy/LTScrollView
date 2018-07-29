@@ -79,6 +79,9 @@ public class LTLayout: NSObject {
     /* pageView的内容ScrollView是否开启左右弹性效果 */
     @objc public var isShowBounces: Bool = false
     
+    /* pageView的内容ScrollView是否开启左右滚动 */
+    @objc public var isScrollEnabled: Bool = true
+    
     /* 内部使用-外界不要调用 */
     var isSinglePageView: Bool = false
 }
@@ -167,6 +170,7 @@ public class LTPageView: UIView {
         scrollView.isPagingEnabled = true
         scrollView.delegate = self
         scrollView.bounces = layout.isShowBounces
+        scrollView.isScrollEnabled = layout.isScrollEnabled
         return scrollView
     }()
     

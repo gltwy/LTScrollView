@@ -126,6 +126,15 @@ extension LTAdvancedManager {
         }
     }
     
+    func glt_adjustScrollViewContentSizeHeight(glt_scrollView: UIScrollView?) {
+        guard let glt_scrollView = glt_scrollView else { return }
+        //当前ScrollView的contentSize的高 = 当前ScrollView的的高 避免自动掉落
+        let sliderH = self.layout.sliderHeight
+        if glt_scrollView.contentSize.height < glt_scrollView.bounds.height - sliderH {
+            glt_scrollView.contentSize.height = glt_scrollView.bounds.height - sliderH
+        }
+    }
+    
     //MARK: 首次创建pageView的ChildVC回调 自适应调节
     private func setupFirstAddChildScrollView() {
         
@@ -136,16 +145,13 @@ extension LTAdvancedManager {
             
             guard let glt_scrollView = currentVC.glt_scrollView else { return }
             
-            //当前ScrollView的contentSize的高 = 当前ScrollView的的高 避免自动掉落
-            if glt_scrollView.contentSize.height < glt_scrollView.bounds.height {
-                glt_scrollView.contentSize.height = glt_scrollView.bounds.height
-            }
+            self.glt_adjustScrollViewContentSizeHeight(glt_scrollView: glt_scrollView)
             
             //当前ScrollView的contentSize的高
             let contentSizeHeight = glt_scrollView.contentSize.height
             
             //当前ScrollView的的高
-            let boundsHeight = glt_scrollView.bounds.height
+            let boundsHeight = glt_scrollView.bounds.height - self.layout.sliderHeight
             
             //此处说明内容的高度小于bounds 应该让pageTitleView自动回滚到初始位置
             if contentSizeHeight <  boundsHeight {
@@ -181,6 +187,8 @@ extension LTAdvancedManager {
             let currentVC = self.viewControllers[self.currentSelectIndex]
             
             guard currentVC.glt_scrollView == scrollView else { return }
+            
+            self.glt_adjustScrollViewContentSizeHeight(glt_scrollView: currentVC.glt_scrollView)
             
             self.setupGlt_scrollViewDidScroll(scrollView: scrollView, currentVC: currentVC)
         }
@@ -255,6 +263,7 @@ extension LTAdvancedManager {
         lastDiffTitleToNav = pageTitleViewY
         //使其他控制器跟随改变
         for subVC in viewControllers {
+            glt_adjustScrollViewContentSizeHeight(glt_scrollView: subVC.glt_scrollView)
             guard subVC != currentVc else { continue }
             guard let vcGlt_scrollView = subVC.glt_scrollView else { continue }
             vcGlt_scrollView.contentOffset.y += (-lastDiffTitleToNavOffset)
@@ -266,6 +275,7 @@ extension LTAdvancedManager {
         return -(self.pageView.pageTitleView.frame.origin.y + layout.sliderHeight)
     }
 }
+
 
 extension LTAdvancedManager {
     
@@ -296,16 +306,13 @@ extension LTAdvancedManager {
             
             guard let glt_scrollView = currentVC.glt_scrollView else { return }
             
-            //当前ScrollView的contentSize的高 = 当前ScrollView的的高 避免自动掉落
-            if glt_scrollView.contentSize.height < glt_scrollView.bounds.height {
-                glt_scrollView.contentSize.height = glt_scrollView.bounds.height
-            }
+            self.glt_adjustScrollViewContentSizeHeight(glt_scrollView: glt_scrollView)
             
             //当前ScrollView的contentSize的高
             let contentSizeHeight = glt_scrollView.contentSize.height
             
             //当前ScrollView的的高
-            let boundsHeight = glt_scrollView.bounds.height
+            let boundsHeight = glt_scrollView.bounds.height - self.layout.sliderHeight
             
             //此处说明内容的高度小于bounds 应该让pageTitleView自动回滚到初始位置
             //这里不用再进行其他操作，因为会调用ScrollViewDidScroll:
