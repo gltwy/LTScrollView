@@ -35,7 +35,7 @@ target 'TargetName' do
 #注意此处需要添加use_frameworks!
 use_frameworks!
 
-pod 'LTScrollView', '~> 0.1.8'
+pod 'LTScrollView', '~> 0.1.9'
 end
 ```
 
@@ -188,6 +188,12 @@ public class LTLayout: NSObject {
 ```
 ## 更新说明
 
+2018.09.02 - 0.1.9
+```objective-c
+1. 修修复LTAdvancedManager子控制为CollectionView时的Bug
+2. 解决issue中的部分问题
+```
+
 2018.07.29 - 0.1.8
 ```objective-c
 1. 新增LTLayout中关闭左右滑动的属性isScrollEnabled
@@ -210,12 +216,6 @@ public class LTLayout: NSObject {
 4. 修复已知Bug
 ```
 
-2018.05.12 - 0.1.5
-```objective-c
-1. 修复循环引用导致控制器无法释放的问题
-2. 可手动设置悬停PageTitleView的位置（y值）
-3. 修复了LTAdvanced的已知Bug
-```
 ## Author
 - Email:  1282990794@qq.com
 - -Blog:  https://blog.csdn.net/glt_code
