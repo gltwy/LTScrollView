@@ -15,11 +15,17 @@ extension UIScrollView {
     
     private struct LTHandleKey {
         static var key = "glt_handle"
+        static var tKey = "glt_isTableViewPlain"
     }
     
     public var scrollHandle: LTScrollHandle? {
         get { return objc_getAssociatedObject(self, &LTHandleKey.key) as? LTScrollHandle }
         set { objc_setAssociatedObject(self, &LTHandleKey.key, newValue, .OBJC_ASSOCIATION_COPY_NONATOMIC) }
+    }
+    
+    @objc public var isTableViewPlain: Bool {
+        get { return (objc_getAssociatedObject(self, &LTHandleKey.tKey) as? Bool) ?? false}
+        set { objc_setAssociatedObject(self, &LTHandleKey.tKey, newValue, .OBJC_ASSOCIATION_ASSIGN) }
     }
 }
 
@@ -42,7 +48,7 @@ extension UIScrollView {
 
 extension NSObject {
     
-    internal static func glt_swizzleMethod(_ cls: AnyClass?, _ originSelector: Selector, _ swizzleSelector: Selector)  {
+    static func glt_swizzleMethod(_ cls: AnyClass?, _ originSelector: Selector, _ swizzleSelector: Selector)  {
         let originMethod = class_getInstanceMethod(cls, originSelector)
         let swizzleMethod = class_getInstanceMethod(cls, swizzleSelector)
         guard let swMethod = swizzleMethod, let oMethod = originMethod else { return }

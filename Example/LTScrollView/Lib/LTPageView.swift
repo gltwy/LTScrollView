@@ -82,6 +82,9 @@ public class LTLayout: NSObject {
     /* pageView的内容ScrollView是否开启左右滚动 */
     @objc public var isScrollEnabled: Bool = true
     
+    /* pageView的内容ScrollView是否显示HorizontalScrollIndicator */
+    @objc public var showsHorizontalScrollIndicator: Bool = true
+    
     /* 内部使用-外界不要调用 */
     var isSinglePageView: Bool = false
 }
@@ -171,6 +174,7 @@ public class LTPageView: UIView {
         scrollView.delegate = self
         scrollView.bounces = layout.isShowBounces
         scrollView.isScrollEnabled = layout.isScrollEnabled
+        scrollView.showsHorizontalScrollIndicator = layout.showsHorizontalScrollIndicator
         return scrollView
     }()
     

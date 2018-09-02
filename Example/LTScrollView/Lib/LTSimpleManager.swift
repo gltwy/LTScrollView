@@ -85,6 +85,7 @@
         tableView.delegate = self
         tableView.dataSource = self
         tableView.showsVerticalScrollIndicator = false
+        tableView.separatorStyle = .none
         registerCell(tableView, UITableViewCell.self)
         return tableView
     }()
@@ -256,5 +257,6 @@
         }
     }
  }
+ 
  
  

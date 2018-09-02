@@ -45,11 +45,13 @@ public class LTAdvancedManager: UIView {
     
     @objc public init(frame: CGRect, viewControllers: [UIViewController], titles: [String], currentViewController:UIViewController, layout: LTLayout, headerViewHandle handle: () -> UIView) {
         UIScrollView.initializeOnce()
+        UICollectionViewFlowLayout.loadOnce()
         self.viewControllers = viewControllers
         self.titles = titles
         self.currentViewController = currentViewController
         self.layout = layout
         super.init(frame: frame)
+        UICollectionViewFlowLayout.glt_sliderHeight = layout.sliderHeight
         layout.isSinglePageView = true
         pageView = setupPageViewConfig(currentViewController: currentViewController, layout: layout)
         setupSubViewsConfig(handle)
@@ -122,7 +124,6 @@ extension LTAdvancedManager {
             
             //注意：节流---否则此方法无效。。
             self.setupFirstAddChildScrollView()
-            
         }
     }
     
@@ -147,32 +148,36 @@ extension LTAdvancedManager {
             
             self.glt_adjustScrollViewContentSizeHeight(glt_scrollView: glt_scrollView)
             
-            //当前ScrollView的contentSize的高
-            let contentSizeHeight = glt_scrollView.contentSize.height
+            glt_scrollView.contentOffset.y = self.distanceBottomOffset()
             
-            //当前ScrollView的的高
-            let boundsHeight = glt_scrollView.bounds.height - self.layout.sliderHeight
-            
-            //此处说明内容的高度小于bounds 应该让pageTitleView自动回滚到初始位置
-            if contentSizeHeight <  boundsHeight {
-                
-                //为自动掉落加一个动画
-                UIView.animate(withDuration: 0.12, animations: {
-                    //初始的偏移量 即初始的contentInset的值
-                    let offsetPoint = CGPoint(x: 0, y: -self.kHeaderHeight-self.layout.sliderHeight)
-                    
-                    //注意：此处调用此方法并不会执行scrollViewDidScroll:原因未可知
-                    glt_scrollView.setContentOffset(offsetPoint, animated: true)
-                    
-                    //在这里手动执行一下scrollViewDidScroll:事件
-                    self.setupGlt_scrollViewDidScroll(scrollView: glt_scrollView, currentVC: currentVC)
-                })
-                
-                
-            }else {
-                //首次初始化，通过改变当前ScrollView的偏移量，来确保ScrollView正好在pageTitleView下方
-                glt_scrollView.contentOffset.y = self.distanceBottomOffset()
-            }
+            /*
+             //当前ScrollView的contentSize的高
+             let contentSizeHeight = glt_scrollView.contentSize.height
+             
+             //当前ScrollView的的高
+             let boundsHeight = glt_scrollView.bounds.height - self.layout.sliderHeight
+             
+             //此处说明内容的高度小于bounds 应该让pageTitleView自动回滚到初始位置
+             if contentSizeHeight <  boundsHeight {
+             
+             //为自动掉落加一个动画
+             UIView.animate(withDuration: 0.12, animations: {
+             //初始的偏移量 即初始的contentInset的值
+             let offsetPoint = CGPoint(x: 0, y: -self.kHeaderHeight-self.layout.sliderHeight)
+             
+             //注意：此处调用此方法并不会执行scrollViewDidScroll:原因未可知
+             glt_scrollView.setContentOffset(offsetPoint, animated: true)
+             
+             //在这里手动执行一下scrollViewDidScroll:事件
+             self.setupGlt_scrollViewDidScroll(scrollView: glt_scrollView, currentVC: currentVC)
+             })
+             
+             
+             }else {
+             //首次初始化，通过改变当前ScrollView的偏移量，来确保ScrollView正好在pageTitleView下方
+             glt_scrollView.contentOffset.y = self.distanceBottomOffset()
+             }
+             */
         })
         
     }
