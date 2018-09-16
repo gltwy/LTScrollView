@@ -15,6 +15,7 @@
 
 import UIKit
 import MJRefresh
+private let glt_iphoneX = (UIScreen.main.bounds.height == 812.0)
 
 class LTPersonMainPageDemo: UIViewController {
     

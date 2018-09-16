@@ -15,6 +15,7 @@
 //
 
 import UIKit
+private let glt_iphoneX = (UIScreen.main.bounds.height == 812.0)
 
 class LTAdvancedManagerDemo: UIViewController {
     
@@ -39,11 +40,29 @@ class LTAdvancedManagerDemo: UIViewController {
         return layout
     }()
     
-    private lazy var advancedManager: LTAdvancedManager = {
+    private func managerReact() -> CGRect {
         let statusBarH = UIApplication.shared.statusBarFrame.size.height
         let Y: CGFloat = statusBarH + 44
         let H: CGFloat = glt_iphoneX ? (view.bounds.height - Y - 34) : view.bounds.height - Y
-        let advancedManager = LTAdvancedManager(frame: CGRect(x: 0, y: Y, width: view.bounds.width, height: H), viewControllers: viewControllers, titles: titles, currentViewController: self, layout: layout, headerViewHandle: {[weak self] in
+        return CGRect(x: 0, y: Y, width: view.bounds.width, height: H)
+    }
+    
+    /* 取消注释此处为自定义titleView
+     private lazy var advancedManager: LTAdvancedManager = {
+     let customTitleView = LTCustomTitleView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 44), titles: titles, layout: layout)
+     let advancedManager = LTAdvancedManager(frame: managerReact(), viewControllers: viewControllers, titles: titles, currentViewController: self, layout: layout, titleView: customTitleView, headerViewHandle: {[weak self] in
+     guard let strongSelf = self else { return UIView() }
+     let headerView = strongSelf.testLabel()
+     return headerView
+     })
+     /* 设置代理 监听滚动 */
+     advancedManager.delegate = self
+     return advancedManager
+     }()
+     */
+    
+    private lazy var advancedManager: LTAdvancedManager = {
+        let advancedManager = LTAdvancedManager(frame: managerReact(), viewControllers: viewControllers, titles: titles, currentViewController: self, layout: layout, headerViewHandle: {[weak self] in
             guard let strongSelf = self else { return UIView() }
             let headerView = strongSelf.testLabel()
             return headerView
@@ -52,16 +71,17 @@ class LTAdvancedManagerDemo: UIViewController {
         advancedManager.delegate = self
         
         /* 设置悬停位置 */
-//        advancedManager.hoverY = 64
+        //        advancedManager.hoverY = 64
         
         /* 点击切换滚动过程动画 */
-//        advancedManager.isClickScrollAnimation = true
+        //        advancedManager.isClickScrollAnimation = true
         
         /* 代码设置滚动到第几个位置 */
-//        advancedManager.scrollToIndex(index: viewControllers.count - 1)
+        //        advancedManager.scrollToIndex(index: viewControllers.count - 1)
         
         return advancedManager
     }()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -89,7 +109,7 @@ extension LTAdvancedManagerDemo: LTAdvancedScrollViewDelegate {
     }
     
     func glt_scrollViewOffsetY(_ offsetY: CGFloat) {
-        //        print("offset --> ", offsetY)
+        print("offset --> ", offsetY)
     }
 }
 

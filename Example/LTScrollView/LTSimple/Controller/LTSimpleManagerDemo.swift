@@ -13,6 +13,7 @@
 //
 //  clone地址:  https://github.com/gltwy/LTScrollView.git
 //
+private let glt_iphoneX = (UIScreen.main.bounds.height == 812.0)
 
 import UIKit
 import MJRefresh
@@ -39,29 +40,28 @@ class LTSimpleManagerDemo: UIViewController {
         return layout
     }()
     
-    private lazy var simpleManager: LTSimpleManager = {
-        
+    private func managerReact() -> CGRect {
         let statusBarH = UIApplication.shared.statusBarFrame.size.height
         let Y: CGFloat = statusBarH + 44
         let H: CGFloat = glt_iphoneX ? (view.bounds.height - Y - 34) : view.bounds.height - Y
-        
-        let simpleManager = LTSimpleManager(frame: CGRect(x: 0, y: Y, width: view.bounds.width, height: H), viewControllers: viewControllers, titles: titles, currentViewController: self, layout: layout)
-        
+        return CGRect(x: 0, y: Y, width: view.bounds.width, height: H)
+    }
+    
+    /* 取消注释此处为自定义titleView
+     private lazy var simpleManager: LTSimpleManager = {
+     let customTitleView = LTCustomTitleView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 44), titles: titles, layout: layout)
+     let simpleManager = LTSimpleManager(frame: managerReact(), viewControllers: viewControllers, titles: titles, currentViewController: self, layout: layout, titleView: customTitleView)
+     /* 设置代理 监听滚动 */
+     simpleManager.delegate = self
+     return simpleManager
+     }()
+     */
+    
+    
+    private lazy var simpleManager: LTSimpleManager = {
+        let simpleManager = LTSimpleManager(frame: managerReact(), viewControllers: viewControllers, titles: titles, currentViewController: self, layout: layout)
         /* 设置代理 监听滚动 */
         simpleManager.delegate = self
-        
-        /* 设置悬停位置 */
-        //        simpleManager.hoverY = 64
-        
-        /* 点击切换滚动过程动画 */
-        //        simpleManager.isClickScrollAnimation = true
-        
-        /* 代码设置滚动到第几个位置 */
-        //        simpleManager.scrollToIndex(index: 1)
-        
-        /* 动态改变header的高度 */
-        //        simpleManager.glt_headerHeight = 180
-        
         return simpleManager
     }()
     
@@ -140,3 +140,4 @@ extension LTSimpleManagerDemo {
         return headerView
     }
 }
+
