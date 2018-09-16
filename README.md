@@ -35,7 +35,7 @@ target 'TargetName' do
 #注意此处需要添加use_frameworks!
 use_frameworks!
 
-pod 'LTScrollView', '~> 0.1.9'
+pod 'LTScrollView', '~> 0.2.0'
 end
 ```
 
@@ -112,81 +112,14 @@ self.glt_scrollView = self.tableView（self.scrollView / self.collectionView）
 3. 更多使用说明请参考Demo（LTScrollView / OCExample）
 
 ## LTLayout属性说明
-```swift
-public class LTLayout: NSObject {
-    
-    /* pageView背景颜色 */
-    @objc public var titleViewBgColor: UIColor? = UIColor(r: 255, g: 239, b: 213)
-    
-    /* 标题颜色，请使用RGB赋值 */
-    @objc public var titleColor: UIColor? = NORMAL_BASE_COLOR
-    
-    /* 标题选中颜色，请使用RGB赋值 */
-    @objc public var titleSelectColor: UIColor? = SELECT_BASE_COLOR
-    
-    /* 标题字号 */
-    @objc public var titleFont: UIFont? = UIFont.systemFont(ofSize: 16)
-    
-    /* 滑块底部线的颜色 - UIColor.blue */
-    @objc public var bottomLineColor: UIColor? = UIColor.red
-    
-    /* 整个滑块的高，pageTitleView的高 */
-    @objc public var sliderHeight: CGFloat = 44.0
-    
-    /* 单个滑块的宽度, 一旦设置，将不再自动计算宽度，而是固定为你传递的值 */
-    @objc public var sliderWidth: CGFloat = glt_sliderDefaultWidth
-    
-    /*
-     * 如果刚开始的布局不希望从最左边开始， 只想平均分配在整个宽度中，设置它为true
-     * 注意：此时最左边 lrMargin 以及 titleMargin 仍然有效，如果不需要可以手动设置为0
-     */
-    @objc public var isAverage: Bool = false
-    
-    /* 滑块底部线的高 */
-    @objc public var bottomLineHeight: CGFloat = 2.0
-    
-    /* 滑块底部线圆角 */
-    @objc public var bottomLineCornerRadius: CGFloat = 0.0
-    
-    /* 是否隐藏滑块、底部线*/
-    @objc public var isHiddenSlider: Bool = false
-    
-    /* 标题直接的间隔（标题距离下一个标题的间隔）*/
-    @objc public var titleMargin: CGFloat = 30.0
-    
-    /* 距离最左边和最右边的距离 */
-    @objc public var lrMargin: CGFloat = 10.0
-    
-    /* 滑动过程中是否放大标题 */
-    @objc public var isNeedScale: Bool = true
-    
-    /* 放大标题的倍率 */
-    @objc public var scale: CGFloat = 1.2
-    
-    /* 是否开启颜色渐变 */
-    @objc public var isColorAnimation: Bool = true
-    
-    /* 是否隐藏底部线 */
-    @objc public var isHiddenPageBottomLine: Bool = false
-    
-    /* pageView底部线的高度 */
-    @objc public var pageBottomLineHeight: CGFloat = 0.5
-    
-    /* pageView底部线的颜色 */
-    @objc public var pageBottomLineColor: UIColor? = UIColor(r: 230, g: 230, b: 230)
-    
-    /* pageView的内容ScrollView是否开启左右弹性效果 */
-    @objc public var isShowBounces: Bool = false
-    
-    /* pageView的内容ScrollView是否开启左右滚动 */
-    @objc public var isScrollEnabled: Bool = true
-    
-    /* 内部使用-外界不要调用 */
-    var isSinglePageView: Bool = false
-}
+详情查看[LTLayout.swift](https://github.com/gltwy/LTScrollView/blob/master/Example/LTScrollView/Lib/LTLayout.swift)
 
-```
 ## 更新说明
+
+2018.09.16 - 0.2.0
+```objective-c
+新增自定义选项卡
+```
 
 2018.09.02 - 0.1.9
 ```objective-c
@@ -206,14 +139,6 @@ public class LTLayout: NSObject {
 1. 修复LTAdvancedManager数据较少时，其他子控制器自动下落Bug
 2. 解决issue中的部分问题
 3. 优化内部实现
-```
-
-2018.06.02 - 0.1.6
-```objective-c
-1. 修复LTSimple当HeaderView的高度为小数时无法滑动的Bug
-2. 增加代码设置滚动位置的方法
-3. 增加切换动画属性设置
-4. 修复已知Bug
 ```
 
 ## Author
