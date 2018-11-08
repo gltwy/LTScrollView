@@ -17,16 +17,18 @@
 
 import UIKit
 import MJRefresh
-private let glt_iphoneX = (UIScreen.main.bounds.height == 812.0)
+private let glt_iphoneX = (UIScreen.main.bounds.height >= 812.0)
 
 class LTSimpleTestOneVC: UIViewController, LTTableViewProtocal {
     
     private lazy var tableView: UITableView = {
-        /** 如果设置了不悬停 此处Y的值应该从0开始 高度再加上sliderHeight 即：
-         let H: CGFloat = glt_iphoneX ? (view.bounds.height - 64 - 24 - 34) : view.bounds.height - 64
-         let tableView = tableViewConfig(CGRect(x: 0, y:0, width: view.bounds.width, height: H), self, self, nil)
-         */
-        let H: CGFloat = glt_iphoneX ? (view.bounds.height - 44 - 64 - 24 - 34) : view.bounds.height - 64 - 44
+//         如果设置了layout.isHovered = false不悬停 此处Y的值应该从0开始 高度再加上sliderHeight 即：
+//        let H: CGFloat = glt_iphoneX ? (view.bounds.height - 64 - 24 - 34) : view.bounds.height - 64
+//        let tableView = tableViewConfig(CGRect(x: 0, y:0, width: view.bounds.width, height: H), self, self, nil)
+        
+        let iPhoneXH = view.bounds.height - 44 - 64 - 24 - 34
+        let otherH = view.bounds.height - 64 - 44
+        let H: CGFloat = glt_iphoneX ? iPhoneXH : otherH
         let tableView = tableViewConfig(CGRect(x: 0, y:44, width: view.bounds.width, height: H), self, self, nil)
         return tableView
     }()

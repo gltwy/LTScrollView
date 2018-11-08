@@ -24,7 +24,7 @@ public class LTAdvancedManager: UIView {
     /* 点击切换滚动过程动画 */
     @objc public var isClickScrollAnimation = false {
         didSet {
-            pageView.isClickScrollAnimation = isClickScrollAnimation
+            titleView.isClickScrollAnimation = isClickScrollAnimation
         }
     }
     

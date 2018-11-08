@@ -7,8 +7,7 @@
 //
 
 import UIKit
-private let glt_iphoneX = (UIScreen.main.bounds.height == 812.0)
-
+private let glt_iphoneX = (UIScreen.main.bounds.height >= 812.0)
 class LTPageViewDemo: UIViewController {
 
     

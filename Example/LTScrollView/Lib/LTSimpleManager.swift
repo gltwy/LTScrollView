@@ -25,20 +25,7 @@
     @objc public func configHeaderView(_ handle: (() -> UIView?)?) {
         guard let handle = handle else { return }
         guard let headerView = handle() else { return }
-        kHeaderHeight = CGFloat(Int(headerView.bounds.height))
-        if layout.isHovered == false {
-            hoverY = 0.0
-            kHeaderHeight += self.layout.sliderHeight
-        }
-        headerView.frame.size.height = kHeaderHeight
-        self.headerView = headerView
-        tableView.tableHeaderView = headerView
-        DispatchQueue.main.after(0.001) {
-            if self.layout.isHovered == false {
-                self.titleView.frame.origin.y = self.kHeaderHeight - self.layout.sliderHeight
-                headerView.addSubview(self.titleView)
-            }
-        }
+        setupHeaderView(headerView: headerView)
     }
     
     /* 动态改变header的高度 */
@@ -175,7 +162,7 @@
         if #available(iOS 11.0, *) {
             tableView.contentInsetAdjustmentBehavior = .never
         }
-        refreshData()
+        setupRefreshData()
         pageViewDidSelectConfig()
         guard let viewController = viewControllers.first else { return }
         viewController.beginAppearanceTransition(true, animated: true)
@@ -183,9 +170,6 @@
         pageView.setupGetPageViewScrollView(pageView, titleView)
     }
     
-    /*
-     * 当滑动底部tableView的时候，当tableView的contentOffset.y 小于 header的高的时候，将内容ScrollView的contentOffset设置为.zero
-     */
     private func contentScrollViewScrollConfig(_ viewController: UIViewController) {
         viewController.glt_scrollView?.scrollHandle = {[weak self] scrollView in
             guard let `self` = self else { return }
@@ -202,7 +186,7 @@
  }
  
  extension LTSimpleManager {
-    private func refreshData()  {
+    private func setupRefreshData()  {
         DispatchQueue.main.after(0.001) {
             UIView.animate(withDuration: 0.34, animations: {
                 self.tableView.contentInset = .zero
@@ -219,21 +203,21 @@
         pageView.didSelectIndexBlock = {[weak self] in
             guard let `self` = self else { return }
             self.currentSelectIndex = $1
-            self.refreshData()
+            self.setupRefreshData()
             self.sampleDidSelectIndexHandle?($1)
         }
         pageView.addChildVcBlock = {[weak self] in
             guard let `self` = self else { return }
             self.contentScrollViewScrollConfig($1)
         }
-        
     }
  }
  
  extension LTSimpleManager: UITableViewDelegate {
     
     /*
-     * 当滑动内容ScrollView的时候， 当内容contentOffset.y 大于 0（说明滑动的是内容ScrollView） 或者 当底部tableview的contentOffset.y大于 header的高度的时候，将底部tableView的偏移量设置为kHeaderHeight， 并将其他的scrollView的contentOffset置为.zero
+     * 0 到 kHeaderHeight - hoverY 之间，滑动的是底部tableView，并且此时要将内容scrollView的contentoffset设置为0
+     * 当 大于 kHeaderHeight - hoverY 的时候， 滑动的是内容ScrollView，此时将底部tableView的contentoffset y固定为kHeaderHeight - hoverY
      */
     public func scrollViewDidScroll(_ scrollView: UIScrollView) {
         delegate?.glt_scrollViewDidScroll?(scrollView)
@@ -242,6 +226,7 @@
         if contentTableView.contentOffset.y > 0 || offsetY > kHeaderHeight - hoverY {
             tableView.contentOffset = CGPoint(x: 0.0, y: kHeaderHeight - hoverY)
         }
+        //滑动期间将其他的内容scrollView contentOffset设置为0
         if scrollView.contentOffset.y < kHeaderHeight - hoverY {
             for viewController in viewControllers {
                 guard viewController.glt_scrollView != scrollView else { continue }
@@ -298,5 +283,30 @@
     }
  }
  
+ //MARK: HeaderView设置
+ extension LTSimpleManager {
+    
+    private func setupHeaderView(headerView: UIView) {
+        //获取headerView的高度
+        kHeaderHeight = CGFloat(Int(headerView.bounds.height))
+        //判断是否悬停 默认为true开启悬停，如果不开启悬停则需要把hoverY的值设置为0，并重新设置kHeaderHeight，因为布局结构改变（正常情况下titleView是在pageView上，pageView在cell上，如果悬停则titleView放到了headerView上）
+        if layout.isHovered == false {
+            hoverY = 0.0
+            kHeaderHeight += self.layout.sliderHeight
+        }
+        headerView.frame.size.height = kHeaderHeight
+        if self.layout.isHovered == false {
+            //此处需要延时一下才有效
+            DispatchQueue.main.after(0.0001) {
+                //设置titleView的y值
+                self.titleView.frame.origin.y = self.kHeaderHeight - self.layout.sliderHeight
+                headerView.addSubview(self.titleView)
+            }
+        }
+        self.headerView = headerView
+        tableView.tableHeaderView = headerView
+    }
+    
+ }
  
  

@@ -29,11 +29,23 @@ extension UIScrollView {
     }
 }
 
+extension String {
+    func glt_base64Decoding() -> String {
+        let decodeData = NSData.init(base64Encoded: self, options: NSData.Base64DecodingOptions.init(rawValue: 0))
+        if decodeData == nil || decodeData?.length == 0 {
+            return "";
+        }
+        let decodeString = NSString(data: decodeData! as Data, encoding: String.Encoding.utf8.rawValue)
+        return decodeString! as String
+    }
+}
+
 extension UIScrollView {
     
     public class func initializeOnce() {
         DispatchQueue.once(token: UIDevice.current.identifierForVendor?.uuidString ?? "LTScrollView") {
-            let originSelector = Selector(("_notifyDidScroll"))
+            let didScroll = "X25vdGlmeURpZFNjcm9sbA==".glt_base64Decoding()
+            let originSelector = Selector((didScroll))
             let swizzleSelector = #selector(glt_scrollViewDidScroll)
             glt_swizzleMethod(self, originSelector, swizzleSelector)
         }

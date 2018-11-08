@@ -32,7 +32,11 @@ public class LTPageView: UIView {
     @objc public var addChildVcBlock: AddChildViewControllerBlock?
     
     /* 点击切换滚动过程动画  */
-    @objc public var isClickScrollAnimation = false
+    @objc public var isClickScrollAnimation = false {
+        didSet {
+            pageTitleView.isClickScrollAnimation = isClickScrollAnimation
+        }
+    }
     
     /* pageView的scrollView左右滑动监听 */
     @objc public weak var delegate: LTPageViewDelegate?
@@ -108,7 +112,7 @@ extension LTPageView {
 }
 
 extension LTPageView {
-    internal func setupGetPageViewScrollView(_ pageView:LTPageView, _ titleView: LTPageTitleView) {
+    func setupGetPageViewScrollView(_ pageView:LTPageView, _ titleView: LTPageTitleView) {
         pageView.delegate = titleView
         titleView.mainScrollView = pageView.scrollView
         titleView.scrollIndexHandle = pageView.currentIndex

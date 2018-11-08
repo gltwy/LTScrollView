@@ -12,9 +12,9 @@ typealias scrollIndexHandle = () -> Int
 public typealias LTCreateViewControllerHandle = (Int) -> Void
 public typealias LTDidSelectTitleViewHandle = (Int) -> Void
 
-public class LTPageTitleView: UIView {
-  
-/*    --------------- 自定义titleView选择性重写以下方法 -------------- */
+@objc public class LTPageTitleView: UIView {
+    
+    /*    --------------- 自定义titleView选择性重写以下方法 -------------- */
     
     /**
      * layout中属性 isCustomTitleView 必须需要设置为 true
@@ -28,7 +28,7 @@ public class LTPageTitleView: UIView {
     @objc public func glt_contentScrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {}
     @objc public func glt_contentScrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {}
     
-/*    --------------- 自定义titleView选择性重写以上方法 -------------- */
+    /*    --------------- 自定义titleView选择性重写以上方法 -------------- */
     
     private var titles: [String] = [String]()
     private var layout: LTLayout = LTLayout()
@@ -52,10 +52,10 @@ public class LTPageTitleView: UIView {
         }
     }
     weak var delegate: LTPageViewDelegate?
-
+    
     private lazy var glt_titleRGBlColor: (r : CGFloat, g : CGFloat, b : CGFloat) = getRGBWithColor(layout.titleColor ?? NORMAL_BASE_COLOR)
     private lazy var glt_selectTitleRGBlColor: (r : CGFloat, g : CGFloat, b : CGFloat) = getRGBWithColor(layout.titleSelectColor ?? SELECT_BASE_COLOR)
-
+    
     private lazy var sliderScrollView: UIScrollView = {
         let sliderScrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: bounds.width, height: bounds.height))
         sliderScrollView.showsHorizontalScrollIndicator = false
@@ -68,7 +68,7 @@ public class LTPageTitleView: UIView {
         pageBottomLineView.backgroundColor = layout.pageBottomLineColor
         return pageBottomLineView
     }()
-  
+    
     private lazy var sliderLineView: UIView = {
         let sliderLineView = UIView(frame: CGRect(x: layout.lrMargin, y: bounds.height - layout.bottomLineHeight - layout.pageBottomLineHeight, width: 0, height: layout.bottomLineHeight))
         sliderLineView.backgroundColor = layout.bottomLineColor
@@ -129,7 +129,7 @@ extension LTPageTitleView {
                 glt_lineWidths.append(textW)
             }
         }
-         
+        
         
         
         // 将所有的宽度计算出来放入数组
@@ -168,7 +168,7 @@ extension LTPageTitleView {
         let firstButton = glt_buttons[0]
         let firstLineWidth = glt_lineWidths[0]
         let firstTextWidth = glt_textWidths[0]
-
+        
         if layout.isNeedScale {
             firstButton.transform = CGAffineTransform(scaleX: layout.scale , y: layout.scale)
         }
@@ -596,6 +596,5 @@ extension LTPageTitleView {
         parentView.addSubview(button)
         return button
     }
-    
 }
 
