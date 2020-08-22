@@ -21,7 +21,7 @@ class LTAdvancedManagerDemo: UIViewController {
     private lazy var viewControllers: [UIViewController] = {
         let oneVc = LTAdvancedTestOneVC()
         let twoVc = LTAdvancedTestOneVC()
-        twoVc.count = 5
+        twoVc.count = 25
         let threeVc = LTAdvancedTestOneVC()
         let fourVc = LTAdvancedTestOneVC()
         return [oneVc, twoVc, threeVc, fourVc]

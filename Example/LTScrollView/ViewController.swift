@@ -30,10 +30,10 @@ let GLT_MAINWHEIGHT = UIScreen.main.bounds.size.height
 
 class ViewController: UIViewController, LTTableViewProtocal {
     
-    private let datas = ["基础版-刷新控件在顶部\nLTSimple",
+    private let datas = ["基础版-刷新控件在顶部(有更新！)\nLTSimple",
                          "进阶版-刷新控件在中间\nLTAdvanced",
                          "下拉放大-导航渐变\nLTPersonalMainPage",
-                         "切换视图\nLTPageView"]
+                         "切换视图(重大更新！！！)\nLTPageView"]
     
     private lazy var tableView: UITableView = {
         let tableView: UITableView = tableViewConfig(self, self, nil)
