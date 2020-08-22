@@ -122,6 +122,8 @@ self.glt_scrollView = self.tableView（self.scrollView / self.collectionView）
 2. 新增自定义标题功能, 任意样式随你设置
 3. 修复子控制器不释放Bug
 4. 优化内部实现、修复已知问题、性能更佳
+
+目前仅优化了除LTAdvancedManager以外的其他功能，LTAdvancedManager近期优化！
 ```
 
 2018.09.16 - 0.2.0
