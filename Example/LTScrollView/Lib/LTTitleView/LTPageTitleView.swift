@@ -13,53 +13,71 @@ public typealias LTCreateViewControllerHandle = (Int) -> Void
 public typealias LTDidSelectTitleViewHandle = (Int) -> Void
 
 @objc public class LTPageTitleView: UIView {
+
+    //传递进来的scrollView
+    var mainScrollView: UIScrollView?
+
+    //标题数组
+    private var titles: [String]
     
-    /*    --------------- 自定义titleView选择性重写以下方法 -------------- */
+    //设置默认布局，具体设置请查看LTLayout类
+    private var layout: LTLayout
     
-    /**
-     * layout中属性 isCustomTitleView 必须需要设置为 true
-     * layout中属性 isCustomTitleViewAndCreateSubController 根据实际情况是否需要设置为true
-     */
-    @objc public var mainScrollView: UIScrollView?
-    @objc public func glt_contentScrollViewDidScroll(_ scrollView: UIScrollView) { }
-    @objc public func glt_contentScrollViewWillBeginDragging(_ scrollView: UIScrollView) {}
-    @objc public func glt_contentScrollViewWillBeginDecelerating(_ scrollView: UIScrollView) {}
-    @objc public func glt_contentScrollViewDidEndDecelerating(_ scrollView: UIScrollView) {}
-    @objc public func glt_contentScrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {}
-    @objc public func glt_contentScrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {}
+    //存储文本宽度数组
+    private lazy var glt_textWidths: [CGFloat] = []
     
-    /*    --------------- 自定义titleView选择性重写以上方法 -------------- */
+    //存储线的宽度数组
+    private lazy var glt_lineWidths: [CGFloat] = []
     
-    private var titles: [String] = [String]()
-    private var layout: LTLayout = LTLayout()
-    private var glt_textWidths: [CGFloat] = []
-    private var glt_lineWidths: [CGFloat] = []
-    private var glt_buttons: [UIButton] = []
-    private var glt_currentIndex: Int = 0
-    private var isClick: Bool = false
-    private var glt_startOffsetX: CGFloat = 0.0
-    private var glt_isClickScrollAnimation = false
-    var isClickScrollAnimation = false
-    private var isFirstLoad: Bool = true
+    //存储所有的button
+    private lazy var glt_buttons: [LTPageTitleItemView] = []
+    
+    //当前的位置
+    private lazy var glt_currentIndex: Int = 0
+    
+    //标记是否是点击
+    private lazy var isClick: Bool = false
+    
+    //起始偏移量
+    private lazy var glt_startOffsetX: CGFloat = 0.0
+    
+    //是否有点击动画
+    private lazy var glt_isClickScrollAnimation = false
+    
+    //是否有点击动画 其他类使用
+    final lazy var isClickScrollAnimation = false
+    
+    //是否是第一次加载
+    private lazy var isFirstLoad: Bool = true
+    
+    //选中某个位置的回调
     var scrollIndexHandle: scrollIndexHandle?
+    
+    //创建子控制器的回调
     var glt_createViewControllerHandle: LTCreateViewControllerHandle?
+    
+    //选中标题view回调
     var glt_didSelectTitleViewHandle: LTDidSelectTitleViewHandle?
-    var isCustomTitleView: Bool = false {
-        didSet {
-            if isCustomTitleView == false {
-                setupSubViews()
-            }
-        }
-    }
+    
+    //设置pageView的代理
     weak var delegate: LTPageViewDelegate?
     
-    private lazy var glt_titleRGBlColor: (r : CGFloat, g : CGFloat, b : CGFloat) = getRGBWithColor(layout.titleColor ?? NORMAL_BASE_COLOR)
-    private lazy var glt_selectTitleRGBlColor: (r : CGFloat, g : CGFloat, b : CGFloat) = getRGBWithColor(layout.titleSelectColor ?? SELECT_BASE_COLOR)
+    //返回所有的数组
+    func allItemViews() -> [LTPageTitleItemView] {
+        return glt_buttons
+    }
+    
+    private lazy var glt_titleRGBlColor = getRGBWithColor(layout.titleColor ?? NORMAL_BASE_COLOR)
+    
+    private lazy var glt_selectTitleRGBlColor = getRGBWithColor(layout.titleSelectColor ?? SELECT_BASE_COLOR)
     
     private lazy var sliderScrollView: UIScrollView = {
         let sliderScrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: bounds.width, height: bounds.height))
         sliderScrollView.showsHorizontalScrollIndicator = false
         sliderScrollView.bounces = false
+        if #available(iOS 11.0, *) {
+            sliderScrollView.contentInsetAdjustmentBehavior = .never
+        }
         return sliderScrollView
     }()
     
@@ -72,6 +90,7 @@ public typealias LTDidSelectTitleViewHandle = (Int) -> Void
     private lazy var sliderLineView: UIView = {
         let sliderLineView = UIView(frame: CGRect(x: layout.lrMargin, y: bounds.height - layout.bottomLineHeight - layout.pageBottomLineHeight, width: 0, height: layout.bottomLineHeight))
         sliderLineView.backgroundColor = layout.bottomLineColor
+        sliderLineView.isHidden = layout.isHiddenSlider
         return sliderLineView
     }()
     
@@ -79,10 +98,8 @@ public typealias LTDidSelectTitleViewHandle = (Int) -> Void
         self.titles = titles
         self.layout = layout
         super.init(frame: frame)
-        if #available(iOS 11.0, *) {
-            sliderScrollView.contentInsetAdjustmentBehavior = .never
-        }
         backgroundColor = layout.titleViewBgColor
+        setupSubViews()
     }
     
     /* 滚动到某个位置 */
@@ -99,9 +116,9 @@ public typealias LTDidSelectTitleViewHandle = (Int) -> Void
 extension LTPageTitleView {
     func setupSubViews() {
         addSubview(sliderScrollView)
-        sliderScrollView.addSubview(sliderLineView)
         addSubview(pageBottomLineView)
         setupButtonsLayout()
+        sliderScrollView.addSubview(sliderLineView)
     }
 }
 
@@ -110,51 +127,42 @@ extension LTPageTitleView {
     
     private func setupButtonsLayout() {
         
-        if titles.count == 0 { return }
+        guard titles.count != 0 else { return }
         
-        // 将所有的宽度计算出来放入数组
-        for (_, text) in titles.enumerated() {
-            if layout.isAverage {
-                let textAverageW = (bounds.width - layout.lrMargin * 2.0 - layout.titleMargin * CGFloat(titles.count - 1)) / CGFloat(titles.count)
-                glt_textWidths.append(textAverageW)
-                glt_lineWidths.append(textAverageW)
-            }else {
-                if text.count == 0 {
-                    glt_textWidths.append(60)
-                    glt_lineWidths.append(60)
-                    continue
-                }
-                let textW = text.boundingRect(with: CGSize(width: CGFloat(MAXFLOAT), height: 8), options: .usesLineFragmentOrigin, attributes: [NSAttributedStringKey.font : layout.titleFont ?? UIFont.systemFont(ofSize: 16)], context: nil).size.width
-                glt_textWidths.append(textW)
-                glt_lineWidths.append(textW)
-            }
-        }
-        
-        
+        //是否自定义了item的宽
+        let _isLayoutWidth = layout.layoutItemWidths.count > 0
         
         // 将所有的宽度计算出来放入数组
         for text in titles {
             if layout.isAverage {
-                let textAverageW = (bounds.width - layout.lrMargin * 2.0 - layout.titleMargin * CGFloat(titles.count - 1)) / CGFloat(titles.count)
-                glt_textWidths.append(textAverageW)
-            }else {
-                if text.count == 0 {
-                    glt_textWidths.append(60)
-                    glt_lineWidths.append(60)
-                    continue
+                let textAverageW = (glt_width - layout.lrMargin * 2.0 - layout.titleMargin * CGFloat(titles.count - 1)) / CGFloat(titles.count)
+                if !_isLayoutWidth {
+                    glt_textWidths.append(textAverageW)
                 }
+                glt_lineWidths.append(textAverageW)
+                continue
             }
-            let textW = text.boundingRect(with: CGSize(width: CGFloat(MAXFLOAT), height: 8), options: .usesLineFragmentOrigin, attributes: [NSAttributedStringKey.font : layout.titleFont ?? UIFont.systemFont(ofSize: 16)], context: nil).size.width
-            if !layout.isAverage {
+            if text.count == 0 {
+                if !_isLayoutWidth {
+                    glt_textWidths.append(60)
+                }
+                glt_lineWidths.append(60)
+                continue
+            }
+            let textW = text.boundingRect(with: CGSize(width: CGFloat(MAXFLOAT), height: 8), options: .usesLineFragmentOrigin, attributes: [NSAttributedString.Key.font : layout.titleFont ?? UIFont.systemFont(ofSize: 16)], context: nil).size.width
+            if !_isLayoutWidth {
                 glt_textWidths.append(textW)
             }
             glt_lineWidths.append(textW)
         }
         
+        if _isLayoutWidth {
+            glt_textWidths = layout.layoutItemWidths
+        }
         
         // 按钮布局
         var upX: CGFloat = layout.lrMargin
-        let subH = bounds.height - layout.bottomLineHeight
+        let subH = glt_height - layout.bottomLineHeight
         for index in 0..<titles.count {
             let subW = glt_textWidths[index]
             let buttonReact = CGRect(x: upX, y: 0, width: subW, height: subH)
@@ -176,15 +184,15 @@ extension LTPageTitleView {
         // lineView的宽度为第一个的宽度
         if layout.sliderWidth == glt_sliderDefaultWidth {
             if layout.isAverage {
-                sliderLineView.frame.size.width = firstLineWidth
-                sliderLineView.frame.origin.x = (firstTextWidth - firstLineWidth) * 0.5 + layout.lrMargin
+                sliderLineView.glt_width = firstLineWidth
+                sliderLineView.glt_left = (firstTextWidth - firstLineWidth) * 0.5 + layout.lrMargin
             }else {
-                sliderLineView.frame.size.width = firstButton.frame.size.width
-                sliderLineView.frame.origin.x = firstButton.frame.origin.x
+                sliderLineView.glt_width = firstButton.glt_width
+                sliderLineView.glt_left = firstButton.glt_left
             }
         }else {
-            sliderLineView.frame.size.width = layout.sliderWidth
-            sliderLineView.frame.origin.x = ((firstTextWidth + layout.lrMargin * 2) - layout.sliderWidth) * 0.5
+            sliderLineView.glt_width = layout.sliderWidth
+            sliderLineView.glt_left = ((firstTextWidth + layout.lrMargin * 2) - layout.sliderWidth) * 0.5
         }
         
         if layout.bottomLineCornerRadius != 0.0 {
@@ -194,15 +202,15 @@ extension LTPageTitleView {
         }
         
         if layout.isAverage {
-            sliderScrollView.contentSize = CGSize(width: bounds.width, height: 0)
+            sliderScrollView.contentSize = CGSize(width: glt_width, height: 0)
             return
         }
         
         // 计算sliderScrollView的contentSize
         let sliderContenSizeW = upX - layout.titleMargin + layout.lrMargin
         
-        if sliderContenSizeW < bounds.width {
-            sliderScrollView.frame.size.width = sliderContenSizeW
+        if sliderContenSizeW < glt_width {
+            sliderScrollView.glt_width = sliderContenSizeW
         }
         
         //最后多加了一个 layout.titleMargin， 这里要减去
@@ -520,49 +528,19 @@ extension LTPageTitleView {
 extension LTPageTitleView {
     
     public func glt_scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if isCustomTitleView {
-            glt_contentScrollViewDidScroll(scrollView)
-            return
-        }
         scrollViewDidScrollOffsetX(scrollView.contentOffset.x)
     }
     
     public func glt_scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         delegate?.glt_scrollViewWillBeginDragging?(scrollView)
-        if isCustomTitleView {
-            glt_contentScrollViewWillBeginDragging(scrollView)
-            return
-        }
         glt_startOffsetX = scrollView.contentOffset.x
-    }
-    
-    public func glt_scrollViewWillBeginDecelerating(_ scrollView: UIScrollView) {
-        if isCustomTitleView {
-            glt_contentScrollViewWillBeginDecelerating(scrollView)
-            return
-        }
-    }
-    
-    public func glt_scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        if isCustomTitleView {
-            glt_contentScrollViewDidEndDecelerating(scrollView)
-            return
-        }
     }
     
     public func glt_scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         delegate?.glt_scrollViewDidEndDragging?(scrollView, willDecelerate: decelerate)
-        if isCustomTitleView {
-            glt_contentScrollViewDidEndDragging(scrollView, willDecelerate: decelerate)
-            return
-        }
     }
     
     public func glt_scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
-        if isCustomTitleView {
-            glt_contentScrollViewDidEndScrollingAnimation(scrollView)
-            return
-        }
         if glt_isClickScrollAnimation {
             let index = currentIndex()
             glt_createViewControllerHandle?(index)
@@ -586,8 +564,8 @@ extension LTPageTitleView {
 extension LTPageTitleView {
     
     @discardableResult
-    private func subButton(frame: CGRect, flag: Int, title: String?, parentView: UIView) -> UIButton {
-        let button = UIButton(type: .custom)
+    private func subButton(frame: CGRect, flag: Int, title: String?, parentView: UIView) -> LTPageTitleItemView {
+        let button = LTPageTitleItemView(type: .custom)
         button.frame = frame
         button.tag = flag
         button.setTitle(title, for: .normal)

@@ -20,30 +20,6 @@ class LTCustomTitleView: LTPageTitleView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func glt_contentScrollViewDidScroll(_ scrollView: UIScrollView) {
-        print("自定义headerView -- ", scrollView.contentOffset.x)
-    }
-    
-    override func glt_contentScrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-        
-    }
-    
-    override func glt_contentScrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        
-    }
-    
-    override func glt_contentScrollViewWillBeginDecelerating(_ scrollView: UIScrollView) {
-        
-    }
-    
-    override func glt_contentScrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
-        
-    }
-    
-    override func glt_contentScrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        
-    }
-    
 }
 
 

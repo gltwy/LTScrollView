@@ -62,8 +62,7 @@ public class LTAdvancedManager: UIView {
         }else {
             self.titleView = setupTitleView()
         }
-        self.titleView.isCustomTitleView = isCustomTitleView
-        pageView = setupPageViewConfig(currentViewController: currentViewController, layout: layout, titleView: titleView)
+        pageView = setupPageViewConfig(currentViewController: currentViewController, layout: layout)
         setupSubViewsConfig(handle)
     }
     
@@ -86,14 +85,14 @@ extension LTAdvancedManager {
 
 extension LTAdvancedManager {
     //MARK: 创建PageView
-    private func setupPageViewConfig(currentViewController:UIViewController, layout: LTLayout, titleView: LTPageTitleView?) -> LTPageView {
-        let pageView = LTPageView(frame: self.bounds, currentViewController: currentViewController, viewControllers: viewControllers, titles: titles, layout:layout, titleView: titleView)
+    private func setupPageViewConfig(currentViewController:UIViewController, layout: LTLayout) -> LTPageView {
+        let pageView = LTPageView(frame: self.bounds, currentViewController: currentViewController, viewControllers: viewControllers, titles: titles, layout:layout)
         if titles.count != 0 {
             pageView.glt_createViewController(0)
         }
         DispatchQueue.main.after(0.01) {
             pageView.addSubview(self.titleView)
-            pageView.setupGetPageViewScrollView(pageView, self.titleView)
+            pageView.makeupPageView(pageView, self.titleView)
         }
         return pageView
     }
@@ -129,8 +128,8 @@ extension LTAdvancedManager {
     
     //设置ScrollView的contentInset
     private func scrollInsets(_ currentVC: UIViewController ,_ up: CGFloat) {
-        currentVC.glt_scrollView?.contentInset = UIEdgeInsetsMake(up, 0, 0, 0)
-        currentVC.glt_scrollView?.scrollIndicatorInsets = UIEdgeInsetsMake(up, 0, 0, 0)
+        currentVC.glt_scrollView?.contentInset = UIEdgeInsets(top: up, left: 0, bottom: 0, right: 0)
+        currentVC.glt_scrollView?.scrollIndicatorInsets = UIEdgeInsets(top: up, left: 0, bottom: 0, right: 0)
     }
     
     //MARK: 首次创建pageView的ChildVC回调

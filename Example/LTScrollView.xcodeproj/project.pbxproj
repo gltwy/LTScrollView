@@ -13,6 +13,9 @@
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
+		6A19DBE824F0C92E00B7EE0B /* UIView+LTExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A19DBE724F0C92E00B7EE0B /* UIView+LTExtension.swift */; };
+		6A19DBF024F0E30900B7EE0B /* LTPageTitleItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A19DBEF24F0E30900B7EE0B /* LTPageTitleItemView.swift */; };
+		6A19DBF224F0EAC000B7EE0B /* LTPageViewMoreDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A19DBF124F0EAC000B7EE0B /* LTPageViewMoreDemo.swift */; };
 		6A1A7B8B208B072D002D3852 /* LTDispatchQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A1A7B83208B072D002D3852 /* LTDispatchQueue.swift */; };
 		6A1A7B8C208B072D002D3852 /* LTScrollExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A1A7B84208B072D002D3852 /* LTScrollExtension.swift */; };
 		6A1A7B8D208B072D002D3852 /* LTAdvancedManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A1A7B85208B072D002D3852 /* LTAdvancedManager.swift */; };
@@ -65,6 +68,9 @@
 		607FACE51AFB9204008FA782 /* LTScrollView_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LTScrollView_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACEB1AFB9204008FA782 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
+		6A19DBE724F0C92E00B7EE0B /* UIView+LTExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+LTExtension.swift"; sourceTree = "<group>"; };
+		6A19DBEF24F0E30900B7EE0B /* LTPageTitleItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LTPageTitleItemView.swift; sourceTree = "<group>"; };
+		6A19DBF124F0EAC000B7EE0B /* LTPageViewMoreDemo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LTPageViewMoreDemo.swift; sourceTree = "<group>"; };
 		6A1A7B83208B072D002D3852 /* LTDispatchQueue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTDispatchQueue.swift; sourceTree = "<group>"; };
 		6A1A7B84208B072D002D3852 /* LTScrollExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTScrollExtension.swift; sourceTree = "<group>"; };
 		6A1A7B85208B072D002D3852 /* LTAdvancedManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTAdvancedManager.swift; sourceTree = "<group>"; };
@@ -190,20 +196,70 @@
 			name = "Podspec Metadata";
 			sourceTree = "<group>";
 		};
-		6A1A7B62208B0364002D3852 /* Lib */ = {
+		6A19DBE924F0CE3500B7EE0B /* LTExtension */ = {
 			isa = PBXGroup;
 			children = (
-				6A5ABBB3213C14B700ADBB25 /* LTCollectionFlowLayout.swift */,
-				6A1A7B85208B072D002D3852 /* LTAdvancedManager.swift */,
-				6A1A7B83208B072D002D3852 /* LTDispatchQueue.swift */,
-				6A1A7B8A208B072D002D3852 /* LTPageView.swift */,
-				6A1A7B84208B072D002D3852 /* LTScrollExtension.swift */,
-				6A1A7B88208B072D002D3852 /* LTSimpleManager.swift */,
+				6A19DBE724F0C92E00B7EE0B /* UIView+LTExtension.swift */,
 				6A1A7B89208B072D002D3852 /* LTTableView.swift */,
 				6A1A7B86208B072D002D3852 /* LTTableViewProtocal.swift */,
 				6A1A7B87208B072D002D3852 /* LTVCExtension.swift */,
-				6AF10E8721428ED90007F889 /* LTLayout.swift */,
+				6A1A7B84208B072D002D3852 /* LTScrollExtension.swift */,
+				6A5ABBB3213C14B700ADBB25 /* LTCollectionFlowLayout.swift */,
+				6A1A7B83208B072D002D3852 /* LTDispatchQueue.swift */,
+			);
+			path = LTExtension;
+			sourceTree = "<group>";
+		};
+		6A19DBEA24F0CE6200B7EE0B /* LTPageView */ = {
+			isa = PBXGroup;
+			children = (
+				6A1A7B8A208B072D002D3852 /* LTPageView.swift */,
+			);
+			path = LTPageView;
+			sourceTree = "<group>";
+		};
+		6A19DBEB24F0CE6C00B7EE0B /* LTTitleView */ = {
+			isa = PBXGroup;
+			children = (
 				6AF10E8921428EE20007F889 /* LTPageTitleView.swift */,
+				6A19DBEF24F0E30900B7EE0B /* LTPageTitleItemView.swift */,
+			);
+			path = LTTitleView;
+			sourceTree = "<group>";
+		};
+		6A19DBEC24F0CEB300B7EE0B /* LTSimpleManager */ = {
+			isa = PBXGroup;
+			children = (
+				6A1A7B88208B072D002D3852 /* LTSimpleManager.swift */,
+			);
+			path = LTSimpleManager;
+			sourceTree = "<group>";
+		};
+		6A19DBED24F0CEBC00B7EE0B /* LTAdvancedManager */ = {
+			isa = PBXGroup;
+			children = (
+				6A1A7B85208B072D002D3852 /* LTAdvancedManager.swift */,
+			);
+			path = LTAdvancedManager;
+			sourceTree = "<group>";
+		};
+		6A19DBEE24F0CEC500B7EE0B /* LTLayout */ = {
+			isa = PBXGroup;
+			children = (
+				6AF10E8721428ED90007F889 /* LTLayout.swift */,
+			);
+			path = LTLayout;
+			sourceTree = "<group>";
+		};
+		6A1A7B62208B0364002D3852 /* Lib */ = {
+			isa = PBXGroup;
+			children = (
+				6A19DBED24F0CEBC00B7EE0B /* LTAdvancedManager */,
+				6A19DBEC24F0CEB300B7EE0B /* LTSimpleManager */,
+				6A19DBEE24F0CEC500B7EE0B /* LTLayout */,
+				6A19DBEB24F0CE6C00B7EE0B /* LTTitleView */,
+				6A19DBEA24F0CE6200B7EE0B /* LTPageView */,
+				6A19DBE924F0CE3500B7EE0B /* LTExtension */,
 			);
 			path = Lib;
 			sourceTree = "<group>";
@@ -255,6 +311,7 @@
 			isa = PBXGroup;
 			children = (
 				6ABD2B9E20E679D500473B06 /* LTPageViewDemo.swift */,
+				6A19DBF124F0EAC000B7EE0B /* LTPageViewMoreDemo.swift */,
 				6ABD2B9F20E679D500473B06 /* LTPageViewTestOneVC.swift */,
 			);
 			path = Controller;
@@ -377,6 +434,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -522,14 +580,17 @@
 				6ABD2BA720E679D600473B06 /* LTPersonMainPageDemo.swift in Sources */,
 				6AB5A9FE2078C4D10065D6F7 /* LTHeaderView.swift in Sources */,
 				6A1A7B92208B072D002D3852 /* LTPageView.swift in Sources */,
+				6A19DBE824F0C92E00B7EE0B /* UIView+LTExtension.swift in Sources */,
 				6AB5A9FC2078C4D10065D6F7 /* LTSimpleTestOneVC.swift in Sources */,
 				6A1A7B8E208B072D002D3852 /* LTTableViewProtocal.swift in Sources */,
 				6A1A7B8B208B072D002D3852 /* LTDispatchQueue.swift in Sources */,
 				6A1A7B91208B072D002D3852 /* LTTableView.swift in Sources */,
+				6A19DBF224F0EAC000B7EE0B /* LTPageViewMoreDemo.swift in Sources */,
 				6AF10E8D21428F540007F889 /* LTCustomTitleView.swift in Sources */,
 				6ABD2BA520E679D600473B06 /* LTPageViewTestOneVC.swift in Sources */,
 				6ABD2BA420E679D600473B06 /* LTPageViewDemo.swift in Sources */,
 				6AB5A9F92078C4D10065D6F7 /* LTSimpleManagerDemo.swift in Sources */,
+				6A19DBF024F0E30900B7EE0B /* LTPageTitleItemView.swift in Sources */,
 				6AF10E8821428ED90007F889 /* LTLayout.swift in Sources */,
 				6A1A7B8F208B072D002D3852 /* LTVCExtension.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
@@ -686,7 +747,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -703,7 +764,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};

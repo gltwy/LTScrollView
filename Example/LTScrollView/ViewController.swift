@@ -16,6 +16,18 @@
 
 import UIKit
 
+private let glt_iphoneX = (UIScreen.main.bounds.height >= 812.0)
+
+let GLT_STATUSHEIGHT = UIApplication.shared.statusBarFrame.size.height
+
+let GLT_BOTTOMSPACE: CGFloat = glt_iphoneX ? 34 : 0
+
+let GLT_NAVCHEIGHT = GLT_STATUSHEIGHT + 44
+
+let GLT_MAINWIDTH = UIScreen.main.bounds.size.width
+
+let GLT_MAINWHEIGHT = UIScreen.main.bounds.size.height
+
 class ViewController: UIViewController, LTTableViewProtocal {
     
     private let datas = ["基础版-刷新控件在顶部\nLTSimple",
@@ -95,11 +107,11 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
 extension ViewController {
     
     private func textAttributes(string: String) -> NSAttributedString {
-        var attributes:[NSAttributedStringKey: Any] = [NSAttributedStringKey : Any]()
-        attributes[NSAttributedStringKey.font] = UIFont.systemFont(ofSize: 16)
+        var attributes:[NSAttributedString.Key: Any] = [NSAttributedString.Key : Any]()
+        attributes[NSAttributedString.Key.font] = UIFont.systemFont(ofSize: 16)
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineSpacing = 3.0
-        attributes[NSAttributedStringKey.paragraphStyle] = paragraphStyle
+        attributes[NSAttributedString.Key.paragraphStyle] = paragraphStyle
         return NSAttributedString(string: string, attributes: attributes)
     }
 }

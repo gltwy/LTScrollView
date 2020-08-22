@@ -21,7 +21,7 @@ import MJRefresh
 class LTSimpleManagerDemo: UIViewController {
     
     private lazy var titles: [String] = {
-        return ["热门", "精彩推荐", "科技控", "游戏"]
+        return ["标题View支持", "自定义", "请查看", "LTPageView具体使用"]
     }()
     
     private lazy var viewControllers: [UIViewController] = {
@@ -34,9 +34,10 @@ class LTSimpleManagerDemo: UIViewController {
     
     private lazy var layout: LTLayout = {
         let layout = LTLayout()
-        layout.bottomLineHeight = 4.0
-        layout.bottomLineCornerRadius = 2.0
-        /* 更多属性设置请参考 LTLayout 中 public 属性说明 */
+        layout.bottomLineHeight = 3.0
+        layout.titleFont = UIFont.systemFont(ofSize: 14)
+        layout.bottomLineCornerRadius = 1.5
+        /* 更多属性设置请参考 LTLayout 中 public 属性说明 , 自定义样式请参考LTPageView */
         return layout
     }()
     

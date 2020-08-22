@@ -23,8 +23,7 @@
     
     /* headerView配置 */
     @objc public func configHeaderView(_ handle: (() -> UIView?)?) {
-        guard let handle = handle else { return }
-        guard let headerView = handle() else { return }
+        guard let headerView = handle?() else { return }
         setupHeaderView(headerView: headerView)
     }
     
@@ -81,8 +80,6 @@
     private weak var currentViewController: UIViewController?
     private var pageView: LTPageView!
     private var currentSelectIndex: Int = 0
-    var isCustomTitleView: Bool = false
-    
     private var titleView: LTPageTitleView!
     
     private lazy var tableView: LTTableView = {
@@ -103,13 +100,7 @@
         self.layout = layout
         super.init(frame: frame)
         layout.isSinglePageView = true
-        if titleView != nil {
-            isCustomTitleView = true
-            self.titleView = titleView!
-        }else {
-            self.titleView = setupTitleView()
-        }
-        self.titleView.isCustomTitleView = isCustomTitleView
+        self.titleView = setupTitleView()
         self.titleView.delegate = self
         pageView = createPageViewConfig(currentViewController: currentViewController, layout: layout, titleView: titleView)
         createSubViews()
@@ -134,7 +125,7 @@
  extension LTSimpleManager {
     
     private func createPageViewConfig(currentViewController:UIViewController, layout: LTLayout, titleView: LTPageTitleView?) -> LTPageView {
-        let pageView = LTPageView(frame: self.bounds, currentViewController: currentViewController, viewControllers: viewControllers, titles: titles, layout:layout, titleView: titleView)
+        let pageView = LTPageView(frame: self.bounds, currentViewController: currentViewController, viewControllers: viewControllers, titles: titles, layout:layout)
         if titles.count != 0 {
             pageView.glt_createViewController(0)
         }
@@ -167,7 +158,7 @@
         guard let viewController = viewControllers.first else { return }
         viewController.beginAppearanceTransition(true, animated: true)
         contentScrollViewScrollConfig(viewController)
-        pageView.setupGetPageViewScrollView(pageView, titleView)
+        pageView.makeupPageView(pageView, titleView)
     }
     
     private func contentScrollViewScrollConfig(_ viewController: UIViewController) {

@@ -27,7 +27,7 @@ class LTPersonMainPageDemo: UIViewController {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.alpha = currentProgress
         navigationController?.navigationBar.barTintColor = UIColor.white
-        navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.font : UIFont.systemFont(ofSize: 18.0)]
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 18.0)]
     }
     
     override func viewWillDisappear(_ animated: Bool) {

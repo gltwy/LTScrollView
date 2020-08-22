@@ -7,38 +7,40 @@
 //
 
 import UIKit
-private let glt_iphoneX = (UIScreen.main.bounds.height >= 812.0)
+
 class LTPageViewDemo: UIViewController {
 
     
     private lazy var viewControllers: [UIViewController] = {
-        let oneVc = LTPageViewTestOneVC()
-        let twoVc = LTPageViewTestOneVC()
-        let threeVc = LTPageViewTestOneVC()
-        let fourVc = LTPageViewTestOneVC()
-        return [oneVc, twoVc, threeVc, fourVc]
+        let defaultVC = LTPageViewMoreDemo(style: .default)
+        let setVC = LTPageViewMoreDemo(style: .setStyle)
+        let setStyleOtherVC = LTPageViewMoreDemo(style: .setStyleOther)
+        let customStyleVC = LTPageViewMoreDemo(style: .customStyle)
+        return [defaultVC, setVC, setStyleOtherVC, customStyleVC]
     }()
     
     private lazy var titles: [String] = {
-        return ["热门", "推荐", "科技", "游戏"]
+        return ["默认", "系统样式1", "系统样式2", "自定义标题样式"]
+    }()
+    
+    private lazy var layoutItemWidths: [CGFloat] = {
+        return [50, 150, 100, 50]
     }()
     
     private lazy var layout: LTLayout = {
         let layout = LTLayout()
-        layout.sliderWidth = 50
-        layout.titleMargin = 10.0
-        // （屏幕宽度 - 标题总宽度 - 标题间距宽度） / 2 = 最左边以及最右边剩余
-        let lrMargin = (view.bounds.width - (CGFloat(titles.count) * layout.sliderWidth + CGFloat(titles.count - 1) * layout.titleMargin)) * 0.5
-        layout.lrMargin = lrMargin
-        layout.isAverage = true
+        layout.sliderHeight = 40
+        layout.lrMargin = 20
+        layout.titleMargin = 20
+        layout.bottomLineColor = .randomColor
+        layout.titleColor = .randomColor
+        layout.titleSelectColor = .randomColor
+        layout.titleViewBgColor = .white
         return layout
     }()
     
     private lazy var pageView: LTPageView = {
-        let statusBarH = UIApplication.shared.statusBarFrame.size.height
-        let Y: CGFloat = statusBarH + 44
-        let H: CGFloat = glt_iphoneX ? (view.bounds.height - Y - 34) : view.bounds.height - Y
-        let pageView = LTPageView(frame: CGRect(x: 0, y: Y, width: view.bounds.width, height: H), currentViewController: self, viewControllers: viewControllers, titles: titles, layout: layout)
+        let pageView = LTPageView(frame: CGRect(x: 0, y: GLT_NAVCHEIGHT, width: GLT_MAINWIDTH, height: GLT_MAINWHEIGHT - GLT_NAVCHEIGHT - GLT_BOTTOMSPACE), currentViewController: self, viewControllers: viewControllers, titles: titles, layout: layout)
         pageView.isClickScrollAnimation = true
         return pageView
     }()
@@ -49,11 +51,10 @@ class LTPageViewDemo: UIViewController {
         view.backgroundColor = UIColor.white
         automaticallyAdjustsScrollViewInsets = false
         view.addSubview(pageView)
-//        simpleManagerConfig()
-        
         pageView.didSelectIndexBlock = {(_, index) in
             print("pageView.didSelectIndexBlock", index)
         }
+        
     }
 
     override func didReceiveMemoryWarning() {

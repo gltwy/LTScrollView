@@ -45,6 +45,10 @@ class LTSimpleTestOneVC: UIViewController, LTTableViewProtocal {
             self.automaticallyAdjustsScrollViewInsets = false
         }
     }
+    
+    deinit {
+        print("释放了")
+    }
 }
 
 extension LTSimpleTestOneVC {
