@@ -16,13 +16,12 @@
 
 import UIKit
 import MJRefresh
-private let glt_iphoneX = (UIScreen.main.bounds.height >= 812.0)
+
 class LTPersonalMainPageTestVC: UIViewController, LTTableViewProtocal {
     
     private lazy var tableView: UITableView = {
-        let statusBarH = UIApplication.shared.statusBarFrame.size.height
         //这个44为导航高度
-        let Y: CGFloat = statusBarH + 44
+        let Y: CGFloat = kNavcHeight
         //这个44为切换条的高度
         let H: CGFloat = glt_iphoneX ? (view.bounds.height - Y - 44 - 34) : view.bounds.height - Y - 44
         let tableView = tableViewConfig(CGRect(x: 0, y: 44, width: view.bounds.width, height: H), self, self, nil)

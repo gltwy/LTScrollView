@@ -16,7 +16,6 @@
 
 import UIKit
 
-private let glt_iphoneX = (UIScreen.main.bounds.height >= 812.0)
 
 let GLT_STATUSHEIGHT = UIApplication.shared.statusBarFrame.size.height
 

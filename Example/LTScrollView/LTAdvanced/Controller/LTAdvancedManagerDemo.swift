@@ -15,7 +15,7 @@
 //
 
 import UIKit
-private let glt_iphoneX = (UIScreen.main.bounds.height >= 812.0)
+
 class LTAdvancedManagerDemo: UIViewController {
     
     private lazy var viewControllers: [UIViewController] = {
@@ -40,8 +40,7 @@ class LTAdvancedManagerDemo: UIViewController {
     }()
     
     private func managerReact() -> CGRect {
-        let statusBarH = UIApplication.shared.statusBarFrame.size.height
-        let Y: CGFloat = statusBarH + 44
+        let Y: CGFloat = kNavcHeight
         let H: CGFloat = glt_iphoneX ? (view.bounds.height - Y - 34) : view.bounds.height - Y
         return CGRect(x: 0, y: Y, width: view.bounds.width, height: H)
     }

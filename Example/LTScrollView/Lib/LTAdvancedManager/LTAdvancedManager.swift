@@ -8,7 +8,7 @@
 
 import UIKit
 
-@objc public protocol LTAdvancedScrollViewDelegate: class {
+@objc public protocol LTAdvancedScrollViewDelegate: AnyObject {
     @objc optional func glt_scrollViewOffsetY(_ offsetY: CGFloat)
 }
 
@@ -30,7 +30,8 @@ public class LTAdvancedManager: UIView {
     
     /* 代码设置滚动到第几个位置 */
     @objc public func scrollToIndex(index: Int)  {
-        pageView.scrollToIndex(index: index)
+        selectIndex = index
+        titleView.scrollToIndex(index: index)
     }
     
     private var kHeaderHeight: CGFloat = 0.0
@@ -43,6 +44,7 @@ public class LTAdvancedManager: UIView {
     private var pageView: LTPageView!
     private var layout: LTLayout
     var isCustomTitleView: Bool = false
+    private var selectIndex = 0
     
     private var titleView: LTPageTitleView!
     
@@ -65,6 +67,11 @@ public class LTAdvancedManager: UIView {
         pageView = setupPageViewConfig(currentViewController: currentViewController, layout: layout)
         setupSubViewsConfig(handle)
     }
+    
+    @objc public convenience init(frame: CGRect, viewControllers: [UIViewController], titles: [String], currentViewController:UIViewController, layout: LTLayout, headerViewHandle handle: () -> UIView) {
+        self.init(frame: frame, viewControllers: viewControllers, titles: titles, currentViewController: currentViewController, layout: layout, titleView: nil, headerViewHandle: handle)
+    }
+    
     
     deinit {
         deallocConfig()
@@ -93,6 +100,9 @@ extension LTAdvancedManager {
         DispatchQueue.main.after(0.01) {
             pageView.addSubview(self.titleView)
             pageView.makeupPageView(pageView, self.titleView)
+            if self.selectIndex > 0 {
+                self.scrollToIndex(index: self.selectIndex)
+            }
         }
         return pageView
     }

@@ -11,7 +11,7 @@ import UIKit
 public typealias PageViewDidSelectIndexBlock = (LTPageView, Int) -> Void
 public typealias AddChildViewControllerBlock = (Int, UIViewController) -> Void
 
-@objc public protocol LTPageViewDelegate: class {
+@objc public protocol LTPageViewDelegate: AnyObject {
     @objc optional func glt_scrollViewDidScroll(_ scrollView: UIScrollView)
     @objc optional func glt_scrollViewWillBeginDragging(_ scrollView: UIScrollView)
     @objc optional func glt_scrollViewWillBeginDecelerating(_ scrollView: UIScrollView)

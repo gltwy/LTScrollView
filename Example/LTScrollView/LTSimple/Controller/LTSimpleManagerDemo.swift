@@ -13,7 +13,17 @@
 //
 //  clone地址:  https://github.com/gltwy/LTScrollView.git
 //
-private let glt_iphoneX = (UIScreen.main.bounds.height >= 812.0)
+
+let kStatusBarHeight = UIApplication.shared.statusBarFrame.height
+//此处在项目开发中，注意iPhone mini的导航栏的真实高度，可以通过self.navigationController?.navigationBar.frame获取，这里不再列出
+let kNavcHeight: CGFloat = kStatusBarHeight > 44 ? 88 : 64
+var glt_iphoneX: Bool {
+    if #available(iOS 11.0, *) {
+        return UIApplication.shared.keyWindow?.safeAreaInsets.bottom ?? 0 > 0
+    } else {
+        return false
+    }
+}
 
 import UIKit
 import MJRefresh
@@ -76,6 +86,7 @@ class LTSimpleManagerDemo: UIViewController {
         self.automaticallyAdjustsScrollViewInsets = false
         view.addSubview(simpleManager)
         simpleManagerConfig()
+        
     }
     
     override func didReceiveMemoryWarning() {

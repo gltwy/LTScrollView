@@ -8,7 +8,7 @@
  
  import UIKit
  
- @objc public protocol LTSimpleScrollViewDelegate: class {
+ @objc public protocol LTSimpleScrollViewDelegate: AnyObject {
     @objc optional func glt_scrollViewDidScroll(_ scrollView: UIScrollView)
     @objc optional func glt_scrollViewWillBeginDragging(_ scrollView: UIScrollView)
     @objc optional func glt_scrollViewWillBeginDecelerating(_ scrollView: UIScrollView)

@@ -16,13 +16,13 @@
 
 import UIKit
 import MJRefresh
-private let glt_iphoneX = (UIScreen.main.bounds.height >= 812.0)
+
 class LTAdvancedTestOneVC: UIViewController, LTTableViewProtocal {
     
-    var count = 20;
+    var count = 20
     
     private lazy var tableView: UITableView = {
-        let H: CGFloat = glt_iphoneX ? (view.bounds.height - 64 - 24 - 34) : view.bounds.height  - 64
+        let H: CGFloat = glt_iphoneX ? (view.bounds.height - kNavcHeight - 34) : view.bounds.height  - 64
         let tableView = tableViewConfig(CGRect(x: 0, y: 0, width: view.bounds.width, height: H), self, self, nil)
         return tableView
     }()
@@ -38,6 +38,10 @@ class LTAdvancedTestOneVC: UIViewController, LTTableViewProtocal {
         } else {
             automaticallyAdjustsScrollViewInsets = false
         }
+    }
+    
+    deinit {
+        print("LTAdvancedTestOneVC - deinit")
     }
 }
 

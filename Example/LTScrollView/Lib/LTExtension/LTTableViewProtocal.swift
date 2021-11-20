@@ -48,6 +48,11 @@ public extension LTTableViewProtocal {
         let tableView = UITableView(frame: frame, style: style ?? .plain)
         tableView.delegate = delegate
         tableView.dataSource = dataSource
+        if #available(iOS 11.0, *) {
+            tableView.contentInsetAdjustmentBehavior = .never
+        } else {
+            // Fallback on earlier versions
+        }
         return tableView
     }
 }
