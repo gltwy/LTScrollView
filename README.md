@@ -164,7 +164,7 @@ self.glt_scrollView = self.tableView（self.scrollView / self.collectionView）
 ```
 
 ## Author
-- 微信公众号:  [技术大咖社](http://blog.csdn.net/glt_code/article/details/78576628)（如有任何疑问、均可在公众号内留言）
+- 微信公众号:  [技术大咖社](https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=Mzg4OTYwMTc3NQ==#wechat_redirect)（如有任何疑问、均可在公众号内留言）
 - -Blog:  https://blog.csdn.net/glt_code
 
 ## License
