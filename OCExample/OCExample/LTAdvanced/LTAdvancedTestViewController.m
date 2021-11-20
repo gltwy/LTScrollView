@@ -19,7 +19,7 @@
 #import "TestTableViewCell.h"
 #import "MJRefresh.h"
 
-#define kIPhoneX ([UIScreen mainScreen].bounds.size.height == 812.0)
+#define kIPhoneX ([UIScreen mainScreen].bounds.size.height >= 812.0)
 
 @interface LTAdvancedTestViewController () <UITableViewDelegate, UITableViewDataSource>
 

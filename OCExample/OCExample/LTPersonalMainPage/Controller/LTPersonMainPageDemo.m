@@ -20,7 +20,7 @@
 #import "LTScrollView-Swift.h"
 
 #define RGBA(r,g,b,a) [UIColor colorWithRed:(float)r/255.0f green:(float)g/255.0f blue:(float)b/255.0f alpha:a]
-#define kIPhoneX ([UIScreen mainScreen].bounds.size.height == 812.0)
+#define kIPhoneX ([UIScreen mainScreen].bounds.size.height >= 812.0)
 #define HeaderHeight 200.0f
 #define NavHeight ([UIApplication sharedApplication].statusBarFrame.size.height + 44)
 
@@ -120,7 +120,7 @@
     if (!_managerView) {
         CGFloat Y = 0.0;
         CGFloat H = kIPhoneX ? (self.view.bounds.size.height - Y - 34) : self.view.bounds.size.height - Y;
-        _managerView = [[LTSimpleManager alloc] initWithFrame:CGRectMake(0, Y, self.view.bounds.size.width, H) viewControllers:self.viewControllers titles:self.titles currentViewController:self layout:self.layout];
+        _managerView = [[LTSimpleManager alloc] initWithFrame:CGRectMake(0, Y, self.view.bounds.size.width, H) viewControllers:self.viewControllers titles:self.titles currentViewController:self layout:self.layout titleView:nil];
         
         /* 设置代理 监听滚动 */
         _managerView.delegate = self;

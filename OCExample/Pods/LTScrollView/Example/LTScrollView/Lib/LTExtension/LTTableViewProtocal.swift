@@ -14,14 +14,14 @@ public protocol LTTableViewProtocal { }
 public extension LTTableViewProtocal {
     
     private func configIdentifier(_ identifier: inout String) -> String {
-        var index = identifier.index(of: ".")
+        var index = identifier.firstIndex(of: ".")
         guard index != nil else { return identifier }
         index = identifier.index(index!, offsetBy: 1)
         identifier = String(identifier[index! ..< identifier.endIndex])
         return identifier
     }
     
-    public func registerCell(_ tableView: UITableView, _ cellCls: AnyClass) {
+    func registerCell(_ tableView: UITableView, _ cellCls: AnyClass) {
         var identifier = NSStringFromClass(cellCls)
         identifier = configIdentifier(&identifier)
         tableView.register(cellCls, forCellReuseIdentifier: identifier)
@@ -37,17 +37,22 @@ public extension LTTableViewProtocal {
         return cell as! T
     }
     
-    public func tableViewConfig(_ delegate: UITableViewDelegate, _ dataSource: UITableViewDataSource, _ style: UITableViewStyle?) -> UITableView  {
+    public func tableViewConfig(_ delegate: UITableViewDelegate, _ dataSource: UITableViewDataSource, _ style: UITableView.Style?) -> UITableView  {
         let tableView = UITableView(frame:  CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height), style: style ?? .plain)
         tableView.delegate = delegate
         tableView.dataSource = dataSource
         return tableView
     }
     
-    public func tableViewConfig(_ frame: CGRect ,_ delegate: UITableViewDelegate, _ dataSource: UITableViewDataSource, _ style: UITableViewStyle?) -> UITableView  {
+    public func tableViewConfig(_ frame: CGRect ,_ delegate: UITableViewDelegate, _ dataSource: UITableViewDataSource, _ style: UITableView.Style?) -> UITableView  {
         let tableView = UITableView(frame: frame, style: style ?? .plain)
         tableView.delegate = delegate
         tableView.dataSource = dataSource
+        if #available(iOS 11.0, *) {
+            tableView.contentInsetAdjustmentBehavior = .never
+        } else {
+            // Fallback on earlier versions
+        }
         return tableView
     }
 }

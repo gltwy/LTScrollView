@@ -20,7 +20,7 @@
 #import "LTHeaderView.h"
 #import "LTScrollView-Swift.h"
 
-#define kIPhoneX ([UIScreen mainScreen].bounds.size.height == 812.0)
+#define kIPhoneX ([UIScreen mainScreen].bounds.size.height >= 812.0)
 #define RGBA(r,g,b,a) [UIColor colorWithRed:(float)r/255.0f green:(float)g/255.0f blue:(float)b/255.0f alpha:a]
 
 @interface LTAdvancedManagerDemo () <LTAdvancedScrollViewDelegate>

@@ -19,7 +19,7 @@
 #import "MJRefresh.h"
 #import "LTScrollView-Swift.h"
 
-#define kIPhoneX ([UIScreen mainScreen].bounds.size.height == 812.0)
+#define kIPhoneX ([UIScreen mainScreen].bounds.size.height >= 812.0)
 
 @interface LTSimpleTestOneVC () <UITableViewDelegate, UITableViewDataSource>
 
