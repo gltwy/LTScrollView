@@ -35,7 +35,7 @@ target 'TargetName' do
 #注意此处需要添加use_frameworks!
 use_frameworks!
 
-pod 'LTScrollView', '~> 0.2.0'
+pod 'LTScrollView', '~> 0.4.0'
 end
 ```
 
@@ -116,6 +116,15 @@ self.glt_scrollView = self.tableView（self.scrollView / self.collectionView）
 
 ## 更新说明
 
+2021.11.20 - 0.4.0
+```objective-c
+1. 完美适配iOS15
+2. 自定义标题功能完善、使用起来更加方便
+3. 修复已知问题
+
+建议所有用户都升级～
+```
+
 2020.08.22 - 0.3.0
 ```objective-c
 1. 兼容Swift5
@@ -152,7 +161,7 @@ self.glt_scrollView = self.tableView（self.scrollView / self.collectionView）
 ```
 
 ## Author
-- Email:  1282990794@qq.com
+- 微信公众号:  技术大咖社（如有任何疑问、均可在公众号内留言）
 - -Blog:  https://blog.csdn.net/glt_code
 
 ## License
