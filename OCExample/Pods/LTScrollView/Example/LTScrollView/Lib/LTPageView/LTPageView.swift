@@ -21,7 +21,7 @@ public typealias AddChildViewControllerBlock = (Int, UIViewController) -> Void
 }
 
 //MARK: LTPageView相关的接口见此处
-@objc public protocol LTPageViewHeaders: NSObjectProtocol {
+@objc protocol LTPageViewHeaders: NSObjectProtocol {
     
     //MARK: 构造方法
     @objc init(frame: CGRect, currentViewController: UIViewController, viewControllers:[UIViewController], titles: [String], layout: LTLayout)
