@@ -5,7 +5,7 @@
 //  Created by 1282990794@qq.com on 02/03/2018.
 //  Copyright (c) 2018 1282990794@qq.com. All rights reserved.
 //
-//  如有疑问，欢迎联系本人QQ: 1282990794
+//  如有疑问，请搜索并关注微信公众号"技术大咖社"并留言即可
 //
 //  ScrollView嵌套ScrolloView解决方案（初级、进阶)， 支持OC/Swift
 //

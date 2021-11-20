@@ -6,7 +6,7 @@
 //  Copyright © 2017年 LT. All rights reserved.
 //
 //
-//  如有疑问，欢迎联系本人QQ: 1282990794
+//  如有疑问，请搜索并关注微信公众号"技术大咖社"并留言即可
 //
 //  ScrollView嵌套ScrolloView解决方案（初级、进阶)， 支持OC/Swift
 //
