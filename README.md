@@ -35,7 +35,7 @@ target 'TargetName' do
 #注意此处需要添加use_frameworks!
 use_frameworks!
 
-pod 'LTScrollView', '~> 0.2.0'
+pod 'LTScrollView', '~> 0.4.0'
 end
 ```
 
