@@ -98,7 +98,7 @@
 
 - (UITableView *)tableView {
     if (!_tableView) {
-        CGFloat H = kIPhoneX ? (self.view.bounds.size.height - 64 - 24 - 34) : self.view.bounds.size.height - 64;
+        CGFloat H = kIPhoneX ? (self.view.bounds.size.height - 64 - 24 - 34 - 44) : self.view.bounds.size.height - 64 - 44;
         _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, H) style:UITableViewStylePlain];
         _tableView.delegate = self;
         _tableView.dataSource = self;

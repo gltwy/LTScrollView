@@ -177,27 +177,4 @@
     }
 }
 
-////注意layoutItemWidths使用说明
-//private func customStyle(itemView: LTPageTitleItemView, index: Int) {
-
-//        //富文本选中以后的处理可以根据选中index位置自己设置
-//        let itemTitle = itemView.titleLabel?.text ?? ""
-//        let titleLabel = UILabel.init(frame: CGRect.init(x: 0, y: 0, width: itemView.glt_width, height: itemView.glt_height))
-//        titleLabel.font = UIFont.systemFont(ofSize: 10)
-//        titleLabel.textAlignment = .center
-//        let attr = NSMutableAttributedString(string: itemTitle)
-//        attr.addAttributes([NSAttributedString.Key.font : UIFont.systemFont(ofSize: 10)], range: (itemTitle as NSString).range(of: "我是"))
-//        attr.addAttributes([NSAttributedString.Key.font : UIFont.systemFont(ofSize: 14), NSAttributedString.Key.foregroundColor : UIColor.randomColor], range: (itemTitle as NSString).range(of: "富文本"))
-//        titleLabel.attributedText = attr
-//        itemView.addSubview(titleLabel)
-//        itemView.setTitle("", for: .normal)
-//        break
-//    case 3:
-//        itemView.titleEdgeInsets = UIEdgeInsets.init(top: 0, left: 0, bottom: -10, right: 0)
-//        break
-//    default:
-//        break
-//    }
-//}
-
 @end
