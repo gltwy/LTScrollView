@@ -35,7 +35,7 @@ target 'TargetName' do
 #注意此处需要添加use_frameworks!
 use_frameworks!
 
-pod 'LTScrollView', '~> 0.4.0'
+pod 'LTScrollView', '~> 0.4.2'
 end
 ```
 
@@ -116,11 +116,13 @@ self.glt_scrollView = self.tableView（self.scrollView / self.collectionView）
 
 ## 更新说明
 
-2021.11.20 - 0.4.0
+2021.11.20 - 0.4.1
 ```objective-c
 1. 完美适配iOS15
-2. 自定义标题功能完善、使用起来更加方便
-3. 修复已知问题
+2. 修复OC不能自定义标题的Bug
+3. 修复进阶版无法滚动到指定位置的Bug
+4. 完善OC Demo的使用示例
+5. 修复部分开发者使用中反馈的问题
 
 建议所有用户都升级～
 ```
