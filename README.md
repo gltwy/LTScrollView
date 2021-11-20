@@ -32,9 +32,10 @@ source 'https://github.com/CocoaPods/Specs.git'
 platform :ios, '8.0'
 
 target 'TargetName' do
-#注意此处需要添加use_frameworks!
+# 注意此处需要添加use_frameworks!
 use_frameworks!
 
+# 当前最新版本 - 2021-11-20
 pod 'LTScrollView', '~> 0.4.2'
 end
 ```
@@ -116,7 +117,7 @@ self.glt_scrollView = self.tableView（self.scrollView / self.collectionView）
 
 ## 更新说明
 
-2021.11.20 - 0.4.1
+2021.11.20 - 0.4.2
 ```objective-c
 1. 完美适配iOS15
 2. 修复OC不能自定义标题的Bug
