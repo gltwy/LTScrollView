@@ -26,6 +26,7 @@
 		6ABD2BB820E7BDC400473B06 /* LTPageViewDemo.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ABD2BB420E7BDC400473B06 /* LTPageViewDemo.m */; };
 		6ABD2BB920E7BDC400473B06 /* LTPageViewTestOneVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ABD2BB720E7BDC400473B06 /* LTPageViewTestOneVC.m */; };
 		6ABD2BBB20E7BDE000473B06 /* test.png in Resources */ = {isa = PBXBuildFile; fileRef = 6ABD2BBA20E7BDE000473B06 /* test.png */; };
+		6AFFAA9E2748C5170003CC0B /* LTPageViewMoreDemo.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AFFAA9D2748C5170003CC0B /* LTPageViewMoreDemo.m */; };
 		78B8F26710CB23F41972961E /* Pods_OCExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C17311F097F65BC65B3D978 /* Pods_OCExample.framework */; };
 /* End PBXBuildFile section */
 
@@ -90,6 +91,8 @@
 		6ABD2BB620E7BDC400473B06 /* LTPageViewDemo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTPageViewDemo.h; sourceTree = "<group>"; };
 		6ABD2BB720E7BDC400473B06 /* LTPageViewTestOneVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LTPageViewTestOneVC.m; sourceTree = "<group>"; };
 		6ABD2BBA20E7BDE000473B06 /* test.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test.png; sourceTree = "<group>"; };
+		6AFFAA9C2748C5170003CC0B /* LTPageViewMoreDemo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTPageViewMoreDemo.h; sourceTree = "<group>"; };
+		6AFFAA9D2748C5170003CC0B /* LTPageViewMoreDemo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LTPageViewMoreDemo.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -267,6 +270,8 @@
 				6ABD2BB420E7BDC400473B06 /* LTPageViewDemo.m */,
 				6ABD2BB520E7BDC400473B06 /* LTPageViewTestOneVC.h */,
 				6ABD2BB720E7BDC400473B06 /* LTPageViewTestOneVC.m */,
+				6AFFAA9C2748C5170003CC0B /* LTPageViewMoreDemo.h */,
+				6AFFAA9D2748C5170003CC0B /* LTPageViewMoreDemo.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -452,6 +457,7 @@
 				5C7C60442088311F005FF7C8 /* LTAdvancedManagerDemo.m in Sources */,
 				5C7C604D20883641005FF7C8 /* LTHeaderView.m in Sources */,
 				5C1F2E902087257A002F9B70 /* TestTableViewCell.m in Sources */,
+				6AFFAA9E2748C5170003CC0B /* LTPageViewMoreDemo.m in Sources */,
 				5C1F2E9420872772002F9B70 /* LTSimpleManagerDemo.m in Sources */,
 				5C241E6820871B410022F9CA /* ViewController.m in Sources */,
 				6ABD2BB920E7BDC400473B06 /* LTPageViewTestOneVC.m in Sources */,

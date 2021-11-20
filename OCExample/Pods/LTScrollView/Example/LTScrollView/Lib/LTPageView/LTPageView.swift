@@ -21,7 +21,7 @@ public typealias AddChildViewControllerBlock = (Int, UIViewController) -> Void
 }
 
 //MARK: LTPageView相关的接口见此处
-@objc protocol LTPageViewHeaders {
+@objc public protocol LTPageViewHeaders: NSObjectProtocol {
     
     //MARK: 构造方法
     @objc init(frame: CGRect, currentViewController: UIViewController, viewControllers:[UIViewController], titles: [String], layout: LTLayout)
@@ -76,7 +76,7 @@ public class LTPageView: UIView, LTPageViewHeaders {
     @objc public weak var delegate: LTPageViewDelegate?
     
     //自定义子view
-    func customLayoutItems(handle: (([LTPageTitleItemView], LTPageView) -> Void)?) {
+    @objc public func customLayoutItems(handle: (([LTPageTitleItemView], LTPageView) -> Void)?) {
         handle?(titleView.allItemViews(), self)
     }
     

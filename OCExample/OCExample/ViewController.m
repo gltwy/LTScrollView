@@ -43,10 +43,10 @@
     }
     [self.view addSubview:self.tableView];
     
-    self.titles = @[@"基础版-刷新控件在顶部\nLTSimple",
+    self.titles = @[@"基础版-刷新控件在顶部(有更新！)\nLTSimple",
                     @"进阶版-刷新控件在中间\nLTAdvanced",
                     @"下拉放大-导航渐变\nLTPersonalMainPage",
-                    @"切换视图\nLTPageView"];
+                    @"切换视图(重大更新！！！)\nLTPageView"];
     self.title = @"首页";
     
 }

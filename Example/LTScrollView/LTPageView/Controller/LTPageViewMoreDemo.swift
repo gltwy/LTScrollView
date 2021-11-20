@@ -117,7 +117,6 @@ extension LTPageViewMoreDemo {
         let lrMargin = (view.bounds.width - (CGFloat(titles.count) * layout.sliderWidth + CGFloat(titles.count - 1) * layout.titleMargin)) * 0.5
         layout.lrMargin = lrMargin
         layout.isAverage = true
-        layout.sliderWidth = 15
         
         var viewControllers = [UIViewController]()
         for _ in titles {

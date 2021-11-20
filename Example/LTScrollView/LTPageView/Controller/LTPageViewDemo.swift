@@ -23,10 +23,6 @@ class LTPageViewDemo: UIViewController {
         return ["默认", "系统样式1", "系统样式2", "自定义标题样式"]
     }()
     
-    private lazy var layoutItemWidths: [CGFloat] = {
-        return [50, 150, 100, 50]
-    }()
-    
     private lazy var layout: LTLayout = {
         let layout = LTLayout()
         layout.sliderHeight = 40

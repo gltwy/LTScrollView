@@ -106,6 +106,10 @@
         createSubViews()
     }
     
+    @objc public convenience init(frame: CGRect, viewControllers: [UIViewController], titles: [String], currentViewController:UIViewController, layout: LTLayout) {
+        self.init(frame: frame, viewControllers: viewControllers, titles: titles, currentViewController: currentViewController, layout: layout, titleView: nil)
+    }
+    
     required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

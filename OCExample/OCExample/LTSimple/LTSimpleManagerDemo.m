@@ -94,7 +94,7 @@
     if (!_managerView) {
         CGFloat Y = kIPhoneX ? 64 + 24.0 : 64.0;
         CGFloat H = kIPhoneX ? (self.view.bounds.size.height - Y - 34) : self.view.bounds.size.height - Y;
-        _managerView = [[LTSimpleManager alloc] initWithFrame:CGRectMake(0, Y, self.view.bounds.size.width, H) viewControllers:self.viewControllers titles:self.titles currentViewController:self layout:self.layout titleView:nil];
+        _managerView = [[LTSimpleManager alloc] initWithFrame:CGRectMake(0, Y, self.view.bounds.size.width, H) viewControllers:self.viewControllers titles:self.titles currentViewController:self layout:self.layout];
         
         /* 设置代理 监听滚动 */
         _managerView.delegate = self;
@@ -118,6 +118,8 @@
         _layout = [[LTLayout alloc] init];
         _layout.bottomLineHeight = 4.0;
         _layout.bottomLineCornerRadius = 2.0;
+        _layout.lrMargin = 30;
+        _layout.titleFont = [UIFont systemFontOfSize:12];
         /* 更多属性设置请参考 LTLayout 中 public 属性说明 */
     }
     return _layout;
@@ -126,7 +128,7 @@
 
 - (NSArray <NSString *> *)titles {
     if (!_titles) {
-        _titles = @[@"热门", @"精彩推荐", @"科技控", @"游戏"];
+        _titles = @[@"此处标题View支持", @"自定义", @"查看", @"LTPageView具体使用"];
     }
     return _titles;
 }

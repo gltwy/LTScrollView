@@ -47,6 +47,7 @@ class LTSimpleManagerDemo: UIViewController {
         layout.bottomLineHeight = 2.0
         layout.titleFont = UIFont.systemFont(ofSize: 13)
         layout.bottomLineCornerRadius = 1.0
+        layout.lrMargin = 20;
         /* 更多属性设置请参考 LTLayout 中 public 属性说明 , 自定义样式请参考LTPageView */
         return layout
     }()

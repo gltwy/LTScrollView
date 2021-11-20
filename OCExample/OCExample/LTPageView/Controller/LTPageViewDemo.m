@@ -17,6 +17,7 @@
 #import "LTPageViewDemo.h"
 #import "LTScrollView-Swift.h"
 #import "LTPageViewTestOneVC.h"
+#import "LTPageViewMoreDemo.h"
 
 #define kIPhoneX ([UIScreen mainScreen].bounds.size.height >= 812.0)
 #define RGBA(r,g,b,a) [UIColor colorWithRed:(float)r/255.0f green:(float)g/255.0f blue:(float)b/255.0f alpha:a]
@@ -59,12 +60,9 @@
 -(LTLayout *)layout {
     if (!_layout) {
         _layout = [[LTLayout alloc] init];
-        _layout.sliderWidth = 50;
-        _layout.titleMargin = 10.0;
-        // （屏幕宽度 - 标题总宽度 - 标题间距宽度） / 2 = 最左边以及最右边剩余
-        CGFloat lrMargin = (self.view.bounds.size.width - (self.titles.count * _layout.sliderWidth + (self.titles.count - 1) * _layout.titleMargin)) * 0.5;
-        _layout.lrMargin = lrMargin;
-        _layout.isAverage = true;
+        _layout.sliderWidth = 40;
+        _layout.titleMargin = 20.0;
+        _layout.lrMargin = 20;
     }
     return _layout;
 }
@@ -72,7 +70,7 @@
 
 - (NSArray <NSString *> *)titles {
     if (!_titles) {
-        _titles = @[@"热门", @"精彩", @"科技", @"游戏"];
+        _titles = @[@"默认", @"系统样式1", @"系统样式2", @"自定义标题样式"];
     }
     return _titles;
 }
@@ -89,10 +87,7 @@
 -(NSArray <UIViewController *> *)setupViewControllers {
     NSMutableArray <UIViewController *> *testVCS = [NSMutableArray arrayWithCapacity:0];
     [self.titles enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger index, BOOL * _Nonnull stop) {
-        LTPageViewTestOneVC *testVC = [[LTPageViewTestOneVC alloc] init];
-        if (index == 1) {
-            testVC.totalCount = 5;
-        }
+        LTPageViewMoreDemo *testVC = [[LTPageViewMoreDemo alloc] initWithStyle:index];
         [testVCS addObject:testVC];
     }];
     return testVCS.copy;
