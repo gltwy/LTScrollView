@@ -70,6 +70,14 @@
     
     /* LTSimple的scrollView上下滑动监听 */
     @objc public weak var delegate: LTSimpleScrollViewDelegate?
+
+    /** 如果LTPageView 与 LTSimple结合使用 需要将它设置为true */
+     @objc public var isSimpeMix = false {
+         didSet {
+             pageView.isSimpeMix = isSimpeMix
+             tableView.isSimpeMix = isSimpeMix
+         }
+     }
     
     private var contentTableView: UIScrollView?
     private var kHeaderHeight: CGFloat = 0.0
@@ -132,6 +140,9 @@
         let pageView = LTPageView(frame: self.bounds, currentViewController: currentViewController, viewControllers: viewControllers, titles: titles, layout:layout)
         if titles.count != 0 {
             pageView.glt_createViewController(0)
+        }
+        pageView.gestureRecognizerEnabledHandle = {[weak self] isEnabled in
+            self?.tableView.isEnabled = isEnabled
         }
         return pageView
     }

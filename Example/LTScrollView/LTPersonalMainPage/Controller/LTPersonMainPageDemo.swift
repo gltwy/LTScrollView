@@ -74,7 +74,7 @@ class LTPersonMainPageDemo: UIViewController {
         simpleManager.delegate = self
         
         /* 设置悬停位置 */
-        simpleManager.hoverY = kNavcHeight
+        simpleManager.hoverY = GLT_NAVCHEIGHT
         
         return simpleManager
     }()
@@ -139,7 +139,7 @@ extension LTPersonMainPageDemo: LTSimpleScrollViewDelegate {
             headerImageViewY = 0
             headerImageViewH = headerHeight
             
-            let adjustHeight: CGFloat = headerHeight - kNavcHeight
+            let adjustHeight: CGFloat = headerHeight - GLT_NAVCHEIGHT
             let progress = 1 - (offsetY / adjustHeight)
             //设置状态栏
             navigationController?.navigationBar.barStyle = progress > 0.5 ? .black : .default

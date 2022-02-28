@@ -36,11 +36,17 @@ class LTPageViewDemo: UIViewController {
     }()
     
     private lazy var pageView: LTPageView = {
-        let pageView = LTPageView(frame: CGRect(x: 0, y: GLT_NAVCHEIGHT, width: GLT_MAINWIDTH, height: GLT_MAINWHEIGHT - GLT_NAVCHEIGHT - GLT_BOTTOMSPACE), currentViewController: self, viewControllers: viewControllers, titles: titles, layout: layout)
+        let pageView = LTPageView(frame: CGRect(x: 0, y: self.isFromMix ? 0 : GLT_NAVCHEIGHT, width: GLT_MAINWIDTH, height: GLT_MAINWHEIGHT - GLT_NAVCHEIGHT - GLT_BOTTOMSPACE), currentViewController: self, viewControllers: viewControllers, titles: titles, layout: layout)
         pageView.isClickScrollAnimation = true
         return pageView
     }()
     
+    private lazy var isFromMix: Bool = false
+    
+    init(isFromMix: Bool = false) {
+        super.init(nibName: nil, bundle: nil)
+        self.isFromMix = isFromMix
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,20 +59,7 @@ class LTPageViewDemo: UIViewController {
         
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

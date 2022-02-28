@@ -80,14 +80,23 @@ public class LTPageView: UIView, LTPageViewHeaders {
         handle?(titleView.allItemViews(), self)
     }
     
+    /** 如果LTPageView 与 LTSimple结合使用 需要将它设置为true */
+    var isSimpeMix = false {
+         didSet {
+             scrollView.isSimpeMix = isSimpeMix
+         }
+     }
+    
+    @objc public var gestureRecognizerEnabledHandle: ((Bool) -> Void)?
+    
     private lazy var titleView: LTPageTitleView = {
         let titleView = LTPageTitleView(frame: CGRect(x: 0, y: 0, width: glt_width, height: layout.sliderHeight), titles: titles, layout: layout)
         titleView.backgroundColor = layout.titleViewBgColor
         return titleView
     }()
     
-    private lazy var scrollView: UIScrollView = {
-        let scrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: glt_width, height: glt_height))
+    private lazy var scrollView: LTPageScrollView = {
+        let scrollView = LTPageScrollView(frame: CGRect(x: 0, y: 0, width: glt_width, height: glt_height))
         scrollView.contentSize = CGSize(width: glt_width * CGFloat(self.titles.count), height: 0)
         scrollView.isPagingEnabled = true
         scrollView.delegate = self
@@ -96,6 +105,9 @@ public class LTPageView: UIView, LTPageViewHeaders {
         scrollView.showsHorizontalScrollIndicator = layout.showsHorizontalScrollIndicator
         if #available(iOS 11.0, *) {
             scrollView.contentInsetAdjustmentBehavior = .never
+        }
+        scrollView.gestureRecognizerEnabledHandle = {[weak self] in
+            self?.gestureRecognizerEnabledHandle?($0)
         }
         return scrollView
     }()

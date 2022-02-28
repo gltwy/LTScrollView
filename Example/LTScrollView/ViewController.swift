@@ -16,12 +16,19 @@
 
 import UIKit
 
+var glt_iphoneX: Bool {
+    if #available(iOS 11.0, *) {
+        return UIApplication.shared.keyWindow?.safeAreaInsets.bottom ?? 0 > 0
+    } else {
+        return false
+    }
+}
 
 let GLT_STATUSHEIGHT = UIApplication.shared.statusBarFrame.size.height
 
 let GLT_BOTTOMSPACE: CGFloat = glt_iphoneX ? 34 : 0
 
-let GLT_NAVCHEIGHT = GLT_STATUSHEIGHT + 44
+let GLT_NAVCHEIGHT: CGFloat = GLT_STATUSHEIGHT >= 44 ? 88 : 64
 
 let GLT_MAINWIDTH = UIScreen.main.bounds.size.width
 
@@ -32,7 +39,8 @@ class ViewController: UIViewController, LTTableViewProtocal {
     private let datas = ["基础版-刷新控件在顶部(有更新！)\nLTSimple",
                          "进阶版-刷新控件在中间\nLTAdvanced",
                          "下拉放大-导航渐变\nLTPersonalMainPage",
-                         "切换视图(重大更新！！！)\nLTPageView"]
+                         "切换视图(重大更新！！！)\nLTPageView",
+                         "混合视图-上下左右滑动\nLTMixPageView"]
     
     private lazy var tableView: UITableView = {
         let tableView: UITableView = tableViewConfig(self, self, nil)
@@ -92,6 +100,9 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
             break
         case 3:
             pushVc(LTPageViewDemo(), index: indexPath.row)
+            break
+        case 4:
+            pushVc(LTMixPageViewDemo(), index: indexPath.row)
             break
         default:break
         }

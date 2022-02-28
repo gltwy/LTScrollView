@@ -1,30 +1,22 @@
-//  LTSimpleTestOneVC.swift
-//  LTScrollView
 //
-//  Created by 高刘通 on 2017/11/27.
-//  Copyright © 2017年 LT. All rights reserved.
+//  LTMixPageSimpleChildViewController.swift
+//  LTScrollView_Example
 //
-//
-//  如有疑问，请搜索并关注微信公众号"技术大咖社"并留言即可
-//
-//  ScrollView嵌套ScrolloView解决方案（初级、进阶)， 支持OC/Swift
-//
-//  github地址: https://github.com/gltwy/LTScrollView
-//
-//  clone地址:  https://github.com/gltwy/LTScrollView.git
+//  Created by gaoliutong on 2022/2/16.
+//  Copyright © 2022 CocoaPods. All rights reserved.
 //
 
 import UIKit
 import MJRefresh
 
-class LTPersonalMainPageTestVC: UIViewController, LTTableViewProtocal {
+class LTMixPageSimpleChildViewController: UIViewController, LTTableViewProtocal {
     
     private lazy var tableView: UITableView = {
-        //这个44为导航高度
-        let Y: CGFloat = GLT_NAVCHEIGHT
-        //这个44为切换条的高度
-        let H: CGFloat = glt_iphoneX ? (view.bounds.height - Y - 44 - 34) : view.bounds.height - Y - 44
-        let tableView = tableViewConfig(CGRect(x: 0, y: 44, width: view.bounds.width, height: H), self, self, nil)
+//         如果设置了layout.isHovered = false不悬停 此处Y的值应该从0开始 高度再加上sliderHeight 即：
+//        let H: CGFloat = glt_iphoneX ? (view.bounds.height - 64 - 24 - 34) : view.bounds.height - 64
+//        let tableView = tableViewConfig(CGRect(x: 0, y:0, width: view.bounds.width, height: H), self, self, nil)
+        let H: CGFloat = view.bounds.height - GLT_NAVCHEIGHT - 44 - 44 - GLT_BOTTOMSPACE
+        let tableView = tableViewConfig(CGRect(x: 0, y:44, width: view.bounds.width, height: H), self, self, nil)
         return tableView
     }()
     
@@ -40,9 +32,13 @@ class LTPersonalMainPageTestVC: UIViewController, LTTableViewProtocal {
             self.automaticallyAdjustsScrollViewInsets = false
         }
     }
+    
+    deinit {
+        print("释放了")
+    }
 }
 
-extension LTPersonalMainPageTestVC {
+extension LTMixPageSimpleChildViewController {
     fileprivate func reftreshData()  {
         self.tableView.mj_footer = MJRefreshBackNormalFooter {[weak self] in
             DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: {
@@ -54,7 +50,7 @@ extension LTPersonalMainPageTestVC {
 }
 
 
-extension LTPersonalMainPageTestVC: UITableViewDelegate, UITableViewDataSource {
+extension LTMixPageSimpleChildViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 30

@@ -22,7 +22,7 @@ class LTAdvancedTestOneVC: UIViewController, LTTableViewProtocal {
     var count = 20
     
     private lazy var tableView: UITableView = {
-        let H: CGFloat = glt_iphoneX ? (view.bounds.height - kNavcHeight - 34) : view.bounds.height  - 64
+        let H: CGFloat = glt_iphoneX ? (view.bounds.height - GLT_NAVCHEIGHT - 34) : view.bounds.height  - 64
         let tableView = tableViewConfig(CGRect(x: 0, y: 0, width: view.bounds.width, height: H), self, self, nil)
         return tableView
     }()

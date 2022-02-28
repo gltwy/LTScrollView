@@ -1,43 +1,24 @@
 //
-//  LTSimpleManagerDemo.swift
-//  LTScrollView
+//  LTMixPageSimpleDemo.swift
+//  LTScrollView_Example
 //
-//  Created by 高刘通 on 2018/2/3.
-//  Copyright © 2018年 LT. All rights reserved.
+//  Created by gaoliutong on 2022/2/16.
+//  Copyright © 2022 CocoaPods. All rights reserved.
 //
-//  如有疑问，请搜索并关注微信公众号"技术大咖社"并留言即可
-//
-//  ScrollView嵌套ScrolloView解决方案（初级、进阶)， 支持OC/Swift
-//
-//  github地址: https://github.com/gltwy/LTScrollView
-//
-//  clone地址:  https://github.com/gltwy/LTScrollView.git
-//
-
-//let GLT_STATUSHEIGHT = UIApplication.shared.statusBarFrame.height
-////此处在项目开发中，注意iPhone mini的导航栏的真实高度，可以通过self.navigationController?.navigationBar.frame获取，这里不再列出
-//let GLT_NAVCHEIGHT: CGFloat = GLT_STATUSHEIGHT >= 44 ? 88 : 64
-//var glt_iphoneX: Bool {
-//    if #available(iOS 11.0, *) {
-//        return UIApplication.shared.keyWindow?.safeAreaInsets.bottom ?? 0 > 0
-//    } else {
-//        return false
-//    }
-//}
 
 import UIKit
 import MJRefresh
 
-class LTSimpleManagerDemo: UIViewController {
+class LTMixPageSimpleDemo: UIViewController {
     
     private lazy var titles: [String] = {
-        return ["此处标题View支持", "自定义", "查看", "LTPageView具体使用"]
+        return ["必须", "设置isSimpeMix", "属性为true", "否则联动无效"]
     }()
     
     private lazy var viewControllers: [UIViewController] = {
         var vcs = [UIViewController]()
         for _ in titles {
-            vcs.append(LTSimpleTestOneVC())
+            vcs.append(LTMixPageSimpleChildViewController())
         }
         return vcs
     }()
@@ -53,10 +34,8 @@ class LTSimpleManagerDemo: UIViewController {
     }()
     
     private func managerReact() -> CGRect {
-        let statusBarH = UIApplication.shared.statusBarFrame.size.height
-        let Y: CGFloat = statusBarH + 44
-        let H: CGFloat = glt_iphoneX ? (view.bounds.height - Y - 34) : view.bounds.height - Y
-        return CGRect(x: 0, y: Y, width: view.bounds.width, height: H)
+        let H: CGFloat = view.bounds.height - GLT_NAVCHEIGHT - GLT_BOTTOMSPACE - 44
+        return CGRect(x: 0, y: 0, width: view.bounds.width, height: H)
     }
     
     /*
@@ -71,12 +50,11 @@ class LTSimpleManagerDemo: UIViewController {
      }()
     */
  
-    
-
     private lazy var simpleManager: LTSimpleManager = {
         let simpleManager = LTSimpleManager(frame: managerReact(), viewControllers: viewControllers, titles: titles, currentViewController: self, layout: layout)
         /* 设置代理 监听滚动 */
         simpleManager.delegate = self
+        simpleManager.isSimpeMix = true
         return simpleManager
     }()
     
@@ -87,7 +65,6 @@ class LTSimpleManagerDemo: UIViewController {
         self.automaticallyAdjustsScrollViewInsets = false
         view.addSubview(simpleManager)
         simpleManagerConfig()
-        
     }
     
     override func didReceiveMemoryWarning() {
@@ -96,12 +73,12 @@ class LTSimpleManagerDemo: UIViewController {
     }
     
     deinit {
-        print("LTSimpleManagerDemo < --> deinit")
+        print("LTMixPageSimpleDemo < --> deinit")
     }
 }
 
 
-extension LTSimpleManagerDemo {
+extension LTMixPageSimpleDemo {
     
     //MARK: 具体使用请参考以下
     private func simpleManagerConfig() {
@@ -125,7 +102,7 @@ extension LTSimpleManagerDemo {
     }
 }
 
-extension LTSimpleManagerDemo: LTSimpleScrollViewDelegate {
+extension LTMixPageSimpleDemo: LTSimpleScrollViewDelegate {
     
     //MARK: 滚动代理方法
     func glt_scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -144,7 +121,7 @@ extension LTSimpleManagerDemo: LTSimpleScrollViewDelegate {
     }
 }
 
-extension LTSimpleManagerDemo {
+extension LTMixPageSimpleDemo {
     private func testLabel() -> UILabel {
         let headerView = UILabel(frame: CGRect(x: 0, y: 0, width: self.view.bounds.width, height: 180))
         headerView.backgroundColor = UIColor.red

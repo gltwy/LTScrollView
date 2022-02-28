@@ -40,7 +40,7 @@ class LTAdvancedManagerDemo: UIViewController {
     }()
     
     private func managerReact() -> CGRect {
-        let Y: CGFloat = kNavcHeight
+        let Y: CGFloat = GLT_NAVCHEIGHT
         let H: CGFloat = glt_iphoneX ? (view.bounds.height - Y - 34) : view.bounds.height - Y
         return CGRect(x: 0, y: Y, width: view.bounds.width, height: H)
     }
