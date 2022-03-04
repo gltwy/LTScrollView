@@ -12,7 +12,7 @@ import MJRefresh
 class LTMixPageSimpleDemo: UIViewController {
     
     private lazy var titles: [String] = {
-        return ["必须", "设置isSimpeMix", "属性为true", "否则联动无效"]
+        return ["必须", "设置LTSimpleManager", "内isSimpeMix", "属性为true", "否则联动无效"]
     }()
     
     private lazy var viewControllers: [UIViewController] = {

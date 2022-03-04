@@ -40,7 +40,8 @@ class ViewController: UIViewController, LTTableViewProtocal {
                          "进阶版-刷新控件在中间\nLTAdvanced",
                          "下拉放大-导航渐变\nLTPersonalMainPage",
                          "切换视图(重大更新！！！)\nLTPageView",
-                         "混合视图-上下左右滑动\nLTMixPageView"]
+                         "混合视图-上下左右滑动\nLTMixPageView",
+                         "仿抖音快手直播间滑动切换\nLTLivePlayLoopsListDemo"]
     
     private lazy var tableView: UITableView = {
         let tableView: UITableView = tableViewConfig(self, self, nil)
@@ -103,6 +104,9 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
             break
         case 4:
             pushVc(LTMixPageViewDemo(), index: indexPath.row)
+            break
+        case 5:
+            pushVc(LTLivePlayLoopsListDemo(), index: indexPath.row)
             break
         default:break
         }

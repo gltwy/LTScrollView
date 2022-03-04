@@ -16,8 +16,6 @@
 		5C241E6D20871B410022F9CA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5C241E6C20871B410022F9CA /* Assets.xcassets */; };
 		5C241E7020871B410022F9CA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5C241E6E20871B410022F9CA /* LaunchScreen.storyboard */; };
 		5C241E7320871B410022F9CA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C241E7220871B410022F9CA /* main.m */; };
-		5C241E7D20871B420022F9CA /* OCExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C241E7C20871B420022F9CA /* OCExampleTests.m */; };
-		5C241E8820871B420022F9CA /* OCExampleUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C241E8720871B420022F9CA /* OCExampleUITests.m */; };
 		5C7C60442088311F005FF7C8 /* LTAdvancedManagerDemo.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C7C60432088311F005FF7C8 /* LTAdvancedManagerDemo.m */; };
 		5C7C604720883383005FF7C8 /* LTAdvancedTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C7C604620883383005FF7C8 /* LTAdvancedTestViewController.m */; };
 		5C7C604D20883641005FF7C8 /* LTHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C7C604C20883641005FF7C8 /* LTHeaderView.m */; };
@@ -28,24 +26,11 @@
 		6ABD2BBB20E7BDE000473B06 /* test.png in Resources */ = {isa = PBXBuildFile; fileRef = 6ABD2BBA20E7BDE000473B06 /* test.png */; };
 		6AFFAA9E2748C5170003CC0B /* LTPageViewMoreDemo.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AFFAA9D2748C5170003CC0B /* LTPageViewMoreDemo.m */; };
 		78B8F26710CB23F41972961E /* Pods_OCExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C17311F097F65BC65B3D978 /* Pods_OCExample.framework */; };
+		C6FEEFDE27D1BE2B007D3211 /* LTLivePlayLoopsListDemo.m in Sources */ = {isa = PBXBuildFile; fileRef = C6FEEFDD27D1BE2B007D3211 /* LTLivePlayLoopsListDemo.m */; };
+		C6FEEFE227D1C1C7007D3211 /* LTMixPageViewDemo.m in Sources */ = {isa = PBXBuildFile; fileRef = C6FEEFE127D1C1C7007D3211 /* LTMixPageViewDemo.m */; };
+		C6FEEFE527D1C1D8007D3211 /* LTMixPageSimpleDemo.m in Sources */ = {isa = PBXBuildFile; fileRef = C6FEEFE427D1C1D8007D3211 /* LTMixPageSimpleDemo.m */; };
+		C6FEEFE827D1C1E4007D3211 /* LTMixPageSimpleChildViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C6FEEFE727D1C1E4007D3211 /* LTMixPageSimpleChildViewController.m */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		5C241E7920871B420022F9CA /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 5C241E5820871B400022F9CA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 5C241E5F20871B400022F9CA;
-			remoteInfo = OCExample;
-		};
-		5C241E8420871B420022F9CA /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 5C241E5820871B400022F9CA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 5C241E5F20871B400022F9CA;
-			remoteInfo = OCExample;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		07F07610025DA4914E3BF9C2 /* Pods-OCExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OCExample.release.xcconfig"; path = "Pods/Target Support Files/Pods-OCExample/Pods-OCExample.release.xcconfig"; sourceTree = "<group>"; };
@@ -70,10 +55,8 @@
 		5C241E6F20871B410022F9CA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5C241E7120871B410022F9CA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5C241E7220871B410022F9CA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		5C241E7820871B420022F9CA /* OCExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OCExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5C241E7C20871B420022F9CA /* OCExampleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OCExampleTests.m; sourceTree = "<group>"; };
 		5C241E7E20871B420022F9CA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		5C241E8320871B420022F9CA /* OCExampleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OCExampleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5C241E8720871B420022F9CA /* OCExampleUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OCExampleUITests.m; sourceTree = "<group>"; };
 		5C241E8920871B430022F9CA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5C7C60422088311F005FF7C8 /* LTAdvancedManagerDemo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTAdvancedManagerDemo.h; sourceTree = "<group>"; };
@@ -93,6 +76,14 @@
 		6ABD2BBA20E7BDE000473B06 /* test.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test.png; sourceTree = "<group>"; };
 		6AFFAA9C2748C5170003CC0B /* LTPageViewMoreDemo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTPageViewMoreDemo.h; sourceTree = "<group>"; };
 		6AFFAA9D2748C5170003CC0B /* LTPageViewMoreDemo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LTPageViewMoreDemo.m; sourceTree = "<group>"; };
+		C6FEEFDC27D1BE2B007D3211 /* LTLivePlayLoopsListDemo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTLivePlayLoopsListDemo.h; sourceTree = "<group>"; };
+		C6FEEFDD27D1BE2B007D3211 /* LTLivePlayLoopsListDemo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LTLivePlayLoopsListDemo.m; sourceTree = "<group>"; };
+		C6FEEFE027D1C1C7007D3211 /* LTMixPageViewDemo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTMixPageViewDemo.h; sourceTree = "<group>"; };
+		C6FEEFE127D1C1C7007D3211 /* LTMixPageViewDemo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LTMixPageViewDemo.m; sourceTree = "<group>"; };
+		C6FEEFE327D1C1D8007D3211 /* LTMixPageSimpleDemo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTMixPageSimpleDemo.h; sourceTree = "<group>"; };
+		C6FEEFE427D1C1D8007D3211 /* LTMixPageSimpleDemo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LTMixPageSimpleDemo.m; sourceTree = "<group>"; };
+		C6FEEFE627D1C1E4007D3211 /* LTMixPageSimpleChildViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTMixPageSimpleChildViewController.h; sourceTree = "<group>"; };
+		C6FEEFE727D1C1E4007D3211 /* LTMixPageSimpleChildViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LTMixPageSimpleChildViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,20 +92,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				78B8F26710CB23F41972961E /* Pods_OCExample.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		5C241E7520871B420022F9CA /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		5C241E8020871B420022F9CA /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -157,8 +134,6 @@
 			isa = PBXGroup;
 			children = (
 				5C241E6020871B400022F9CA /* OCExample.app */,
-				5C241E7820871B420022F9CA /* OCExampleTests.xctest */,
-				5C241E8320871B420022F9CA /* OCExampleUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -166,6 +141,8 @@
 		5C241E6220871B400022F9CA /* OCExample */ = {
 			isa = PBXGroup;
 			children = (
+				C6FEEFDF27D1C1BA007D3211 /* LTMixPageView */,
+				C6FEEFDB27D1BDD1007D3211 /* LTLivePlayLoopsDemo */,
 				5C1F2E9120872728002F9B70 /* LTSimple */,
 				5C7C6041208830FC005FF7C8 /* LTAdvanced */,
 				6ABD2BAA20E7BDBD00473B06 /* LTPersonalMainPage */,
@@ -276,6 +253,28 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
+		C6FEEFDB27D1BDD1007D3211 /* LTLivePlayLoopsDemo */ = {
+			isa = PBXGroup;
+			children = (
+				C6FEEFDC27D1BE2B007D3211 /* LTLivePlayLoopsListDemo.h */,
+				C6FEEFDD27D1BE2B007D3211 /* LTLivePlayLoopsListDemo.m */,
+			);
+			path = LTLivePlayLoopsDemo;
+			sourceTree = "<group>";
+		};
+		C6FEEFDF27D1C1BA007D3211 /* LTMixPageView */ = {
+			isa = PBXGroup;
+			children = (
+				C6FEEFE027D1C1C7007D3211 /* LTMixPageViewDemo.h */,
+				C6FEEFE127D1C1C7007D3211 /* LTMixPageViewDemo.m */,
+				C6FEEFE327D1C1D8007D3211 /* LTMixPageSimpleDemo.h */,
+				C6FEEFE427D1C1D8007D3211 /* LTMixPageSimpleDemo.m */,
+				C6FEEFE627D1C1E4007D3211 /* LTMixPageSimpleChildViewController.h */,
+				C6FEEFE727D1C1E4007D3211 /* LTMixPageSimpleChildViewController.m */,
+			);
+			path = LTMixPageView;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -298,42 +297,6 @@
 			productReference = 5C241E6020871B400022F9CA /* OCExample.app */;
 			productType = "com.apple.product-type.application";
 		};
-		5C241E7720871B420022F9CA /* OCExampleTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 5C241E8F20871B430022F9CA /* Build configuration list for PBXNativeTarget "OCExampleTests" */;
-			buildPhases = (
-				5C241E7420871B420022F9CA /* Sources */,
-				5C241E7520871B420022F9CA /* Frameworks */,
-				5C241E7620871B420022F9CA /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				5C241E7A20871B420022F9CA /* PBXTargetDependency */,
-			);
-			name = OCExampleTests;
-			productName = OCExampleTests;
-			productReference = 5C241E7820871B420022F9CA /* OCExampleTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		5C241E8220871B420022F9CA /* OCExampleUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 5C241E9220871B430022F9CA /* Build configuration list for PBXNativeTarget "OCExampleUITests" */;
-			buildPhases = (
-				5C241E7F20871B420022F9CA /* Sources */,
-				5C241E8020871B420022F9CA /* Frameworks */,
-				5C241E8120871B420022F9CA /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				5C241E8520871B420022F9CA /* PBXTargetDependency */,
-			);
-			name = OCExampleUITests;
-			productName = OCExampleUITests;
-			productReference = 5C241E8320871B420022F9CA /* OCExampleUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -347,16 +310,6 @@
 						CreatedOnToolsVersion = 9.2;
 						LastSwiftMigration = 0920;
 						ProvisioningStyle = Automatic;
-					};
-					5C241E7720871B420022F9CA = {
-						CreatedOnToolsVersion = 9.2;
-						ProvisioningStyle = Automatic;
-						TestTargetID = 5C241E5F20871B400022F9CA;
-					};
-					5C241E8220871B420022F9CA = {
-						CreatedOnToolsVersion = 9.2;
-						ProvisioningStyle = Automatic;
-						TestTargetID = 5C241E5F20871B400022F9CA;
 					};
 				};
 			};
@@ -374,8 +327,6 @@
 			projectRoot = "";
 			targets = (
 				5C241E5F20871B400022F9CA /* OCExample */,
-				5C241E7720871B420022F9CA /* OCExampleTests */,
-				5C241E8220871B420022F9CA /* OCExampleUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -389,20 +340,6 @@
 				5C241E6D20871B410022F9CA /* Assets.xcassets in Resources */,
 				5C241E6B20871B410022F9CA /* Main.storyboard in Resources */,
 				6ABD2BBB20E7BDE000473B06 /* test.png in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		5C241E7620871B420022F9CA /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		5C241E8120871B420022F9CA /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -461,7 +398,11 @@
 				5C1F2E9420872772002F9B70 /* LTSimpleManagerDemo.m in Sources */,
 				5C241E6820871B410022F9CA /* ViewController.m in Sources */,
 				6ABD2BB920E7BDC400473B06 /* LTPageViewTestOneVC.m in Sources */,
+				C6FEEFE527D1C1D8007D3211 /* LTMixPageSimpleDemo.m in Sources */,
+				C6FEEFDE27D1BE2B007D3211 /* LTLivePlayLoopsListDemo.m in Sources */,
+				C6FEEFE827D1C1E4007D3211 /* LTMixPageSimpleChildViewController.m in Sources */,
 				5C241E7320871B410022F9CA /* main.m in Sources */,
+				C6FEEFE227D1C1C7007D3211 /* LTMixPageViewDemo.m in Sources */,
 				6ABD2BB020E7BDBF00473B06 /* LTPersonalMainPageTestVC.m in Sources */,
 				5C1F2E9D20872CDA002F9B70 /* LTSimpleTestOneVC.m in Sources */,
 				6ABD2BB820E7BDC400473B06 /* LTPageViewDemo.m in Sources */,
@@ -471,36 +412,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		5C241E7420871B420022F9CA /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				5C241E7D20871B420022F9CA /* OCExampleTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		5C241E7F20871B420022F9CA /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				5C241E8820871B420022F9CA /* OCExampleUITests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		5C241E7A20871B420022F9CA /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 5C241E5F20871B400022F9CA /* OCExample */;
-			targetProxy = 5C241E7920871B420022F9CA /* PBXContainerItemProxy */;
-		};
-		5C241E8520871B420022F9CA /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 5C241E5F20871B400022F9CA /* OCExample */;
-			targetProxy = 5C241E8420871B420022F9CA /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		5C241E6920871B410022F9CA /* Main.storyboard */ = {
@@ -634,11 +546,11 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = U33J5W5C5M;
+				DEVELOPMENT_TEAM = TEND9EZRP6;
 				INFOPLIST_FILE = OCExample/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.LT.OCExample;
+				PRODUCT_BUNDLE_IDENTIFIER = com.glt.test;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "OCExample/OCExample-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -667,64 +579,6 @@
 			};
 			name = Release;
 		};
-		5C241E9020871B430022F9CA /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = U33J5W5C5M;
-				INFOPLIST_FILE = OCExampleTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.LT.OCExampleTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/OCExample.app/OCExample";
-			};
-			name = Debug;
-		};
-		5C241E9120871B430022F9CA /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = U33J5W5C5M;
-				INFOPLIST_FILE = OCExampleTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.LT.OCExampleTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/OCExample.app/OCExample";
-			};
-			name = Release;
-		};
-		5C241E9320871B430022F9CA /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = U33J5W5C5M;
-				INFOPLIST_FILE = OCExampleUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.LT.OCExampleUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = OCExample;
-			};
-			name = Debug;
-		};
-		5C241E9420871B430022F9CA /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = U33J5W5C5M;
-				INFOPLIST_FILE = OCExampleUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.LT.OCExampleUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = OCExample;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -742,24 +596,6 @@
 			buildConfigurations = (
 				5C241E8D20871B430022F9CA /* Debug */,
 				5C241E8E20871B430022F9CA /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		5C241E8F20871B430022F9CA /* Build configuration list for PBXNativeTarget "OCExampleTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				5C241E9020871B430022F9CA /* Debug */,
-				5C241E9120871B430022F9CA /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		5C241E9220871B430022F9CA /* Build configuration list for PBXNativeTarget "OCExampleUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				5C241E9320871B430022F9CA /* Debug */,
-				5C241E9420871B430022F9CA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

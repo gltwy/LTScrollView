@@ -10,4 +10,6 @@
 
 @interface LTPageViewDemo : UIViewController
 
+@property(assign, nonatomic) BOOL isFromMix;
+
 @end

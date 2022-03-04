@@ -3,19 +3,21 @@ PODS:
   - MJRefresh (3.1.14.1)
 
 DEPENDENCIES:
-  - LTScrollView (~> 0.4.2)
+  - LTScrollView (from `../`)
   - MJRefresh (~> 3.1.14.1)
 
 SPEC REPOS:
-  https://mirrors.tuna.tsinghua.edu.cn/git/CocoaPods/Specs.git:
+  https://github.com/CocoaPods/Specs.git:
     - MJRefresh
-  trunk:
-    - LTScrollView
+
+EXTERNAL SOURCES:
+  LTScrollView:
+    :path: "../"
 
 SPEC CHECKSUMS:
   LTScrollView: 83c16b1c156431af3bfb6e81d8c4eaf420ed0371
   MJRefresh: 238e6a37e2dba12160ee3b79f6d2a2b26abcab42
 
-PODFILE CHECKSUM: 9d0f19102242e1e17b8d11be02e99e21a167c2c3
+PODFILE CHECKSUM: 147f3d349171f3670a0939514079f6e29ef64db8
 
-COCOAPODS: 1.9.3
+COCOAPODS: 1.10.0

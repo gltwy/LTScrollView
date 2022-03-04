@@ -21,6 +21,8 @@
 #import "LTAdvancedManagerDemo.h"
 #import "LTPersonMainPageDemo.h"
 #import "LTPageViewDemo.h"
+#import "LTLivePlayLoopsListDemo.h"
+#import "LTMixPageViewDemo.h"
 
 @interface ViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -46,7 +48,9 @@
     self.titles = @[@"基础版-刷新控件在顶部(有更新！)\nLTSimple",
                     @"进阶版-刷新控件在中间\nLTAdvanced",
                     @"下拉放大-导航渐变\nLTPersonalMainPage",
-                    @"切换视图(重大更新！！！)\nLTPageView"];
+                    @"切换视图(重大更新！！！)\nLTPageView",
+                    @"混合视图-上下左右滑动\nLTMixPageView",
+                    @"仿抖音快手直播间滑动切换\nLTLivePlayLoopsListDemo"];
     self.title = @"首页";
     
 }
@@ -104,7 +108,18 @@
             demoVC.title = self.titles[indexPath.row];
             [self.navigationController pushViewController:demoVC animated:YES];
         }break;
-            
+        case 4:
+        {
+            LTMixPageViewDemo *demoVC = [[LTMixPageViewDemo alloc] init];
+            demoVC.title = self.titles[indexPath.row];
+            [self.navigationController pushViewController:demoVC animated:YES];
+        }break;
+        case 5:
+        {
+            LTLivePlayLoopsListDemo *demoVC = [[LTLivePlayLoopsListDemo alloc] init];
+            demoVC.title = self.titles[indexPath.row];
+            [self.navigationController pushViewController:demoVC animated:YES];
+        }break;
             
         default:break;
     }
