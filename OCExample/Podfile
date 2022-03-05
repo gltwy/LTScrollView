@@ -5,6 +5,8 @@ target 'OCExample' do
 
     #pod 'LTScrollView', '~> 0.4.2'
     pod 'LTScrollView', :path => '../'
+    #pod 'LTScrollView/LTLoopsPlay', :path => '../'
+    #pod 'LTScrollView/LTFollowMove', :path => '../'
 
     
     #本Demo中使用, LTScrollView不依赖任何第三方框架

@@ -1,5 +1,5 @@
 //
-//  LTMixPageViewDemo.h
+//  LTFollowMoveDemo.h
 //  OCExample
 //
 //  Created by gaoliutong on 2022/3/5.
@@ -18,7 +18,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LTMixPageViewDemo : UIViewController
+@interface LTFollowMoveDemo : UIViewController
 
 @end
 

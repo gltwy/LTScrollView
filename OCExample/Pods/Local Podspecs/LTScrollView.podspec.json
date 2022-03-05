@@ -19,6 +19,16 @@
     "ios": "8.0"
   },
   "swift_versions": "5.0",
-  "source_files": "Example/LTScrollView/Lib/**/*",
+  "source_files": "Example/LTScrollView/Lib/**/*.{swift}",
+  "subspecs": [
+    {
+      "name": "LTLoopsPlay",
+      "source_files": "Example/LTScrollView/Lib/LTLoopsPlay/*.{swift}"
+    },
+    {
+      "name": "LTFollowMove",
+      "source_files": "Example/LTScrollView/Lib/LTFollowMove/*.{swift}"
+    }
+  ],
   "swift_version": "5.0"
 }

@@ -30,6 +30,8 @@
 		C6FEEFE227D1C1C7007D3211 /* LTMixPageViewDemo.m in Sources */ = {isa = PBXBuildFile; fileRef = C6FEEFE127D1C1C7007D3211 /* LTMixPageViewDemo.m */; };
 		C6FEEFE527D1C1D8007D3211 /* LTMixPageSimpleDemo.m in Sources */ = {isa = PBXBuildFile; fileRef = C6FEEFE427D1C1D8007D3211 /* LTMixPageSimpleDemo.m */; };
 		C6FEEFE827D1C1E4007D3211 /* LTMixPageSimpleChildViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C6FEEFE727D1C1E4007D3211 /* LTMixPageSimpleChildViewController.m */; };
+		C6FEF01827D1F547007D3211 /* LTFollowMoveDemo.m in Sources */ = {isa = PBXBuildFile; fileRef = C6FEF01727D1F547007D3211 /* LTFollowMoveDemo.m */; };
+		C6FEF01B27D1F556007D3211 /* LTFollowMoveTestView.m in Sources */ = {isa = PBXBuildFile; fileRef = C6FEF01A27D1F556007D3211 /* LTFollowMoveTestView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,10 +57,6 @@
 		5C241E6F20871B410022F9CA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5C241E7120871B410022F9CA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5C241E7220871B410022F9CA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		5C241E7C20871B420022F9CA /* OCExampleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OCExampleTests.m; sourceTree = "<group>"; };
-		5C241E7E20871B420022F9CA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		5C241E8720871B420022F9CA /* OCExampleUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OCExampleUITests.m; sourceTree = "<group>"; };
-		5C241E8920871B430022F9CA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5C7C60422088311F005FF7C8 /* LTAdvancedManagerDemo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTAdvancedManagerDemo.h; sourceTree = "<group>"; };
 		5C7C60432088311F005FF7C8 /* LTAdvancedManagerDemo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LTAdvancedManagerDemo.m; sourceTree = "<group>"; };
 		5C7C604520883383005FF7C8 /* LTAdvancedTestViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTAdvancedTestViewController.h; sourceTree = "<group>"; };
@@ -84,6 +82,10 @@
 		C6FEEFE427D1C1D8007D3211 /* LTMixPageSimpleDemo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LTMixPageSimpleDemo.m; sourceTree = "<group>"; };
 		C6FEEFE627D1C1E4007D3211 /* LTMixPageSimpleChildViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTMixPageSimpleChildViewController.h; sourceTree = "<group>"; };
 		C6FEEFE727D1C1E4007D3211 /* LTMixPageSimpleChildViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LTMixPageSimpleChildViewController.m; sourceTree = "<group>"; };
+		C6FEF01627D1F547007D3211 /* LTFollowMoveDemo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTFollowMoveDemo.h; sourceTree = "<group>"; };
+		C6FEF01727D1F547007D3211 /* LTFollowMoveDemo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LTFollowMoveDemo.m; sourceTree = "<group>"; };
+		C6FEF01927D1F556007D3211 /* LTFollowMoveTestView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTFollowMoveTestView.h; sourceTree = "<group>"; };
+		C6FEF01A27D1F556007D3211 /* LTFollowMoveTestView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LTFollowMoveTestView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,8 +124,6 @@
 			isa = PBXGroup;
 			children = (
 				5C241E6220871B400022F9CA /* OCExample */,
-				5C241E7B20871B420022F9CA /* OCExampleTests */,
-				5C241E8620871B420022F9CA /* OCExampleUITests */,
 				5C241E6120871B400022F9CA /* Products */,
 				27CEC8E213C987D6C345F33E /* Pods */,
 				5DF023E6C16190ADB1355911 /* Frameworks */,
@@ -141,6 +141,7 @@
 		5C241E6220871B400022F9CA /* OCExample */ = {
 			isa = PBXGroup;
 			children = (
+				C6FEF01527D1F52C007D3211 /* LTFollowMoveView */,
 				C6FEEFDF27D1C1BA007D3211 /* LTMixPageView */,
 				C6FEEFDB27D1BDD1007D3211 /* LTLivePlayLoopsDemo */,
 				5C1F2E9120872728002F9B70 /* LTSimple */,
@@ -161,24 +162,6 @@
 				5C1F2E7620871F0E002F9B70 /* OCExample-Bridging-Header.h */,
 			);
 			path = OCExample;
-			sourceTree = "<group>";
-		};
-		5C241E7B20871B420022F9CA /* OCExampleTests */ = {
-			isa = PBXGroup;
-			children = (
-				5C241E7C20871B420022F9CA /* OCExampleTests.m */,
-				5C241E7E20871B420022F9CA /* Info.plist */,
-			);
-			path = OCExampleTests;
-			sourceTree = "<group>";
-		};
-		5C241E8620871B420022F9CA /* OCExampleUITests */ = {
-			isa = PBXGroup;
-			children = (
-				5C241E8720871B420022F9CA /* OCExampleUITests.m */,
-				5C241E8920871B430022F9CA /* Info.plist */,
-			);
-			path = OCExampleUITests;
 			sourceTree = "<group>";
 		};
 		5C7C6041208830FC005FF7C8 /* LTAdvanced */ = {
@@ -273,6 +256,17 @@
 				C6FEEFE727D1C1E4007D3211 /* LTMixPageSimpleChildViewController.m */,
 			);
 			path = LTMixPageView;
+			sourceTree = "<group>";
+		};
+		C6FEF01527D1F52C007D3211 /* LTFollowMoveView */ = {
+			isa = PBXGroup;
+			children = (
+				C6FEF01627D1F547007D3211 /* LTFollowMoveDemo.h */,
+				C6FEF01727D1F547007D3211 /* LTFollowMoveDemo.m */,
+				C6FEF01927D1F556007D3211 /* LTFollowMoveTestView.h */,
+				C6FEF01A27D1F556007D3211 /* LTFollowMoveTestView.m */,
+			);
+			path = LTFollowMoveView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -393,6 +387,8 @@
 			files = (
 				5C7C60442088311F005FF7C8 /* LTAdvancedManagerDemo.m in Sources */,
 				5C7C604D20883641005FF7C8 /* LTHeaderView.m in Sources */,
+				C6FEF01B27D1F556007D3211 /* LTFollowMoveTestView.m in Sources */,
+				C6FEF01827D1F547007D3211 /* LTFollowMoveDemo.m in Sources */,
 				5C1F2E902087257A002F9B70 /* TestTableViewCell.m in Sources */,
 				6AFFAA9E2748C5170003CC0B /* LTPageViewMoreDemo.m in Sources */,
 				5C1F2E9420872772002F9B70 /* LTSimpleManagerDemo.m in Sources */,
@@ -546,7 +542,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = TEND9EZRP6;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = OCExample/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -565,14 +561,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = U33J5W5C5M;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = OCExample/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.LT.OCExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "OCExample/OCExample-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

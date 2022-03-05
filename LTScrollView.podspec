@@ -1,7 +1,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'LTScrollView'
-  s.version          = '0.4.2'
+  s.version          = '0.4.3'
   s.summary          = 'LTScrollView'
 
   s.description      = <<-DESC
@@ -15,6 +15,14 @@ TODO: ScrollView嵌套ScrolloView解决方案（初级、进阶)， 支持OC / S
 
   s.ios.deployment_target = '8.0'
   s.swift_version = '5.0'
+  
+  s.subspec 'LTLoopsPlay' do |p|
+     p.source_files = 'Example/LTScrollView/Lib/LTLoopsPlay/*.{swift}'
+  end
+  
+  s.subspec 'LTFollowMove' do |f|
+     f.source_files = 'Example/LTScrollView/Lib/LTFollowMove/*.{swift}'
+  end
 
-  s.source_files = 'Example/LTScrollView/Lib/**/*'
+  s.source_files = 'Example/LTScrollView/Lib/**/*.{swift}'
 end

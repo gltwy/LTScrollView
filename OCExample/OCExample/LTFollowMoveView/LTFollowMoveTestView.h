@@ -1,5 +1,5 @@
 //
-//  LTMixPageViewDemo.h
+//  LTFollowMoveTestView.h
 //  OCExample
 //
 //  Created by gaoliutong on 2022/3/5.
@@ -16,10 +16,9 @@
 
 #import <UIKit/UIKit.h>
 
-NS_ASSUME_NONNULL_BEGIN
+#define kReturnHeight UIScreen.mainScreen.bounds.size.height * 0.618
 
-@interface LTMixPageViewDemo : UIViewController
+@interface LTFollowMoveTestView : UIView
 
 @end
 
-NS_ASSUME_NONNULL_END
