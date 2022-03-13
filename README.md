@@ -126,6 +126,12 @@ self.glt_scrollView = self.tableView（self.scrollView / self.collectionView）
 ## 更新说明
 
 
+
+2022.03.13 - 0.4.4
+```objective-c
+1. 自定义标题模块修改
+2. 修复进阶版部分机型小数导致无法悬停问题
+```
 2022.03.13 - 0.4.4
 ```objective-c
 1. 自定义标题模块修改
