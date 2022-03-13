@@ -45,22 +45,8 @@ class LTAdvancedManagerDemo: UIViewController {
         return CGRect(x: 0, y: Y, width: view.bounds.width, height: H)
     }
     
-    /* 取消注释此处为自定义titleView
-     private lazy var advancedManager: LTAdvancedManager = {
-     let customTitleView = LTCustomTitleView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 44), titles: titles, layout: layout)
-     let advancedManager = LTAdvancedManager(frame: managerReact(), viewControllers: viewControllers, titles: titles, currentViewController: self, layout: layout, titleView: customTitleView, headerViewHandle: {[weak self] in
-     guard let strongSelf = self else { return UIView() }
-     let headerView = strongSelf.testLabel()
-     return headerView
-     })
-     /* 设置代理 监听滚动 */
-     advancedManager.delegate = self
-     return advancedManager
-     }()
-     */
-    
     private lazy var advancedManager: LTAdvancedManager = {
-        let advancedManager = LTAdvancedManager(frame: managerReact(), viewControllers: viewControllers, titles: titles, currentViewController: self, layout: layout, headerViewHandle: {[weak self] in
+        let advancedManager = LTAdvancedManager(frame: managerReact(), viewControllers: viewControllers, titles: titles, currentViewController: self, layout: layout, /*itemViewClass: LTCustomTitleItemView.self*/ headerViewHandle: {[weak self] in
             guard let strongSelf = self else { return UIView() }
             let headerView = strongSelf.testLabel()
             return headerView

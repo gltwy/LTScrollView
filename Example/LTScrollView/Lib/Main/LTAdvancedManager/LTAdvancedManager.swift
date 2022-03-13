@@ -43,23 +43,23 @@ public class LTAdvancedManager: UIView {
     private weak var currentViewController: UIViewController?
     private var pageView: LTPageView!
     private var layout: LTLayout
-    var isCustomTitleView: Bool = false
     private var selectIndex = 0
     
     private var titleView: LTPageTitleView!
+    private var itemViewClass: LTPageTitleItemType.Type?
     
-    @objc public init(frame: CGRect, viewControllers: [UIViewController], titles: [String], currentViewController:UIViewController, layout: LTLayout, titleView: LTPageTitleView? = nil, headerViewHandle handle: () -> UIView) {
+    @objc public init(frame: CGRect, viewControllers: [UIViewController], titles: [String], currentViewController:UIViewController, layout: LTLayout, titleView: LTPageTitleView? = nil, itemViewClass: LTPageTitleItemType.Type? = nil, headerViewHandle handle: () -> UIView) {
         UIScrollView.initializeOnce()
         UICollectionViewFlowLayout.loadOnce()
         self.viewControllers = viewControllers
         self.titles = titles
         self.currentViewController = currentViewController
         self.layout = layout
+        self.itemViewClass = itemViewClass
         super.init(frame: frame)
         UICollectionViewFlowLayout.glt_sliderHeight = layout.sliderHeight
         layout.isSinglePageView = true
         if titleView != nil {
-            isCustomTitleView = true
             self.titleView = titleView!
         }else {
             self.titleView = setupTitleView()
@@ -72,6 +72,9 @@ public class LTAdvancedManager: UIView {
         self.init(frame: frame, viewControllers: viewControllers, titles: titles, currentViewController: currentViewController, layout: layout, titleView: nil, headerViewHandle: handle)
     }
     
+    @objc public convenience init(frame: CGRect, viewControllers: [UIViewController], titles: [String], currentViewController:UIViewController, layout: LTLayout, itemViewClass: LTPageTitleItemType.Type?, headerViewHandle handle: () -> UIView) {
+        self.init(frame: frame, viewControllers: viewControllers, titles: titles, currentViewController: currentViewController, layout: layout, titleView: nil, itemViewClass: itemViewClass, headerViewHandle: handle)
+    }
     
     deinit {
         deallocConfig()
@@ -84,7 +87,7 @@ public class LTAdvancedManager: UIView {
 
 extension LTAdvancedManager {
     private func setupTitleView() -> LTPageTitleView {
-        let titleView = LTPageTitleView(frame: CGRect(x: 0, y: 0, width: bounds.width, height: layout.sliderHeight), titles: titles, layout: layout)
+        let titleView = LTPageTitleView(frame: CGRect(x: 0, y: 0, width: bounds.width, height: layout.sliderHeight), titles: titles, layout: layout, itemViewClass: itemViewClass)
         return titleView
     }
 }
@@ -93,7 +96,7 @@ extension LTAdvancedManager {
 extension LTAdvancedManager {
     //MARK: 创建PageView
     private func setupPageViewConfig(currentViewController:UIViewController, layout: LTLayout) -> LTPageView {
-        let pageView = LTPageView(frame: self.bounds, currentViewController: currentViewController, viewControllers: viewControllers, titles: titles, layout:layout)
+        let pageView = LTPageView(frame: self.bounds, currentViewController: currentViewController, viewControllers: viewControllers, titles: titles, layout:layout, itemViewClass: itemViewClass)
         if titles.count != 0 {
             pageView.glt_createViewController(0)
         }
@@ -113,7 +116,7 @@ extension LTAdvancedManager {
     
     private func setupSubViewsConfig(_ handle: () -> UIView) {
         let headerView = handle()
-        kHeaderHeight = headerView.bounds.height
+        kHeaderHeight = CGFloat(Int(headerView.bounds.height))
         self.headerView = headerView
         lastDiffTitleToNav = kHeaderHeight
         setupSubViews()

@@ -14,6 +14,7 @@
 - LTScrollView / Example : 为 Swift 使用示例.
 - LTScrollView / OCExample : 为 OC 使用示例.
 - 支持的子View为UIScrollView、UICollectionView、UITableView.
+- 无限轮播 + 拖动移动
 
 ## CocoaPods安装
 
@@ -36,7 +37,14 @@ target 'TargetName' do
 use_frameworks!
 
 # 当前最新版本 - 2021-11-20
-pod 'LTScrollView', '~> 0.4.2'
+pod 'LTScrollView', '~> 0.4.3'
+
+# 无限轮播框架 + 预加载子组件
+#pod 'LTScrollView/LTLoopsPlay'
+
+# 跟随拖动移动子组件
+#pod 'LTScrollView/LTFollowMove'
+
 end
 ```
 
@@ -116,6 +124,15 @@ self.glt_scrollView = self.tableView（self.scrollView / self.collectionView）
 详情查看[LTLayout.swift](https://github.com/gltwy/LTScrollView/blob/master/Example/LTScrollView/Lib/LTLayout.swift)
 
 ## 更新说明
+
+2022.03.05 - 0.4.3
+```objective-c
+1. 新增嵌套混合视图的切换（支持悬停+左右切换）
+2. 新增无限轮播+预加载视图框架
+3. 新增跟随拖动隐藏视图框架
+
+建议所有用户都升级～
+```
 
 2021.11.20 - 0.4.2
 ```objective-c

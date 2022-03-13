@@ -1,14 +1,14 @@
- //
- //  LTSimpleManager.swift
- //  LTScrollView
- //
- //  Created by 高刘通 on 2018/2/3.
- //  Copyright © 2018年 LT. All rights reserved.
- //
- 
- import UIKit
- 
- @objc public protocol LTSimpleScrollViewDelegate: AnyObject {
+//
+//  LTSimpleManager.swift
+//  LTScrollView
+//
+//  Created by 高刘通 on 2018/2/3.
+//  Copyright © 2018年 LT. All rights reserved.
+//
+
+import UIKit
+
+@objc public protocol LTSimpleScrollViewDelegate: AnyObject {
     @objc optional func glt_scrollViewDidScroll(_ scrollView: UIScrollView)
     @objc optional func glt_scrollViewWillBeginDragging(_ scrollView: UIScrollView)
     @objc optional func glt_scrollViewWillBeginDecelerating(_ scrollView: UIScrollView)
@@ -17,9 +17,9 @@
     @objc optional func glt_scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView)
     //刷新tableView的代理方法
     @objc optional func glt_refreshScrollView(_ scrollView: UIScrollView, _ index: Int);
- }
- 
- public class LTSimpleManager: UIView {
+}
+
+public class LTSimpleManager: UIView {
     
     /* headerView配置 */
     @objc public func configHeaderView(_ handle: (() -> UIView?)?) {
@@ -70,14 +70,14 @@
     
     /* LTSimple的scrollView上下滑动监听 */
     @objc public weak var delegate: LTSimpleScrollViewDelegate?
-
+    
     /** 如果LTPageView 与 LTSimple结合使用 需要将它设置为true */
-     @objc public var isSimpeMix = false {
-         didSet {
-             pageView.isSimpeMix = isSimpeMix
-             tableView.isSimpeMix = isSimpeMix
-         }
-     }
+    @objc public var isSimpeMix = false {
+        didSet {
+            pageView.isSimpeMix = isSimpeMix
+            tableView.isSimpeMix = isSimpeMix
+        }
+    }
     
     private var contentTableView: UIScrollView?
     private var kHeaderHeight: CGFloat = 0.0
@@ -89,6 +89,7 @@
     private var pageView: LTPageView!
     private var currentSelectIndex: Int = 0
     private var titleView: LTPageTitleView!
+    private var itemViewClass: LTPageTitleItemType.Type?
     
     private lazy var tableView: LTTableView = {
         let tableView = LTTableView(frame: CGRect(x: 0, y: 0, width: bounds.width, height: bounds.height), style:.plain)
@@ -100,17 +101,18 @@
         return tableView
     }()
     
-    @objc public init(frame: CGRect, viewControllers: [UIViewController], titles: [String], currentViewController:UIViewController, layout: LTLayout, titleView: LTPageTitleView? = nil) {
+    @objc public init(frame: CGRect, viewControllers: [UIViewController], titles: [String], currentViewController:UIViewController, layout: LTLayout, titleView: LTPageTitleView? = nil, itemViewClass: LTPageTitleItemType.Type? = nil) {
         UIScrollView.initializeOnce()
         self.viewControllers = viewControllers
         self.titles = titles
         self.currentViewController = currentViewController
         self.layout = layout
+        self.itemViewClass = itemViewClass
         super.init(frame: frame)
         layout.isSinglePageView = true
         self.titleView = setupTitleView()
         self.titleView.delegate = self
-        pageView = createPageViewConfig(currentViewController: currentViewController, layout: layout, titleView: titleView)
+        pageView = createPageViewConfig(currentViewController: currentViewController, layout: layout, titleView: titleView, itemViewClass: itemViewClass)
         createSubViews()
     }
     
@@ -125,19 +127,19 @@
     deinit {
         deallocConfig()
     }
- }
- 
- extension LTSimpleManager {
+}
+
+extension LTSimpleManager {
     private func setupTitleView() -> LTPageTitleView {
-        let titleView = LTPageTitleView(frame: CGRect(x: 0, y: 0, width: bounds.width, height: layout.sliderHeight), titles: titles, layout: layout)
+        let titleView = LTPageTitleView(frame: CGRect(x: 0, y: 0, width: bounds.width, height: layout.sliderHeight), titles: titles, layout: layout, itemViewClass: itemViewClass)
         return titleView
     }
- }
- 
- extension LTSimpleManager {
+}
+
+extension LTSimpleManager {
     
-    private func createPageViewConfig(currentViewController:UIViewController, layout: LTLayout, titleView: LTPageTitleView?) -> LTPageView {
-        let pageView = LTPageView(frame: self.bounds, currentViewController: currentViewController, viewControllers: viewControllers, titles: titles, layout:layout)
+    private func createPageViewConfig(currentViewController:UIViewController, layout: LTLayout, titleView: LTPageTitleView?, itemViewClass: LTPageTitleItemType.Type?) -> LTPageView {
+        let pageView = LTPageView(frame: self.bounds, currentViewController: currentViewController, viewControllers: viewControllers, titles: titles, layout:layout, itemViewClass: itemViewClass)
         if titles.count != 0 {
             pageView.glt_createViewController(0)
         }
@@ -146,9 +148,9 @@
         }
         return pageView
     }
- }
- 
- extension LTSimpleManager: LTPageViewDelegate {
+}
+
+extension LTSimpleManager: LTPageViewDelegate {
     
     public func glt_scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         tableView.isScrollEnabled = false
@@ -158,9 +160,9 @@
         tableView.isScrollEnabled = true
     }
     
- }
- 
- extension LTSimpleManager {
+}
+
+extension LTSimpleManager {
     
     private func createSubViews() {
         backgroundColor = UIColor.white
@@ -189,9 +191,9 @@
         }
     }
     
- }
- 
- extension LTSimpleManager {
+}
+
+extension LTSimpleManager {
     private func setupRefreshData()  {
         DispatchQueue.main.after(0.001) {
             UIView.animate(withDuration: 0.34, animations: {
@@ -202,9 +204,9 @@
         }
         
     }
- }
- 
- extension LTSimpleManager {
+}
+
+extension LTSimpleManager {
     private func pageViewDidSelectConfig()  {
         pageView.didSelectIndexBlock = {[weak self] in
             guard let `self` = self else { return }
@@ -217,9 +219,9 @@
             self.contentScrollViewScrollConfig($1)
         }
     }
- }
- 
- extension LTSimpleManager: UITableViewDelegate {
+}
+
+extension LTSimpleManager: UITableViewDelegate {
     
     /*
      * 0 到 kHeaderHeight - hoverY 之间，滑动的是底部tableView，并且此时要将内容scrollView的contentoffset设置为0
@@ -261,9 +263,9 @@
         delegate?.glt_scrollViewDidEndScrollingAnimation?(scrollView)
     }
     
- }
- 
- extension LTSimpleManager: UITableViewDataSource, LTTableViewProtocal {
+}
+
+extension LTSimpleManager: UITableViewDataSource, LTTableViewProtocal {
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
@@ -279,18 +281,18 @@
     public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return tableView.bounds.height
     }
- }
- 
- extension LTSimpleManager {
+}
+
+extension LTSimpleManager {
     private func deallocConfig() {
         for viewController in viewControllers {
             viewController.glt_scrollView?.delegate = nil
         }
     }
- }
- 
- //MARK: HeaderView设置
- extension LTSimpleManager {
+}
+
+//MARK: HeaderView设置
+extension LTSimpleManager {
     
     private func setupHeaderView(headerView: UIView) {
         //获取headerView的高度
@@ -313,6 +315,6 @@
         tableView.tableHeaderView = headerView
     }
     
- }
- 
- 
+}
+
+

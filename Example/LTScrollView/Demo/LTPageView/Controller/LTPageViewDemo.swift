@@ -20,7 +20,7 @@ class LTPageViewDemo: UIViewController {
     }()
     
     private lazy var titles: [String] = {
-        return ["默认", "系统样式1", "系统样式2", "自定义标题样式"]
+        return ["自定义标题样式", "系统样式1", "系统样式2", "默认"]
     }()
     
     private lazy var layout: LTLayout = {
@@ -36,7 +36,7 @@ class LTPageViewDemo: UIViewController {
     }()
     
     private lazy var pageView: LTPageView = {
-        let pageView = LTPageView(frame: CGRect(x: 0, y: self.isFromMix ? 0 : GLT_NAVCHEIGHT, width: GLT_MAINWIDTH, height: GLT_MAINWHEIGHT - GLT_NAVCHEIGHT - GLT_BOTTOMSPACE), currentViewController: self, viewControllers: viewControllers, titles: titles, layout: layout)
+        let pageView = LTPageView(frame: CGRect(x: 0, y: self.isFromMix ? 0 : GLT_NAVCHEIGHT, width: GLT_MAINWIDTH, height: GLT_MAINWHEIGHT - GLT_NAVCHEIGHT - GLT_BOTTOMSPACE), currentViewController: self, viewControllers: viewControllers, titles: titles, layout: layout/*, itemViewClass: LTCustomTitleItemView.self*/)
         pageView.isClickScrollAnimation = true
         return pageView
     }()

@@ -11,6 +11,7 @@ import UIKit
 typealias scrollIndexHandle = () -> Int
 public typealias LTCreateViewControllerHandle = (Int) -> Void
 public typealias LTDidSelectTitleViewHandle = (Int) -> Void
+public typealias LTItemViewClassHandle = () -> LTPageTitleItemType
 
 @objc public class LTPageTitleView: UIView {
 
@@ -30,7 +31,7 @@ public typealias LTDidSelectTitleViewHandle = (Int) -> Void
     private lazy var glt_lineWidths: [CGFloat] = []
     
     //存储所有的button
-    private lazy var glt_buttons: [LTPageTitleItemView] = []
+    private lazy var glt_buttons: [LTPageTitleItemType] = []
     
     //当前的位置
     private lazy var glt_currentIndex: Int = 0
@@ -63,9 +64,11 @@ public typealias LTDidSelectTitleViewHandle = (Int) -> Void
     weak var delegate: LTPageViewDelegate?
     
     //返回所有的数组
-    func allItemViews() -> [LTPageTitleItemView] {
+    func allItemViews() -> [LTPageTitleItemType] {
         return glt_buttons
     }
+    
+    var itemViewClass: LTPageTitleItemType.Type?
     
     private lazy var glt_titleRGBlColor = getRGBWithColor(layout.titleColor ?? NORMAL_BASE_COLOR)
     
@@ -94,9 +97,10 @@ public typealias LTDidSelectTitleViewHandle = (Int) -> Void
         return sliderLineView
     }()
     
-    @objc public init(frame: CGRect, titles: [String], layout: LTLayout) {
+    @objc public init(frame: CGRect, titles: [String], layout: LTLayout, itemViewClass: LTPageTitleItemType.Type? = nil) {
         self.titles = titles
         self.layout = layout
+        self.itemViewClass = itemViewClass
         super.init(frame: frame)
         backgroundColor = layout.titleViewBgColor
         setupSubViews()
@@ -171,6 +175,9 @@ extension LTPageTitleView {
             button.setTitleColor(color, for: .normal)
             upX = button.frame.origin.x + subW + layout.titleMargin
             glt_buttons.append(button)
+            button.glt_index = index
+            button.glt_isSelected = index == 0
+            button.glt_layoutSubviews?()
         }
         
         let firstButton = glt_buttons[0]
@@ -311,13 +318,11 @@ extension LTPageTitleView: LTPageViewDelegate {
                 setupSlierScrollToCenter(offsetX: offsetX, index: index)
             }
             
+            let upButton = glt_buttons[glt_currentIndex]
+            let currentButton = glt_buttons[index]
+            
             // 如果是点击的话
             if isClick {
-                
-                let upButton = glt_buttons[glt_currentIndex]
-                
-                let currentButton = glt_buttons[index]
-                
                 if layout.isNeedScale {
                     UIView.animate(withDuration: 0.2, animations: {
                         currentButton.transform = CGAffineTransform(scaleX: self.layout.scale , y: self.layout.scale)
@@ -330,8 +335,6 @@ extension LTPageTitleView: LTPageViewDelegate {
             }
             
             if layout.isColorAnimation == false {
-                let upButton = glt_buttons[glt_currentIndex]
-                let currentButton = glt_buttons[index]
                 setupButtonStatusAnimation(upButton: upButton, currentButton: currentButton)
             }
             
@@ -341,11 +344,15 @@ extension LTPageTitleView: LTPageViewDelegate {
                 if !glt_isClickScrollAnimation {
                     glt_createViewControllerHandle?(index)
                     glt_didSelectTitleViewHandle?(index)
+                    upButton.glt_isSelected = false
+                    currentButton.glt_isSelected = true
                 }
             }else {
                 //默认的设置
                 glt_createViewControllerHandle?(index)
                 glt_didSelectTitleViewHandle?(index)
+                upButton.glt_isSelected = false
+                currentButton.glt_isSelected = true
             }
             glt_currentIndex = index
         }
@@ -388,11 +395,13 @@ extension LTPageTitleView: LTPageViewDelegate {
                     button.transform = CGAffineTransform(scaleX: layout.scale , y: layout.scale)
                 }
                 button.setTitleColor(self.layout.titleSelectColor, for: .normal)
+                button.glt_isSelected = true
             }else {
                 if layout.isNeedScale {
                     button.transform = CGAffineTransform(scaleX: 1.0 , y: 1.0)
                 }
                 button.setTitleColor(self.layout.titleColor, for: .normal)
+                button.glt_isSelected = false
             }
         }
         glt_isClickScrollAnimation = false
@@ -564,15 +573,29 @@ extension LTPageTitleView {
 extension LTPageTitleView {
     
     @discardableResult
-    private func subButton(frame: CGRect, flag: Int, title: String?, parentView: UIView) -> LTPageTitleItemView {
-        let button = LTPageTitleItemView(type: .custom)
-        button.frame = frame
-        button.tag = flag
-        button.setTitle(title, for: .normal)
-        button.addTarget(self, action: #selector(titleSelectIndex(_:)), for: .touchUpInside)
-        button.titleLabel?.font = layout.titleFont
-        parentView.addSubview(button)
-        return button
+    private func subButton(frame: CGRect, flag: Int, title: String?, parentView: UIView) -> LTPageTitleItemType {
+        if self.itemViewClass == nil {
+            let button = LTNoapButton.init(type: .custom)
+            button.frame = frame
+            button.tag = flag
+            button.setTitle(title, for: .normal)
+            button.addTarget(self, action: #selector(titleSelectIndex(_:)), for: .touchUpInside)
+            button.titleLabel?.font = layout.titleFont
+            parentView.addSubview(button)
+            return button
+        }else {
+            let button = itemViewClass!.init(type: .custom)
+            button.frame = frame
+            button.tag = flag
+            button.setTitle(title, for: .normal)
+            button.addTarget(self, action: #selector(titleSelectIndex(_:)), for: .touchUpInside)
+            button.titleLabel?.font = layout.titleFont
+            parentView.addSubview(button)
+            return button
+        }
     }
 }
 
+class LTNoapButton: UIButton, LTPageTitleItemType {
+    var glt_index: Int = 0
+}

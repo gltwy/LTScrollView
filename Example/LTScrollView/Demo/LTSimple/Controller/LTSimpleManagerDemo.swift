@@ -59,22 +59,8 @@ class LTSimpleManagerDemo: UIViewController {
         return CGRect(x: 0, y: Y, width: view.bounds.width, height: H)
     }
     
-    /*
-    // 取消注释此处为自定义titleView
-     private lazy var simpleManager: LTSimpleManager = {
-     let customTitleView = LTCustomTitleView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 44), titles: titles, layout: layout)
-     customTitleView.isCustomTitleView = true
-     let simpleManager = LTSimpleManager(frame: managerReact(), viewControllers: viewControllers, titles: titles, currentViewController: self, layout: layout, titleView: customTitleView)
-     /* 设置代理 监听滚动 */
-     simpleManager.delegate = self
-     return simpleManager
-     }()
-    */
- 
-    
-
     private lazy var simpleManager: LTSimpleManager = {
-        let simpleManager = LTSimpleManager(frame: managerReact(), viewControllers: viewControllers, titles: titles, currentViewController: self, layout: layout)
+        let simpleManager = LTSimpleManager(frame: managerReact(), viewControllers: viewControllers, titles: titles, currentViewController: self, layout: layout/*, itemViewClass: LTCustomTitleItemView.self*/)
         /* 设置代理 监听滚动 */
         simpleManager.delegate = self
         return simpleManager

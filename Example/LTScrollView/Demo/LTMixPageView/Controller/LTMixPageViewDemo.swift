@@ -10,7 +10,6 @@ import UIKit
 
 class LTMixPageViewDemo: UIViewController {
 
-    
     private lazy var viewControllers: [UIViewController] = {
         let defaultVC = LTMixPageSimpleDemo()
         let setVC = LTMixPageSimpleDemo()
@@ -38,7 +37,7 @@ class LTMixPageViewDemo: UIViewController {
     }()
     
     private lazy var pageView: LTPageView = {
-        let pageView = LTPageView(frame: CGRect(x: 0, y: GLT_NAVCHEIGHT, width: GLT_MAINWIDTH, height: GLT_MAINWHEIGHT - GLT_NAVCHEIGHT - GLT_BOTTOMSPACE), currentViewController: self, viewControllers: viewControllers, titles: titles, layout: layout)
+        let pageView = LTPageView(frame: CGRect(x: 0, y: GLT_NAVCHEIGHT, width: GLT_MAINWIDTH, height: GLT_MAINWHEIGHT - GLT_NAVCHEIGHT - GLT_BOTTOMSPACE), currentViewController: self, viewControllers: viewControllers, titles: titles, layout: layout/*, itemViewClass: LTCustomTitleItemView.self */)
         pageView.isClickScrollAnimation = true
         return pageView
     }()

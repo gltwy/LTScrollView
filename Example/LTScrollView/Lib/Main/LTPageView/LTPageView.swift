@@ -24,7 +24,7 @@ public typealias AddChildViewControllerBlock = (Int, UIViewController) -> Void
 @objc protocol LTPageViewHeaders: NSObjectProtocol {
     
     //MARK: 构造方法
-    @objc init(frame: CGRect, currentViewController: UIViewController, viewControllers:[UIViewController], titles: [String], layout: LTLayout)
+    @objc init(frame: CGRect, currentViewController: UIViewController, viewControllers:[UIViewController], titles: [String], layout: LTLayout, itemViewClass: LTPageTitleItemType.Type?)
     
     //MARK: 选中了第几个位置
     @objc var didSelectIndexBlock: PageViewDidSelectIndexBlock? { get }
@@ -37,9 +37,6 @@ public typealias AddChildViewControllerBlock = (Int, UIViewController) -> Void
     
     //MARK: pageView代理
     @objc weak var delegate: LTPageViewDelegate? { get }
-    
-    //MARK: 自定义子view
-    @objc func customLayoutItems(handle: (([LTPageTitleItemView], LTPageView) -> Void)?)
 }
 
 public class LTPageView: UIView, LTPageViewHeaders {
@@ -75,10 +72,14 @@ public class LTPageView: UIView, LTPageViewHeaders {
     //pageView的scrollView左右滑动监听
     @objc public weak var delegate: LTPageViewDelegate?
     
-    //自定义子view
-    @objc public func customLayoutItems(handle: (([LTPageTitleItemView], LTPageView) -> Void)?) {
+    /** 获取所有的itemViews
+    @available(*, deprecated, message: "use init_xxx_itemViewClass: instand of it")
+    @objc public func customLayoutItems(handle: (([LTPageTitleItemType], LTPageView) -> Void)?) {
         handle?(titleView.allItemViews(), self)
     }
+     */
+    
+    var itemViewClass: LTPageTitleItemType.Type?
     
     /** 如果LTPageView 与 LTSimple结合使用 需要将它设置为true */
     var isSimpeMix = false {
@@ -90,7 +91,7 @@ public class LTPageView: UIView, LTPageViewHeaders {
     @objc public var gestureRecognizerEnabledHandle: ((Bool) -> Void)?
     
     private lazy var titleView: LTPageTitleView = {
-        let titleView = LTPageTitleView(frame: CGRect(x: 0, y: 0, width: glt_width, height: layout.sliderHeight), titles: titles, layout: layout)
+        let titleView = LTPageTitleView(frame: CGRect(x: 0, y: 0, width: glt_width, height: layout.sliderHeight), titles: titles, layout: layout, itemViewClass: itemViewClass)
         titleView.backgroundColor = layout.titleViewBgColor
         return titleView
     }()
@@ -112,11 +113,16 @@ public class LTPageView: UIView, LTPageViewHeaders {
         return scrollView
     }()
     
-    @objc required public init(frame: CGRect, currentViewController: UIViewController, viewControllers:[UIViewController], titles: [String], layout: LTLayout) {
+    @objc convenience public init(frame: CGRect, currentViewController: UIViewController, viewControllers:[UIViewController], titles: [String], layout: LTLayout) {
+        self.init(frame: frame, currentViewController: currentViewController, viewControllers: viewControllers, titles: titles, layout: layout, itemViewClass: nil)
+    }
+    
+    @objc required public init(frame: CGRect, currentViewController: UIViewController, viewControllers:[UIViewController], titles: [String], layout: LTLayout, itemViewClass: LTPageTitleItemType.Type? = nil) {
         self.currentViewController = currentViewController
         self.viewControllers = viewControllers
         self.titles = titles
         self.layout = layout
+        self.itemViewClass = itemViewClass
         guard viewControllers.count == titles.count else {
             fatalError("控制器数量和标题数量不一致")
         }

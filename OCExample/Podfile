@@ -4,7 +4,9 @@ target 'OCExample' do
   use_frameworks!
 
     #pod 'LTScrollView', '~> 0.4.2'
+    
     pod 'LTScrollView', :path => '../'
+    
     #pod 'LTScrollView/LTLoopsPlay', :path => '../'
     #pod 'LTScrollView/LTFollowMove', :path => '../'
 

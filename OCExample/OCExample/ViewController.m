@@ -49,12 +49,11 @@
     self.titles = @[@"基础版-刷新控件在顶部(有更新！)\nLTSimple",
                     @"进阶版-刷新控件在中间\nLTAdvanced",
                     @"下拉放大-导航渐变\nLTPersonalMainPage",
-                    @"切换视图(重大更新！！！)\nLTPageView",
+                    @"切换视图\nLTPageView",
                     @"混合视图-上下左右滑动\nLTMixPageView",
                     @"仿抖音快手直播间滑动切换\nLTLivePlayLoopsListDemo",
                     @"弹框视图跟随下拉移动\nLTFollowMoveDemo"];
     self.title = @"首页";
-    
 }
 
 

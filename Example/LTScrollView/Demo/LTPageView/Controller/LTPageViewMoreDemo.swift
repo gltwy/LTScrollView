@@ -35,7 +35,7 @@ class LTPageViewMoreDemo: UIViewController {
         
         switch style {
         case .default:
-            style1()
+            style4()
             break
         case .setStyle:
             style2()
@@ -44,7 +44,7 @@ class LTPageViewMoreDemo: UIViewController {
             style3()
             break
         case .customStyle:
-            style4()
+            style1()
             break
         }
     }
@@ -136,87 +136,20 @@ extension LTPageViewMoreDemo {
 extension LTPageViewMoreDemo {
     
     @objc private func style4() {
-        
         let layout = LTLayout()
-        layout.titleMargin = 5
-        
-        //自定义每一个item的宽度
-        layout.layoutItemWidths = [150, 120, 90, 100, 80]
-        
-        //此处如果不设置为false，将来取每一个itemView的时候frame由于缩放效果会导致frame改变
-        //如果为true可以从 layout.layoutItemWidths 取值这样不会影响内部布局
-        layout.isNeedScale = false
-        
+        layout.titleMargin = 15
+        layout.lrMargin = 15
+        layout.isNeedScale = true
         let titles = ["添加背景图片", "自定义badge", "我是富文本", "修改位置", "更多样式"]
-        
         var viewControllers = [UIViewController]()
         for _ in titles {
             viewControllers.append(LTPageViewTestOneVC())
         }
-        
-        let pageView = LTPageView(frame: CGRect(x: 0, y: 0, width: GLT_MAINWIDTH, height: GLT_MAINWHEIGHT - GLT_NAVCHEIGHT - GLT_BOTTOMSPACE - 40), currentViewController: self, viewControllers: viewControllers, titles: titles, layout: layout)
-        
+        let pageView = LTPageView(frame: CGRect(x: 0, y: 0, width: GLT_MAINWIDTH, height: GLT_MAINWHEIGHT - GLT_NAVCHEIGHT - GLT_BOTTOMSPACE - 40), currentViewController: self, viewControllers: viewControllers, titles: titles, layout: layout, itemViewClass: LTCustomTitleItemView.self)
         pageView.isClickScrollAnimation = true
-        
-        //在此处自定义itemView
-        pageView.customLayoutItems {[weak self] (itemViews, _) in
-            for (index, itemView) in itemViews.enumerated() {
-                self?.customStyle(itemView: itemView, index: index)
-            }
-        }
         pageView.didSelectIndexBlock = {(_, index) in
             print("pageView.didSelectIndexBlock", index)
         }
         view.addSubview(pageView)
     }
-    
-    //注意layoutItemWidths使用说明
-    private func customStyle(itemView: LTPageTitleItemView, index: Int) {
-        itemView.backgroundColor = .randomColor
-        
-        switch index {
-        case 0:
-            let imageView = UIImageView()
-            imageView.image = UIImage(named: "test")
-            imageView.glt_size = CGSize(width: 120, height: 30)
-            //isNeedScale 为true此处 itemView.glt_width 替换为 layout.layoutItemWidths[index]
-            imageView.glt_left = (itemView.glt_width - imageView.glt_width) * 0.5
-            imageView.glt_centerY = itemView.glt_centerY
-            imageView.contentMode = .scaleAspectFill
-            imageView.layer.masksToBounds = true
-            imageView.clipsToBounds = true
-            itemView.insertSubview(imageView, at: 0)
-            break
-        case 1:
-            let badgeView = UIView()
-            badgeView.backgroundColor = .red
-            badgeView.frame = CGRect(x: itemView.glt_width - 15, y: 5, width: 10, height: 10)
-            let maskPath = UIBezierPath(roundedRect: badgeView.bounds, byRoundingCorners: .allCorners, cornerRadii: CGSize(width: 5, height: 5))
-            let maskLayer = CAShapeLayer()
-            maskLayer.frame = badgeView.bounds
-            maskLayer.path = maskPath.cgPath
-            badgeView.layer.mask = maskLayer
-            itemView.addSubview(badgeView)
-            break
-        case 2:
-            //富文本选中以后的处理可以根据选中index位置自己设置
-            let itemTitle = itemView.titleLabel?.text ?? ""
-            let titleLabel = UILabel.init(frame: CGRect.init(x: 0, y: 0, width: itemView.glt_width, height: itemView.glt_height))
-            titleLabel.font = UIFont.systemFont(ofSize: 10)
-            titleLabel.textAlignment = .center
-            let attr = NSMutableAttributedString(string: itemTitle)
-            attr.addAttributes([NSAttributedString.Key.font : UIFont.systemFont(ofSize: 10)], range: (itemTitle as NSString).range(of: "我是"))
-            attr.addAttributes([NSAttributedString.Key.font : UIFont.systemFont(ofSize: 14), NSAttributedString.Key.foregroundColor : UIColor.randomColor], range: (itemTitle as NSString).range(of: "富文本"))
-            titleLabel.attributedText = attr
-            itemView.addSubview(titleLabel)
-            itemView.setTitle("", for: .normal)
-            break
-        case 3:
-            itemView.titleEdgeInsets = UIEdgeInsets.init(top: 0, left: 0, bottom: -10, right: 0)
-            break
-        default:
-            break
-        }
-    }
-    
 }

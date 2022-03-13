@@ -1,9 +1,9 @@
 PODS:
-  - LTScrollView (0.4.2):
-    - LTScrollView/LTFollowMove (= 0.4.2)
-    - LTScrollView/LTLoopsPlay (= 0.4.2)
-  - LTScrollView/LTFollowMove (0.4.2)
-  - LTScrollView/LTLoopsPlay (0.4.2)
+  - LTScrollView (0.4.3):
+    - LTScrollView/LTFollowMove (= 0.4.3)
+    - LTScrollView/LTLoopsPlay (= 0.4.3)
+  - LTScrollView/LTFollowMove (0.4.3)
+  - LTScrollView/LTLoopsPlay (0.4.3)
   - MJRefresh (3.1.14.1)
 
 DEPENDENCIES:
@@ -19,9 +19,9 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  LTScrollView: 183057b0c25800d3461284be8e9adb9b50be9994
+  LTScrollView: 5d3de4bfe7b5bf591486fa2529d863ccf4cde973
   MJRefresh: 238e6a37e2dba12160ee3b79f6d2a2b26abcab42
 
-PODFILE CHECKSUM: e70da5df88f76b4291f9d674f580176a546281ea
+PODFILE CHECKSUM: c3444a95e8c2d3a4bb00720b12f23ba1d220f97e
 
-COCOAPODS: 1.10.0
+COCOAPODS: 1.11.2

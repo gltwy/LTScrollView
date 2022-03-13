@@ -30,6 +30,7 @@
 		C6AD9C3B27BCDEAE00E2CA5C /* LTMixPageViewDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AD9C3A27BCDEAE00E2CA5C /* LTMixPageViewDemo.swift */; };
 		C6AD9C3D27BCE0C800E2CA5C /* LTMixPageSimpleDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AD9C3C27BCE0C800E2CA5C /* LTMixPageSimpleDemo.swift */; };
 		C6AD9C3F27BCE11F00E2CA5C /* LTMixPageSimpleChildViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AD9C3E27BCE11F00E2CA5C /* LTMixPageSimpleChildViewController.swift */; };
+		C6E5296A27DB273000B1AEA9 /* LTCustomTitleItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6E5296927DB273000B1AEA9 /* LTCustomTitleItemView.swift */; };
 		C6FEEFEC27D1D5C5007D3211 /* LTFollowMoveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FEEFEB27D1D5C5007D3211 /* LTFollowMoveView.swift */; };
 		C6FEEFEF27D1D887007D3211 /* LTFollowMoveDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FEEFEE27D1D887007D3211 /* LTFollowMoveDemo.swift */; };
 		C6FEEFF127D1D903007D3211 /* LTFollowMoveTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FEEFF027D1D903007D3211 /* LTFollowMoveTestView.swift */; };
@@ -44,7 +45,7 @@
 		C6FEF00F27D1F307007D3211 /* UIView+LTExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FEEFFF27D1F307007D3211 /* UIView+LTExtension.swift */; };
 		C6FEF01027D1F307007D3211 /* LTScrollExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FEF00027D1F307007D3211 /* LTScrollExtension.swift */; };
 		C6FEF01127D1F307007D3211 /* LTTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FEF00127D1F307007D3211 /* LTTableView.swift */; };
-		C6FEF01227D1F307007D3211 /* LTPageTitleItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FEF00327D1F307007D3211 /* LTPageTitleItemView.swift */; };
+		C6FEF01227D1F307007D3211 /* LTPageTitleItemType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FEF00327D1F307007D3211 /* LTPageTitleItemType.swift */; };
 		C6FEF01327D1F307007D3211 /* LTPageTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FEF00427D1F307007D3211 /* LTPageTitleView.swift */; };
 		C6FEF01427D1F307007D3211 /* LTSimpleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FEF00627D1F307007D3211 /* LTSimpleManager.swift */; };
 /* End PBXBuildFile section */
@@ -82,6 +83,7 @@
 		C6AD9C3A27BCDEAE00E2CA5C /* LTMixPageViewDemo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LTMixPageViewDemo.swift; sourceTree = "<group>"; };
 		C6AD9C3C27BCE0C800E2CA5C /* LTMixPageSimpleDemo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LTMixPageSimpleDemo.swift; sourceTree = "<group>"; };
 		C6AD9C3E27BCE11F00E2CA5C /* LTMixPageSimpleChildViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LTMixPageSimpleChildViewController.swift; sourceTree = "<group>"; };
+		C6E5296927DB273000B1AEA9 /* LTCustomTitleItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LTCustomTitleItemView.swift; sourceTree = "<group>"; };
 		C6FEEFEB27D1D5C5007D3211 /* LTFollowMoveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LTFollowMoveView.swift; sourceTree = "<group>"; };
 		C6FEEFEE27D1D887007D3211 /* LTFollowMoveDemo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LTFollowMoveDemo.swift; sourceTree = "<group>"; };
 		C6FEEFF027D1D903007D3211 /* LTFollowMoveTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LTFollowMoveTestView.swift; sourceTree = "<group>"; };
@@ -96,7 +98,7 @@
 		C6FEEFFF27D1F307007D3211 /* UIView+LTExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+LTExtension.swift"; sourceTree = "<group>"; };
 		C6FEF00027D1F307007D3211 /* LTScrollExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTScrollExtension.swift; sourceTree = "<group>"; };
 		C6FEF00127D1F307007D3211 /* LTTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTTableView.swift; sourceTree = "<group>"; };
-		C6FEF00327D1F307007D3211 /* LTPageTitleItemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTPageTitleItemView.swift; sourceTree = "<group>"; };
+		C6FEF00327D1F307007D3211 /* LTPageTitleItemType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTPageTitleItemType.swift; sourceTree = "<group>"; };
 		C6FEF00427D1F307007D3211 /* LTPageTitleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTPageTitleView.swift; sourceTree = "<group>"; };
 		C6FEF00627D1F307007D3211 /* LTSimpleManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTSimpleManager.swift; sourceTree = "<group>"; };
 		EE682E1F9E7043F06751A7F5 /* LTScrollView.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LTScrollView.podspec; path = ../LTScrollView.podspec; sourceTree = "<group>"; };
@@ -227,6 +229,7 @@
 				6ABD2B9E20E679D500473B06 /* LTPageViewDemo.swift */,
 				6A19DBF124F0EAC000B7EE0B /* LTPageViewMoreDemo.swift */,
 				6ABD2B9F20E679D500473B06 /* LTPageViewTestOneVC.swift */,
+				C6E5296927DB273000B1AEA9 /* LTCustomTitleItemView.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -388,7 +391,7 @@
 		C6FEF00227D1F307007D3211 /* LTTitleView */ = {
 			isa = PBXGroup;
 			children = (
-				C6FEF00327D1F307007D3211 /* LTPageTitleItemView.swift */,
+				C6FEF00327D1F307007D3211 /* LTPageTitleItemType.swift */,
 				C6FEF00427D1F307007D3211 /* LTPageTitleView.swift */,
 			);
 			path = LTTitleView;
@@ -446,6 +449,7 @@
 				TargetAttributes = {
 					607FACCF1AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
+						DevelopmentTeam = TEND9EZRP6;
 						LastSwiftMigration = 0900;
 					};
 				};
@@ -566,9 +570,10 @@
 				C6FEF00E27D1F307007D3211 /* LTVCExtension.swift in Sources */,
 				6A19DBF224F0EAC000B7EE0B /* LTPageViewMoreDemo.swift in Sources */,
 				6AF10E8D21428F540007F889 /* LTCustomTitleView.swift in Sources */,
-				C6FEF01227D1F307007D3211 /* LTPageTitleItemView.swift in Sources */,
+				C6FEF01227D1F307007D3211 /* LTPageTitleItemType.swift in Sources */,
 				6ABD2BA520E679D600473B06 /* LTPageViewTestOneVC.swift in Sources */,
 				6ABD2BA420E679D600473B06 /* LTPageViewDemo.swift in Sources */,
+				C6E5296A27DB273000B1AEA9 /* LTCustomTitleItemView.swift in Sources */,
 				6AB5A9F92078C4D10065D6F7 /* LTSimpleManagerDemo.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 			);
@@ -700,7 +705,7 @@
 			baseConfigurationReference = 5590D6C6104CB4044192B0FA /* Pods-LTScrollView_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = TEND9EZRP6;
 				INFOPLIST_FILE = LTScrollView/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

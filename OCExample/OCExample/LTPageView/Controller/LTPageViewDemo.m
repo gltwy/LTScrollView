@@ -74,7 +74,7 @@
 
 - (NSArray <NSString *> *)titles {
     if (!_titles) {
-        _titles = @[@"默认", @"系统样式1", @"系统样式2", @"自定义标题样式"];
+        _titles = @[@"自定义标题样式", @"系统样式1", @"系统样式2", @"默认"];
     }
     return _titles;
 }
