@@ -258,6 +258,105 @@ extension LTPageTitleView {
         glt_currentIndex = btnSelectIndex
     }
     
+    @objc public func reloadLayout(titles: [String]) {
+        guard titles.count == self.titles.count else { return }
+        guard titles.count != 0 else { return }
+        self.titles = titles
+        glt_textWidths.removeAll()
+        
+        //是否自定义了item的宽
+        let _isLayoutWidth = layout.layoutItemWidths.count > 0
+        
+        // 将所有的宽度计算出来放入数组
+        for text in titles {
+            if layout.isAverage {
+                let textAverageW = (glt_width - layout.lrMargin * 2.0 - layout.titleMargin * CGFloat(titles.count - 1)) / CGFloat(titles.count)
+                if !_isLayoutWidth {
+                    glt_textWidths.append(textAverageW)
+                }
+                glt_lineWidths.append(textAverageW)
+                continue
+            }
+            if text.count == 0 {
+                if !_isLayoutWidth {
+                    glt_textWidths.append(60)
+                }
+                glt_lineWidths.append(60)
+                continue
+            }
+            let textW = text.boundingRect(with: CGSize(width: CGFloat(MAXFLOAT), height: 8), options: .usesLineFragmentOrigin, attributes: [NSAttributedString.Key.font : layout.titleFont ?? UIFont.systemFont(ofSize: 16)], context: nil).size.width
+            if !_isLayoutWidth {
+                glt_textWidths.append(ceil(textW))
+            }
+            glt_lineWidths.append(ceil(textW))
+        }
+        
+        if _isLayoutWidth {
+            glt_textWidths = layout.layoutItemWidths
+        }
+        
+        // 按钮布局
+        var upX: CGFloat = layout.lrMargin
+        let subH = glt_height - layout.bottomLineHeight
+        for index in 0..<titles.count {
+            let subW = glt_textWidths[index]
+            let buttonReact = CGRect(x: upX, y: 0, width: subW, height: subH)
+            let button = glt_buttons[index]
+            button.transform = .identity
+            button.frame = buttonReact
+            button.setTitle(titles[index], for: .normal)
+            upX = button.frame.origin.x + subW + layout.titleMargin
+            button.glt_layoutSubviews?()
+        }
+        
+        if layout.isAverage {
+            sliderScrollView.contentSize = CGSize(width: glt_width, height: 0)
+            return
+        }
+        
+        let firstButton = glt_buttons[glt_currentIndex]
+        let firstLineWidth = glt_lineWidths[glt_currentIndex]
+        let firstTextWidth = glt_textWidths[glt_currentIndex]
+        
+        if layout.isNeedScale {
+            firstButton.transform = CGAffineTransform(scaleX: layout.scale , y: layout.scale)
+        }
+        
+        // lineView的宽度为第一个的宽度
+        if layout.sliderWidth == glt_sliderDefaultWidth {
+            if layout.isAverage {
+                sliderLineView.glt_width = firstLineWidth
+                sliderLineView.glt_left = (firstTextWidth - firstLineWidth) * 0.5 + layout.lrMargin
+            }else {
+                sliderLineView.glt_width = firstButton.glt_width
+                sliderLineView.glt_left = firstButton.glt_left
+            }
+        }else {
+            sliderLineView.glt_width = layout.sliderWidth
+            sliderLineView.glt_left = ((firstTextWidth + layout.lrMargin * 2) - layout.sliderWidth) * 0.5
+        }
+        
+        if layout.bottomLineCornerRadius != 0.0 {
+            sliderLineView.layer.cornerRadius = layout.bottomLineCornerRadius
+            sliderLineView.layer.masksToBounds = true
+            sliderLineView.clipsToBounds = true
+        }
+        
+        if layout.isAverage {
+            sliderScrollView.contentSize = CGSize(width: glt_width, height: 0)
+            return
+        }
+        
+        // 计算sliderScrollView的contentSize
+        let sliderContenSizeW = upX - layout.titleMargin + layout.lrMargin
+        
+        if sliderContenSizeW < glt_width {
+            sliderScrollView.glt_width = sliderContenSizeW
+        }
+        
+        //最后多加了一个 layout.titleMargin， 这里要减去
+        sliderScrollView.contentSize = CGSize(width: sliderContenSizeW, height: 0)
+    }
 }
 
 //MARK: 处理刚进入滚动到第几个位置

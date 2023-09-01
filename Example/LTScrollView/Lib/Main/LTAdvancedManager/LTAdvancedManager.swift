@@ -76,6 +76,10 @@ public class LTAdvancedManager: UIView {
         self.init(frame: frame, viewControllers: viewControllers, titles: titles, currentViewController: currentViewController, layout: layout, titleView: nil, itemViewClass: itemViewClass, headerViewHandle: handle)
     }
     
+    @objc public func reloadLayout(titles: [String]) {
+        titleView.reloadLayout(titles: titles)
+    }
+    
     deinit {
         deallocConfig()
     }

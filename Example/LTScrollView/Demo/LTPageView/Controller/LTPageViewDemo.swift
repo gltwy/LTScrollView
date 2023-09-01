@@ -56,7 +56,9 @@ class LTPageViewDemo: UIViewController {
         pageView.didSelectIndexBlock = {(_, index) in
             print("pageView.didSelectIndexBlock", index)
         }
-        
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: DispatchWorkItem(block: {
+//            self.pageView.reloadLayout(titles: ["可以2", "改变", "标题", "LTPageView具体使用"])
+//        }))
     }
 
     required init?(coder: NSCoder) {

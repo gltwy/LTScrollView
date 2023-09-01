@@ -144,6 +144,10 @@ public class LTPageView: UIView, LTPageViewHeaders {
         titleView.scrollToIndex(index: index)
     }
     
+    @objc public func reloadLayout(titles: [String]) {
+        titleView.reloadLayout(titles: titles)
+    }
+    
     required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

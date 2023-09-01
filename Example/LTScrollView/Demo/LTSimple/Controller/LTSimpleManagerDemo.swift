@@ -73,7 +73,9 @@ class LTSimpleManagerDemo: UIViewController {
         self.automaticallyAdjustsScrollViewInsets = false
         view.addSubview(simpleManager)
         simpleManagerConfig()
-        
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: DispatchWorkItem(block: {
+//            self.simpleManager.reloadLayout(titles: ["可以2", "改变", "标题", "LTPageView具体使用"])
+//        }))
     }
     
     override func didReceiveMemoryWarning() {

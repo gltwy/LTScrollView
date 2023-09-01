@@ -73,6 +73,9 @@ class LTAdvancedManagerDemo: UIViewController {
         self.automaticallyAdjustsScrollViewInsets = false
         view.addSubview(advancedManager)
         advancedManagerConfig()
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: DispatchWorkItem(block: {
+//            self.advancedManager.reloadLayout(titles: ["可以2", "改变", "标题", "LTPageView具体使用"])
+//        }))
     }
     
     deinit {

@@ -120,6 +120,10 @@ public class LTSimpleManager: UIView {
         self.init(frame: frame, viewControllers: viewControllers, titles: titles, currentViewController: currentViewController, layout: layout, titleView: nil)
     }
     
+    @objc public func reloadLayout(titles: [String]) {
+        titleView.reloadLayout(titles: titles)
+    }
+    
     required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -179,6 +183,9 @@ extension LTSimpleManager {
     }
     
     private func contentScrollViewScrollConfig(_ viewController: UIViewController) {
+        if self.contentTableView == nil {
+            self.contentTableView = viewController.glt_scrollView
+        }
         viewController.glt_scrollView?.scrollHandle = {[weak self] scrollView in
             guard let `self` = self else { return }
             self.contentTableView = scrollView
