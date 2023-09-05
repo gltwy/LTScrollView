@@ -30,14 +30,14 @@ $ gem install cocoapods
 
 ```ruby
 source 'https://github.com/CocoaPods/Specs.git'
-platform :ios, '8.0'
+platform :ios, '11.0'
 
 target 'TargetName' do
 # 注意此处需要添加use_frameworks!
 use_frameworks!
 
-# 当前最新版本 - 2021-11-20
-pod 'LTScrollView', '~> 0.4.3'
+# 当前最新版本 - 2023-09-01
+pod 'LTScrollView', '~> 0.4.5'
 
 # 无限轮播框架 + 预加载子组件
 #pod 'LTScrollView/LTLoopsPlay'
@@ -125,6 +125,12 @@ self.glt_scrollView = self.tableView（self.scrollView / self.collectionView）
 
 ## 更新说明
 
+2022.09.01 - 0.4.5
+```objective-c
+1. 标题刷新
+2. 修复已知Bug
+```
+
 2022.03.13 - 0.4.4
 ```objective-c
 1. 自定义标题模块修改
@@ -187,7 +193,7 @@ self.glt_scrollView = self.tableView（self.scrollView / self.collectionView）
 ```
 
 ## Author
-- 微信公众号:  [技术大咖社](https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=Mzg4OTYwMTc3NQ==#wechat_redirect)（如有任何疑问、均可在公众号内留言）
+- 微信公众号:  [iOS云笔记](https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=Mzg4OTYwMTc3NQ==#wechat_redirect)（如有任何疑问、均可在公众号内留言）
 - -Blog:  https://blog.csdn.net/glt_code
 
 ## License
